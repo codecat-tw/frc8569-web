@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <div >{session?.data?.user?.name }</div>
-      <button onClick={() => signOut()}>Logout</button>
+      <button onClick={() => signOut()}>登入</button>
     </>
   )
 }
