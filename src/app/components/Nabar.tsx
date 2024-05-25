@@ -6,7 +6,7 @@ import { Bars3Icon } from '@heroicons/react/24/outline'
 const navigation = [
     { name: '場地列表', href: '/list' },
     { name: '申請場地', href: '/apply' },
-    { name: '場地審核', href: '#' },
+    { name: '場地審核', href: '/manage' },
 ]
 
 const Navbar = () => {
