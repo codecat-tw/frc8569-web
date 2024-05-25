@@ -12,14 +12,8 @@ export default function Home() {
     <>
       <Nabar/>
       <About />
-      <div >{session?.data?.user?.name }</div>
-      <div >{session?.data?.user?.email }</div>
       <button onClick={() => signOut()}>登出</button>
       <AddItem />
-      <div>
-        <h1>活動清單</h1>
-        <ListItems />
-      </div>
     </>
   )
 }
