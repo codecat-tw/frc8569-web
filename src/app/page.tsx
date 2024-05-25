@@ -10,6 +10,7 @@ export default function Home() {
   const session = useSession();
   return (
     <>
+      <Nabar/>
       <About />
       <div >{session?.data?.user?.name }</div>
       <div >{session?.data?.user?.email }</div>
