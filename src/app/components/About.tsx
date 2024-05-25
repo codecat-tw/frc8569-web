@@ -14,7 +14,7 @@ export default function Example() {
 
   return (
     <div className="bg-white">
-
+        <h1>owo</h1>
     </div>
   )
 }
