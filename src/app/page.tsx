@@ -9,12 +9,13 @@ export default function Home() {
   return (
     <>
       <div >{session?.data?.user?.name }</div>
-      <button onClick={() => signOut()}>登入</button>
-      <div>
-      <h1>Welcome to My Next.js App</h1>
+      <div >{session?.data?.user?.email }</div>
+      <button onClick={() => signOut()}>登出</button>
       <AddItem />
-      <ListItems />
-    </div>
+      <div>
+        <h1>活動清單</h1>
+        <ListItems />
+      </div>
     </>
   )
 }

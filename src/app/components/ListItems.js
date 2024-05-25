@@ -10,7 +10,7 @@ const ListItems = () => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const querySnapshot = await getDocs(collection(db, "items"))
+      const querySnapshot = await getDocs(collection(db, "activity"))
       setItems(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
     }
 

@@ -3,7 +3,7 @@ import { doc, deleteDoc } from "firebase/firestore"
 
 const DeleteItem = ({ id }) => {
   const handleDelete = async () => {
-    const itemRef = doc(db, "items", id)
+    const itemRef = doc(db, "activity", id)
     try {
       await deleteDoc(itemRef)
       alert("Item deleted successfully")

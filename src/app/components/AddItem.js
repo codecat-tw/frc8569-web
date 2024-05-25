@@ -27,7 +27,7 @@ const AddItem = () => {
                 onChange={(e) => setValue(e.target.value)}
                 placeholder="Add a new item"
             />
-            <button type="submit">Add Item</button>
+            <button type="submit">申請場地</button>
         </form>
     );
 };
