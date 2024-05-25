@@ -1,6 +1,6 @@
 // components/AddItem.js
 import { useState } from 'react';
-import db from '../utils/firestore';
+import db from '../../utils/firestore';
 import { collection, addDoc } from "firebase/firestore"; 
 
 const AddItem = () => {
@@ -9,7 +9,7 @@ const AddItem = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const docRef = await addDoc(collection(db, "items"), {
+            const docRef = await addDoc(collection(db, "activity"), {
                 name: value
             });
             console.log("Document written with ID: ", docRef.id);

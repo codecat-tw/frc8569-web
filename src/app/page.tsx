@@ -1,7 +1,8 @@
 'use client';
 import { signOut, useSession } from 'next-auth/react';
 
-import AddItem from './AddItem';
+import AddItem from './components/AddItem'
+import ListItems from "./components/ListItems";
 
 export default function Home() {
   const session = useSession();
@@ -12,6 +13,7 @@ export default function Home() {
       <div>
       <h1>Welcome to My Next.js App</h1>
       <AddItem />
+      <ListItems />
     </div>
     </>
   )
