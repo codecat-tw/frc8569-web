@@ -1,20 +1,8 @@
-import { useState } from 'react'
-import { Dialog, DialogPanel } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-
-const navigation = [
-  { name: 'Product', href: '#' },
-  { name: 'Features', href: '#' },
-  { name: 'Marketplace', href: '#' },
-  { name: 'Company', href: '#' },
-]
-
-export default function Example() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
+export default function About() {
   return (
     <div className="bg-white">
-        <h1>owo</h1>
+        <h1>FRC管理系統</h1>
+        <h1>由楊光地開發維護</h1>
     </div>
   )
 }

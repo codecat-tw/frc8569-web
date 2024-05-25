@@ -1,8 +1,8 @@
 'use client';
-import { signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import AddItem from '../components/AddItem'
 
-export default function Home() {
+export default function Apply() {
   const session = useSession();
   return (
     <>

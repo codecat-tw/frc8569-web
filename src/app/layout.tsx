@@ -8,6 +8,11 @@ import Nabar from "./components/Nabar";
 
 const inter = Inter({ subsets: ['latin'] })
 
+export const metadata = {
+  title: 'FRC8569',
+  description: 'FRC團隊管理系統',
+}
+
 export default async function RootLayout({
   children,
 }: {
