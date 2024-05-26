@@ -51,6 +51,7 @@ const AddItem = ( { userEmail } ) => {
 
     return (
         <form onSubmit={handleSubmit}>
+            <div>
             <input
                 type="date"
                 name="date"
@@ -59,6 +60,8 @@ const AddItem = ( { userEmail } ) => {
                 placeholder="Date"
                 required
             />
+            </div>
+            <div>
             <input
                 type="text"
                 name="name"
@@ -67,6 +70,8 @@ const AddItem = ( { userEmail } ) => {
                 placeholder="Name"
                 required
             />
+            </div>
+            <div>
             <input
                 type="time"
                 name="start"
@@ -75,6 +80,8 @@ const AddItem = ( { userEmail } ) => {
                 placeholder="Start"
                 required
             />
+            </div>
+            <div>
             <input
                 type="time"
                 name="end"
@@ -83,6 +90,7 @@ const AddItem = ( { userEmail } ) => {
                 placeholder="End"
                 required
             />
+            </div>
             <button type="submit">提交申請</button>
         </form>
     );

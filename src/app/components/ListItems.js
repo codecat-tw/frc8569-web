@@ -20,7 +20,11 @@ const ListItems = () => {
       <ul>
         {items.map((item) => (
           <li key={item.id} className="border-t-2 p-2">
-            <p>{item.name}</p>
+            <p>申請日期: {item.date}</p>
+            <p>活動名稱: {item.name}</p>
+            <p>開始時間: {item.start}</p>
+            <p>結束時間: {item.end}</p>
+            <p>活動代表: {item.email}</p>
           </li>
         ))}
       </ul>
