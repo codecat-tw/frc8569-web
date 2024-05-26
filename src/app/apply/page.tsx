@@ -8,7 +8,7 @@ export default function Apply() {
 
   return (
     <>
-      <AddItem userEmail={userEmail} />
+      <AddItem applyEmail={userEmail} />
     </>
   )
 }
