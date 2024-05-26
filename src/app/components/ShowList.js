@@ -27,6 +27,7 @@ const ListItems = () => {
             <p>使用分區: {item.area}</p>
             <p>活動代表: {item.apply}</p>
             <p>指導老師: {item.teacher}</p>
+            <p>場地狀態: {item.status}</p>
           </li>
         ))}
       </ul>

@@ -33,7 +33,8 @@ const AddItem = ({ applyEmail }) => {
                 const docRef = doc(collection(db, "activity"), date);
                 await setDoc(docRef, {
                     ...formValues,
-                    apply: applyEmail // 使用傳遞進來的郵件地址
+                    apply: applyEmail,
+                    status: "尚未審核",
                 });
                 console.log("Document written with ID: ", docRef.id);
                 // 清空表單

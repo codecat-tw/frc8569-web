@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import db from "../../utils/firestore.js"
 import { collection, getDocs } from "firebase/firestore"
 import DeleteButton from "./DeleteButton.js"
+import AgreeButton from "./AgreeButton.js"
 
 const ListItems = () => {
   const [items, setItems] = useState([])
@@ -30,7 +31,9 @@ const ListItems = () => {
             <p>使用分區: {item.area}</p>
             <p>活動代表: {item.apply}</p>
             <p>指導老師: {item.teacher}</p>
+            <p>場地狀態: {item.status}</p>
             <DeleteButton id={item.id} />
+            <AgreeButton documentId={item.id} />
           </li>
         ))}
       </ul>
