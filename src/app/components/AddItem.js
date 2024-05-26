@@ -9,7 +9,8 @@ const AddItem = ({ applyEmail }) => {
         name: '',
         start: '',
         end: '',
-        area: ''
+        area: '',
+        teacher: ''
     });
 
     // 更新輸入框的值
@@ -25,8 +26,8 @@ const AddItem = ({ applyEmail }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         // 確保所有輸入框都有值
-        const { date, name, start, end, area } = formValues;
-        if (name && name && start && end && area) {
+        const { date, name, start, end, area, teacher } = formValues;
+        if (name && name && start && end && area && teacher) {
             try {
                 // 使用名字作為文件名
                 const docRef = doc(collection(db, "activity"), date);
@@ -41,7 +42,8 @@ const AddItem = ({ applyEmail }) => {
                     name: '',
                     start: '',
                     end: '',
-                    area: ''
+                    area: '',
+                    teacher: ''
                 });
             } catch (e) {
                 console.error("Error adding document: ", e);
@@ -107,6 +109,21 @@ const AddItem = ({ applyEmail }) => {
                     placeholder="Area"
                     required
                 />
+            </div>
+            <div>
+                <label>指導老師</label>
+                <select
+                    name="teacher"
+                    value={formValues.teacher}
+                    onChange={handleInputChange}
+                    required
+                >
+                    <option value="" disabled>選擇一個老師</option>
+                    <option value="kkbike">華光永</option>
+                    <option value="crispin">周長益</option>
+                    <option value="angella">李淑卿</option>
+                    <option value="eric29433453@gmail.com">系統測試</option>
+                </select>
             </div>
             <button type="submit">提交申請</button>
         </form>
