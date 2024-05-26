@@ -1,6 +1,6 @@
 'use client';
 import { useSession } from 'next-auth/react';
-import AddItem from '../components/AddItem'
+import ApplyItem from '../components/ApplyItem'
 
 export default function Apply() {
   const session = useSession();
@@ -8,7 +8,7 @@ export default function Apply() {
 
   return (
     <>
-      <AddItem applyEmail={userEmail} />
+      <ApplyItem applyEmail={userEmail} />
     </>
   )
 }

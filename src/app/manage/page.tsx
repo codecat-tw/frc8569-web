@@ -1,6 +1,6 @@
 'use client';
 import { useSession } from 'next-auth/react';
-import ApplyList from "../components/ApplyList";
+import ManageList from "../components/ManageList";
 
 const adminEmails = [
   'eric29433453@gmail.com',
@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       <h1>場地審核</h1>
-      <ApplyList />
+      <ManageList />
     </>
   )
 }

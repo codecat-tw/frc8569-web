@@ -1,6 +1,6 @@
 'use client';
 import { useSession } from 'next-auth/react';
-import ListItems from "../components/ListItems";
+import ShowList from "../components/ShowList";
 
 export default function List() {
   const session = useSession();
@@ -14,7 +14,7 @@ export default function List() {
     <>
       <div>
         <h1>活動清單</h1>
-        <ListItems />
+        <ShowList />
       </div>
     </>
   )
