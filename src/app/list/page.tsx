@@ -12,11 +12,9 @@ export default function List() {
   }
 
   return (
-    <>
-      <div>
-        <h1>活動清單</h1>
-        <ShowList />
-      </div>
-    </>
+    <div className='min-h-screen bg-blue-100'>
+      <h1>活動清單</h1>
+      <ShowList />
+    </div>
   )
 }

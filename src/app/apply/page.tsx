@@ -12,8 +12,8 @@ export default function Apply() {
   }
 
   return (
-    <>
+    <div className='min-h-screen bg-blue-100'>
       <ApplyItem userEmail={userEmail} />
-    </>
+    </div>
   )
 }

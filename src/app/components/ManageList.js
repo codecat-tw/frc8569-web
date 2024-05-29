@@ -32,8 +32,8 @@ const ListItems = () => {
             <p>活動代表: {item.apply}</p>
             <p>指導老師: {item.teacher}</p>
             <p>場地狀態: {item.status}</p>
-            <DeleteButton id={item.id} />
             <AgreeButton documentId={item.id} />
+            <DeleteButton id={item.id} />
           </li>
         ))}
       </ul>

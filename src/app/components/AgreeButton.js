@@ -26,7 +26,11 @@ const UpdateStatusButton = ({ documentId }) => {
 
     return (
         <div>
-            <button onClick={handleUpdateStatus} disabled={loading}>
+            <button 
+                onClick={handleUpdateStatus}
+                disabled={loading}
+                className="border bg-green-400 p-1 rounded text-white"
+            >
                 {loading ? '更新中...' : '接受申請'}
             </button>
             {error && <p style={{ color: 'red' }}>Error: {error.message}</p>}

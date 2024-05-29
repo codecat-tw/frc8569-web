@@ -17,9 +17,9 @@ export default function Home() {
   }
 
   return (
-    <>
+    <div className='min-h-screen bg-blue-100'>
       <h1>場地審核</h1>
       <ManageList />
-    </>
+    </div>
   )
 }
