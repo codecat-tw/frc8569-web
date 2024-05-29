@@ -1,6 +1,7 @@
 'use client';
 import { useSession } from 'next-auth/react';
 import ManageList from "../components/ManageList";
+import NoPurview from "../components/NoPurview";
 
 const adminEmails = [
   'eric29433453@gmail.com',
@@ -12,7 +13,7 @@ export default function Home() {
   const userEmail = session?.data?.user?.email || 'ErrorUser';
 
   if (!session || !adminEmails.includes(userEmail)) {
-    return <p>拒絕存取，你沒有審核權限。</p>;
+    return <NoPurview />;
   }
 
   return (

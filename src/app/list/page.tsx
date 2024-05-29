@@ -1,13 +1,14 @@
 'use client';
 import { useSession } from 'next-auth/react';
 import ShowList from "../components/ShowList";
+import NoPurview from "../components/NoPurview";
 
 export default function List() {
   const session = useSession();
   const userEmail = session?.data?.user?.email || 'ErrorUser';
 
   if (!session || !userEmail.endsWith('@mail2.chshs.ntpc.edu.tw')) {
-    return <p>拒絕存取，你的帳號不屬於中和高中。</p>;
+    return <NoPurview />;
   }
 
   return (

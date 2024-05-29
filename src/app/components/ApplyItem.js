@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { collection, setDoc, doc } from "firebase/firestore";
 import db from '../../utils/firestore';
 
-const AddItem = ({ applyEmail }) => {
+const AddItem = ({ userEmail }) => {
     // 使用 useState 管理多個輸入框的值
     const [formValues, setFormValues] = useState({
         date: '',
@@ -33,7 +33,7 @@ const AddItem = ({ applyEmail }) => {
                 const docRef = doc(collection(db, "activity"), date);
                 await setDoc(docRef, {
                     ...formValues,
-                    apply: applyEmail,
+                    apply: userEmail,
                     status: "尚未審核",
                 });
                 console.log("Document written with ID: ", docRef.id);
