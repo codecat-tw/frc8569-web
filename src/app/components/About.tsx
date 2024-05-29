@@ -1,8 +1,22 @@
-export default function About() {
+import Link from 'next/link';
+
+export default function Home() {
   return (
-    <div className="bg-white">
-        <h1>FRC管理系統</h1>
-        <h1>由楊光地開發維護</h1>
+    <div className="flex items-center justify-center min-h-screen bg-blue-100">
+      <div className="text-center p-4">
+        <h1 className="text-3xl font-bold mb-4">歡迎來到FRC管理系統</h1>
+        <p className="text-lg mb-4">網站穩定性測試中...</p>
+        <p className="text-lg mb-4">遇到問題請聯繫開發者楊光地</p>
+        <p className="text-lg mb-4">郵件請洽: 110330@mail2.chshs.ntpc.edu.tw</p>
+        <div className="flex flex-col space-y-4">
+          <Link href="/list" className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">
+            報名活動
+          </Link>
+          <Link href="https://www.instagram.com/guangdiy/" className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">
+            社群支援
+          </Link>
+        </div>
+      </div>
     </div>
   )
 }

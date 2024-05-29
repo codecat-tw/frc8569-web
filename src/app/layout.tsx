@@ -4,7 +4,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import SessionProvider from './SessionProvider';
 import Login from './Login';
-import Nabar from "./components/Nabar";
+import Navbar from "./components/Navbar";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,7 +27,7 @@ export default async function RootLayout({
           <Login/>
         ): (
           <div>
-            <Nabar/>
+            <Navbar />
             {children}
           </div>
         )}
