@@ -13,11 +13,11 @@ const UpdateStatusButton = ({ documentId }) => {
         try {
             const docRef = doc(db, "activity", documentId);
             await updateDoc(docRef, {
-                status: 1
+                status: "申請通過"
             });
-            console.log("Document updated successfully");
+            console.log("場地狀態更新成功");
         } catch (e) {
-            console.error("Error updating document: ", e);
+            console.error("檔案更新錯誤: ", e);
             setError(e);
         } finally {
             setLoading(false);
@@ -27,7 +27,7 @@ const UpdateStatusButton = ({ documentId }) => {
     return (
         <div>
             <button onClick={handleUpdateStatus} disabled={loading}>
-                {loading ? 'Updating...' : 'Update Status'}
+                {loading ? '更新中...' : '接受申請'}
             </button>
             {error && <p style={{ color: 'red' }}>Error: {error.message}</p>}
         </div>

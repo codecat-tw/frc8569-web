@@ -18,7 +18,7 @@ const DeleteItem = ({ id }) => {
       onClick={handleDelete}
       className="border bg-red-400 p-1 rounded text-white"
     >
-      Delete Item
+      刪除項目
     </button>
   )
 }
