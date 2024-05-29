@@ -2,8 +2,9 @@
 import { useEffect, useState } from "react"
 import db from "../../utils/firestore"
 import { collection, getDocs } from "firebase/firestore"
+import JoinButton from "./JoinButton.js"
 
-const ListItems = () => {
+const ListItems = ({ userEmail }) => {
   const [items, setItems] = useState([])
 
   useEffect(() => {
@@ -28,6 +29,7 @@ const ListItems = () => {
             <p>活動代表: {item.apply}</p>
             <p>指導老師: {item.teacher}</p>
             <p>場地狀態: {item.status}</p>
+            <JoinButton id={item.id} userEmail={userEmail}/>
           </li>
         ))}
       </ul>

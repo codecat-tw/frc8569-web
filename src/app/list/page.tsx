@@ -14,7 +14,7 @@ export default function List() {
   return (
     <div className='min-h-screen bg-blue-100'>
       <h1>活動清單</h1>
-      <ShowList />
+      <ShowList userEmail={userEmail}/>
     </div>
   )
 }
