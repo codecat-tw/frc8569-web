@@ -1,7 +1,7 @@
 'use client';
 import { signIn } from 'next-auth/react';
 
-export default function Home() {
+export default function Login() {
   return (
     <div className="min-h-screen bg-blue-100 flex items-center justify-center">
       <div className="text-center">
