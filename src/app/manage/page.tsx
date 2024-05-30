@@ -1,8 +1,7 @@
 'use client';
 import { useSession } from 'next-auth/react';
-import ManageList from "../components/ManageList";
-import NoPurview from "../components/NoPurview";
 import GetEventList from "../components/GetEventList";
+import NoPurview from "../components/NoPurview";
 import AgreeButton from "../components/AgreeButton";
 import DeleteButton from "../components/DeleteButton";
 
