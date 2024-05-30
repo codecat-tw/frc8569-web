@@ -3,7 +3,7 @@ import { useSession } from 'next-auth/react';
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import ApplyItem from '../components/ApplyItem';
 
-const AddItemForm: React.FC<{ userEmail: string }> = () => {
+const AddItemForm: React.FC = () => {
   const { data: session } = useSession();
   const userEmail = session?.user?.email || 'ErrorUser';
 
