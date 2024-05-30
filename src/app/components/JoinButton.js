@@ -38,8 +38,9 @@ export default function JoinButton({ id, userEmail }) {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Firebase 使用者添加範例</h1>
+    <div style={{ padding: "20px" }}
+        className="border bg-green-400 p-1 rounded text-white"
+    >
       <button onClick={addUserToFirebase} disabled={loading}>
         {loading ? "添加中..." : "報名活動"}
       </button>
