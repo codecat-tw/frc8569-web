@@ -1,88 +1,79 @@
+// components/Navbar.tsx
 "use client";
 import React, { useState } from "react";
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
 import { Bars3Icon } from '@heroicons/react/24/outline';
+import MobileMenu from './MobileMenu'; // 引用新的MobileMenu組件
 
 const navigation = [
     { name: '場地列表', href: '/list' },
     { name: '申請場地', href: '/apply' },
     { name: '場地審核', href: '/manage' },
-]
+];
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const session = useSession();
+    const { data: session } = useSession();
 
     return (
-        <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-            <div className="flex lg:flex-1">
-                <a href="/" className="-m-1.5 p-1.5">
-                    <span className="sr-only">Your Company</span>
-                    <img
-                        className="h-8 w-auto"
-                        src="/FRC.jpg"
-                        alt=""
-                    />
-                </a>
-            </div>
-            <div className="flex lg:hidden">
-                <button
-                    type="button"
-                    className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                >
-                    <span className="sr-only">Open main menu</span>
-                    {mobileMenuOpen ? (
-                        <a>X</a>
-                    ) : (
-                        <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-                    )}
-                </button>
-            </div>
-            <div className="hidden lg:flex lg:gap-x-12">
-                {navigation.map((item) => (
-                    <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
-                        {item.name}
-                    </a>
-                ))}
-            </div>
-            <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                <Link href={`/user/${session?.data?.user?.email}`} className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">
-                    {session?.data?.user?.name}
-                    {session?.data?.user?.email}
-                </Link>
-                <button onClick={() => signOut()} className="text-sm font-semibold leading-6 text-gray-900">
-                    登出
-                </button>
-            </div>
-            {mobileMenuOpen && (
-                <div className="lg:hidden">
-                    <div className="space-y-1 px-2 pt-2 pb-3">
-                        {navigation.map((item) => (
-                            <a
-                                key={item.name}
-                                href={item.href}
-                                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50"
-                                onClick={() => setMobileMenuOpen(false)}
-                            >
-                                {item.name}
-                            </a>
-                        ))}
-                    </div>
-                    <div className="border-t border-gray-200 pt-4 pb-3">
-                        <Link href={`/user/${session?.data?.user?.email}`} className="px-5">
-                            <div className="text-base font-medium text-gray-800">{session?.data?.user?.name}</div>
-                            <div className="text-sm font-medium text-gray-500">{session?.data?.user?.email}</div>
-                        </Link>
-                        <div className="mt-3 px-2 space-y-1">
-                            <button onClick={() => signOut()} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">
-                                登出
-                            </button>
+        <nav className="bg-white shadow-md">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex justify-between h-16">
+                    <div className="flex">
+                        <div className="flex-shrink-0">
+                            <Link href="/" passHref>
+                                <img className="h-8 w-auto cursor-pointer" src="/FRC.jpg" alt="Your Company" />
+                            </Link>
+                        </div>
+                        <div className="hidden lg:ml-6 lg:flex lg:space-x-8">
+                            {navigation.map((item) => (
+                                <Link key={item.name} href={item.href} passHref>
+                                    <span className="text-gray-900 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium cursor-pointer">
+                                        {item.name}
+                                    </span>
+                                </Link>
+                            ))}
                         </div>
                     </div>
+                    <div className="hidden lg:flex lg:items-center lg:space-x-4">
+                        {session ? (
+                            <>
+                                <Link href={`/user/${session.user?.email}`} passHref>
+                                    <span className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 cursor-pointer">
+                                        {session.user?.name}
+                                    </span>
+                                </Link>
+                                <button onClick={() => signOut()} className="text-sm font-semibold text-gray-900">
+                                    登出
+                                </button>
+                            </>
+                        ) : (
+                            <Link href="/api/auth/signin" passHref>
+                                <span className="text-sm font-semibold text-gray-900 cursor-pointer">登入</span>
+                            </Link>
+                        )}
+                    </div>
+                    <div className="flex items-center lg:hidden">
+                        <button
+                            type="button"
+                            className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100"
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        >
+                            <span className="sr-only">Open main menu</span>
+                            {mobileMenuOpen ? (
+                                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            ) : (
+                                <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                            )}
+                        </button>
+                    </div>
                 </div>
-            )}
+            </div>
+
+            {mobileMenuOpen && <MobileMenu setMobileMenuOpen={setMobileMenuOpen} />}
         </nav>
     );
 };
