@@ -1,10 +1,9 @@
-// components/Navbar.tsx
 "use client";
 import React, { useState } from "react";
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
 import { Bars3Icon } from '@heroicons/react/24/outline';
-import MobileMenu from './MobileMenu'; // 引用新的MobileMenu組件
+import MobileMenu from './MobileMenu';
 
 const navigation = [
     { name: '場地列表', href: '/list' },
@@ -17,16 +16,14 @@ const Navbar: React.FC = () => {
     const { data: session } = useSession();
 
     return (
-        <nav className="bg-white shadow-md">
+        <nav className="bg-gray-200 shadow-md">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
-                    <div className="flex">
-                        <div className="flex-shrink-0">
-                            <Link href="/" passHref>
-                                <img className="h-8 w-auto cursor-pointer" src="/FRC.jpg" alt="Your Company" />
-                            </Link>
-                        </div>
-                        <div className="hidden lg:ml-6 lg:flex lg:space-x-8">
+                    <div className="flex items-center">
+                        <Link href="/" passHref>
+                            <img className="h-8 w-auto cursor-pointer" src="/FRC.jpg" alt="Your Company" />
+                        </Link>
+                        <div className="hidden lg:flex lg:space-x-8 lg:ml-6">
                             {navigation.map((item) => (
                                 <Link key={item.name} href={item.href} passHref>
                                     <span className="text-gray-900 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium cursor-pointer">
@@ -37,22 +34,15 @@ const Navbar: React.FC = () => {
                         </div>
                     </div>
                     <div className="hidden lg:flex lg:items-center lg:space-x-4">
-                        {session ? (
-                            <>
-                                <Link href={`/user/${session.user?.email}`} passHref>
-                                    <span className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 cursor-pointer">
-                                        {session.user?.name}
-                                    </span>
-                                </Link>
-                                <button onClick={() => signOut()} className="text-sm font-semibold text-gray-900">
-                                    登出
-                                </button>
-                            </>
-                        ) : (
-                            <Link href="/api/auth/signin" passHref>
-                                <span className="text-sm font-semibold text-gray-900 cursor-pointer">登入</span>
-                            </Link>
-                        )}
+                        <Link href={`/user/${session?.user?.email}`} passHref>
+                            <div className="flex items-center space-x-2 cursor-pointer">
+                                <img className="h-8 w-8 rounded-full" src={session?.user?.image || '/default-avatar.png'} alt={session?.user?.name || 'User Avatar'} />
+                                <span className="text-gray-900 font-medium">{session?.user?.name}</span>
+                            </div>
+                        </Link>
+                        <button onClick={() => signOut()} className="text-sm font-semibold text-gray-900 hover:text-gray-700">
+                            登出
+                        </button>
                     </div>
                     <div className="flex items-center lg:hidden">
                         <button
