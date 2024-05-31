@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 
@@ -47,8 +48,10 @@ const Navbar = () => {
                 ))}
             </div>
             <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                <div>{session?.data?.user?.name}</div>
-                <div>{session?.data?.user?.email}</div>
+                <Link href={`/user/${session?.data?.user?.email}`} className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">
+                    {session?.data?.user?.name}
+                    {session?.data?.user?.email}
+                </Link>
                 <button onClick={() => signOut()} className="text-sm font-semibold leading-6 text-gray-900">
                     登出
                 </button>
@@ -68,10 +71,10 @@ const Navbar = () => {
                         ))}
                     </div>
                     <div className="border-t border-gray-200 pt-4 pb-3">
-                        <div className="px-5">
+                        <Link href={`/user/${session?.data?.user?.email}`} className="px-5">
                             <div className="text-base font-medium text-gray-800">{session?.data?.user?.name}</div>
                             <div className="text-sm font-medium text-gray-500">{session?.data?.user?.email}</div>
-                        </div>
+                        </Link>
                         <div className="mt-3 px-2 space-y-1">
                             <button onClick={() => signOut()} className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">
                                 登出
