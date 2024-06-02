@@ -11,9 +11,9 @@ const adminEmails = [
 ];
 
 const Manage: React.FC = () => {
-  const session = useSession();
   const items = GetEventList();
-  const userEmail = session?.data?.user?.email || 'ErrorUser';
+  const { data: session } = useSession();
+  const userEmail = session?.user?.email || 'ErrorUser';
 
   if (!session || !adminEmails.includes(userEmail)) {
     return <NoPurview />;
@@ -34,7 +34,7 @@ const Manage: React.FC = () => {
               <p>活動代表: {item.apply}</p>
               <p>指導老師: {item.teacher}</p>
               <p>場地狀態: {item.status}</p>
-              <AgreeButton documentId={item.id} />
+              <AgreeButton id={item.id} />
               <DeleteButton id={item.id} />
             </li>
           ))}

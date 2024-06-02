@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { doc, updateDoc } from "firebase/firestore";
 import db from '../../utils/firestore';
 
-const UpdateStatusButton = ({ documentId }) => {
+const UpdateStatusButton = ({ id }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -11,7 +11,7 @@ const UpdateStatusButton = ({ documentId }) => {
         setError(null);
 
         try {
-            const docRef = doc(db, "activity", documentId);
+            const docRef = doc(db, "activity", id);
             await updateDoc(docRef, {
                 status: "申請通過"
             });

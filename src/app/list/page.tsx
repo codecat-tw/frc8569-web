@@ -5,8 +5,8 @@ import NoPurview from "../components/NoPurview";
 import JoinButton from '../components/JoinButton';
 
 const List: React.FC = () => {
-  const { data: session } = useSession();
   const items = GetEventList();
+  const { data: session } = useSession();
   const userEmail = session?.user?.email || 'ErrorUser';
 
   if (!session || !userEmail.endsWith('@mail2.chshs.ntpc.edu.tw')) {
