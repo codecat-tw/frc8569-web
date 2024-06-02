@@ -2,6 +2,7 @@
 import { useSession } from 'next-auth/react';
 import GetEventList from "../components/GetEventList";
 import NoPurview from "../components/NoPurview";
+import Loading from "../components/Loading";
 import AgreeButton from "../components/AgreeButton";
 import DeleteButton from "../components/DeleteButton";
 
@@ -12,8 +13,12 @@ const adminEmails = [
 
 const Manage: React.FC = () => {
   const items = GetEventList();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const userEmail = session?.user?.email || 'ErrorUser';
+
+  if (status === 'loading') {
+    return <Loading />;
+  }
 
   if (!session || !adminEmails.includes(userEmail)) {
     return <NoPurview />;

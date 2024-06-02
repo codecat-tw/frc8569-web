@@ -2,12 +2,17 @@
 import { useSession } from 'next-auth/react';
 import GetEventList from "../components/GetEventList";
 import NoPurview from "../components/NoPurview";
+import Loading from "../components/Loading";
 import JoinButton from '../components/JoinButton';
 
 const List: React.FC = () => {
   const items = GetEventList();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const userEmail = session?.user?.email || 'ErrorUser';
+
+  if (status === 'loading') {
+    return <Loading />;
+  }
 
   if (!session || !userEmail.endsWith('@mail2.chshs.ntpc.edu.tw')) {
     return <NoPurview />;
