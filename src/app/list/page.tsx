@@ -19,7 +19,7 @@ const List: React.FC = () => {
       <div className="border w-11/12 max-w-md mx-auto text-center p-4 bg-white shadow-lg rounded-lg">
         <ul>
           {items.slice().reverse().map((item) => (
-            <li key={item.id} className="border-t-2 p-2">
+            <li key={item.id} className="border-b-2 p-2">
               <p>活動日期: {item.date}</p>
               <p>活動名稱: {item.name}</p>
               <p>開始時間: {item.start}</p>
