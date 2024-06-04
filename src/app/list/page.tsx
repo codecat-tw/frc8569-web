@@ -9,6 +9,7 @@ const List: React.FC = () => {
   const items = GetEventList();
   const { data: session, status } = useSession();
   const userEmail = session?.user?.email || 'ErrorUser';
+  const userName = session?.user?.name || 'ErrorUser';
 
   if (status === 'loading') {
     return <Loading />;
@@ -33,7 +34,7 @@ const List: React.FC = () => {
               <p>活動代表: {item.apply}</p>
               <p>指導老師: {item.teacher}</p>
               <p>場地狀態: {item.status}</p>
-              <JoinButton id={item.id} userEmail={userEmail} />
+              <JoinButton id={item.id} userEmail={userEmail} userName={userName} />
             </li>
           ))}
         </ul>
