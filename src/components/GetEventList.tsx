@@ -1,7 +1,10 @@
-// GetEventList.tsx
 import { useEffect, useState } from "react";
 import db from "../utils/firestore";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, DocumentData } from "firebase/firestore";
+
+interface Member {
+  name: string;
+}
 
 interface Item {
   id: string;
@@ -13,6 +16,7 @@ interface Item {
   apply: string;
   teacher: string;
   status: string;
+  members: Member[]; // 修改 members 屬性類型
 }
 
 const GetEventList = () => {
@@ -21,7 +25,14 @@ const GetEventList = () => {
   useEffect(() => {
     const fetchItems = async () => {
       const querySnapshot = await getDocs(collection(db, "activity"));
-      setItems(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id } as Item)));
+      const itemsData = await Promise.all(
+        querySnapshot.docs.map(async (doc) => {
+          const data = doc.data() as DocumentData;
+          const members: Member[] = data.members?.map((member: { name: string }) => ({ name: member.name })) || [];
+          return { ...data, id: doc.id, members } as Item;
+        })
+      );
+      setItems(itemsData);
     };
 
     fetchItems();

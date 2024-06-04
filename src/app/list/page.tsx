@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import GetEventList from "../../components/GetEventList";
 import NoPurview from "../../components/NoPurview";
@@ -11,13 +12,24 @@ const List: React.FC = () => {
   const userEmail = session?.user?.email || 'ErrorUser';
   const userName = session?.user?.name || 'ErrorUser';
 
+  const [openEvent, setOpenEvent] = useState<{ [key: string]: boolean }>({});
+
   if (status === 'loading') {
     return <Loading />;
   }
 
+  /*
   if (!session || !userEmail.endsWith('@mail2.chshs.ntpc.edu.tw')) {
     return <NoPurview />;
   }
+  */
+
+  const toggleMembersList = (id: string) => {
+    setOpenEvent(prevState => ({
+      ...prevState,
+      [id]: !prevState[id]
+    }));
+  };
 
   return (
     <div className='text-black min-h-screen bg-blue-100 overflow-x-hidden'>
@@ -34,13 +46,27 @@ const List: React.FC = () => {
               <p>活動代表: {item.apply}</p>
               <p>指導老師: {item.teacher}</p>
               <p>場地狀態: {item.status}</p>
+              <div className="mt-2">
+                <h2 className="text-lg font-bold cursor-pointer" onClick={() => toggleMembersList(item.id)}>
+                  成員名單 {openEvent[item.id] ? '▲' : '▼'}
+                </h2>
+                {openEvent[item.id] && (
+                  <ul className="flex flex-wrap justify-center list-none">
+                    {item.members.map((member, index) => (
+                      <li key={index} className="mr-2 text-center">
+                        <p>{member.name}</p>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
               <JoinButton id={item.id} userEmail={userEmail} userName={userName} />
             </li>
           ))}
         </ul>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default List;
