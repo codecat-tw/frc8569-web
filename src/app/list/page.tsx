@@ -13,6 +13,12 @@ const List: React.FC = () => {
   const userName = session?.user?.name || 'ErrorUser';
 
   const [openEvent, setOpenEvent] = useState<{ [key: string]: boolean }>({});
+  const toggleMembersList = (id: string) => {
+    setOpenEvent(prevState => ({
+      ...prevState,
+      [id]: !prevState[id]
+    }));
+  };
 
   if (status === 'loading') {
     return <Loading />;
@@ -23,13 +29,6 @@ const List: React.FC = () => {
     return <NoPurview />;
   }
   */
-
-  const toggleMembersList = (id: string) => {
-    setOpenEvent(prevState => ({
-      ...prevState,
-      [id]: !prevState[id]
-    }));
-  };
 
   return (
     <div className='text-black min-h-screen bg-blue-100 overflow-x-hidden'>

@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import GetEventList from "../../components/GetEventList";
 import NoPurview from "../../components/NoPurview";
@@ -15,6 +16,14 @@ const Manage: React.FC = () => {
   const items = GetEventList();
   const { data: session, status } = useSession();
   const userEmail = session?.user?.email || 'ErrorUser';
+
+  const [openEvent, setOpenEvent] = useState<{ [key: string]: boolean }>({});
+  const toggleMembersList = (id: string) => {
+    setOpenEvent(prevState => ({
+      ...prevState,
+      [id]: !prevState[id]
+    }));
+  };
 
   if (status === 'loading') {
     return <Loading />;
@@ -36,9 +45,23 @@ const Manage: React.FC = () => {
               <p>開始時間: {item.start}</p>
               <p>結束時間: {item.end}</p>
               <p>使用分區: {item.area}</p>
-              <p>活動代表: {item.apply}</p>
+              <p>活動代表: {item.applyName}</p>
               <p>指導老師: {item.teacher}</p>
               <p>場地狀態: {item.status}</p>
+              <div className="mt-2">
+                <h2 className="text-lg font-bold cursor-pointer" onClick={() => toggleMembersList(item.id)}>
+                  成員名單 {openEvent[item.id] ? '▲' : '▼'}
+                </h2>
+                {openEvent[item.id] && (
+                  <ul className="flex flex-wrap justify-center list-none">
+                    {item.members.map((member, index) => (
+                      <li key={index} className="mr-2 text-center">
+                        <p>{member.name}</p>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
               <AgreeButton id={item.id} />
               <DeleteButton id={item.id} />
             </li>
