@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-blue-100">
+    <div className="text-black flex items-center justify-center min-h-screen bg-blue-100">
       <div className="text-center p-4">
         <h1 className="text-3xl font-bold mb-4">歡迎來到FRC管理系統</h1>
         <p className="text-lg mb-4">網站穩定性測試中...</p>

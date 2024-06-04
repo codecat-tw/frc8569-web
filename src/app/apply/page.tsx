@@ -38,10 +38,10 @@ const AddItemForm: React.FC = () => {
   };
 
   return (
-    <div className='min-h-screen bg-blue-100 overflow-x-hidden p-4'>
+    <div className='text-black min-h-screen bg-blue-100 overflow-x-hidden p-4'>
       <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-white mt-8 p-8 shadow-md rounded-md">
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">活動日期</label>
+          <label className="block text-sm font-bold mb-2">活動日期</label>
           <input
             type="date"
             name="date"
@@ -53,7 +53,7 @@ const AddItemForm: React.FC = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">活動名稱</label>
+          <label className="block text-sm font-bold mb-2">活動名稱</label>
           <input
             type="text"
             name="name"
@@ -65,7 +65,7 @@ const AddItemForm: React.FC = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">開始時間</label>
+          <label className="block text-sm font-bold mb-2">開始時間</label>
           <input
             type="time"
             name="start"
@@ -77,7 +77,7 @@ const AddItemForm: React.FC = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">結束時間</label>
+          <label className="block text-sm font-bold mb-2">結束時間</label>
           <input
             type="time"
             name="end"
@@ -89,7 +89,7 @@ const AddItemForm: React.FC = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">使用區域</label>
+          <label className="block text-sm font-bold mb-2">使用區域</label>
           <input
             type="text"
             name="area"
@@ -101,7 +101,7 @@ const AddItemForm: React.FC = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">指導老師</label>
+          <label className="block text-sm font-bold mb-2">指導老師</label>
           <select
             name="teacher"
             value={formValues.teacher}

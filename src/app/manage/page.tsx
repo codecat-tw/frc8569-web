@@ -25,7 +25,7 @@ const Manage: React.FC = () => {
   }
 
   return (
-    <div className='min-h-screen bg-blue-100 overflow-x-hidden'>
+    <div className='text-black min-h-screen bg-blue-100 overflow-x-hidden'>
       <h1 className='text-center text-4xl font-bold py-4'>場地審核</h1>
       <div className="border w-11/12 max-w-md mx-auto text-center p-4 bg-white shadow-lg rounded-lg">
         <ul>
