@@ -13,16 +13,18 @@ interface FormValues {
 interface AddItemProps {
     formValues: FormValues;
     userEmail: string;
+    userName: string;
 }
 
-const ApplyItem = async ({ formValues, userEmail }: AddItemProps) => {
+const ApplyItem = async ({ formValues, userEmail, userName }: AddItemProps) => {
     const { date, name, start, end, area, teacher } = formValues;
     if (date && name && start && end && area && teacher) {
         try {
             const docRef = doc(collection(db, "activity"), date);
             await setDoc(docRef, {
                 ...formValues,
-                apply: userEmail,
+                applyEmail: userEmail,
+                applyName: userName,
                 status: "尚未審核",
             });
             console.log("Document written with ID: ", docRef.id);

@@ -43,7 +43,7 @@ const List: React.FC = () => {
               <p>開始時間: {item.start}</p>
               <p>結束時間: {item.end}</p>
               <p>使用分區: {item.area}</p>
-              <p>活動代表: {item.apply}</p>
+              <p>活動代表: {item.applyName}</p>
               <p>指導老師: {item.teacher}</p>
               <p>場地狀態: {item.status}</p>
               <div className="mt-2">

@@ -6,6 +6,7 @@ import ApplyItem from '../../components/ApplyItem';
 const AddItemForm: React.FC = () => {
   const { data: session } = useSession();
   const userEmail = session?.user?.email || 'ErrorUser';
+  const userName = session?.user?.name || 'ErrorUser';
 
   const [formValues, setFormValues] = useState({
     date: '',
@@ -26,7 +27,7 @@ const AddItemForm: React.FC = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await ApplyItem({ formValues, userEmail });
+    await ApplyItem({ formValues, userEmail, userName });
     setFormValues({
       date: '',
       name: '',

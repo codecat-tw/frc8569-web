@@ -13,7 +13,8 @@ interface Item {
   start: string;
   end: string;
   area: string;
-  apply: string;
+  applyEmail: string;
+  applyName: string;
   teacher: string;
   status: string;
   members: Member[]; // 修改 members 屬性類型

@@ -25,7 +25,7 @@ export default function JoinButton({ id, userEmail, userName }) {
         members.push(newMember);
 
         await setDoc(docRef, { members }, { merge: true });
-        setMessage(`妳已成功報名`);
+        setMessage(`你已成功報名`);
       }
     } catch (e) {
       console.error("添加使用者失敗: ", e);
