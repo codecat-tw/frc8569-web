@@ -1,6 +1,6 @@
 // pages/index.js
 import { useState } from "react";
-import db from '../../utils/firestore';
+import db from '../utils/firestore';
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export default function JoinButton({ id, userEmail }) {

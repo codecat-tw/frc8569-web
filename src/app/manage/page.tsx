@@ -1,10 +1,10 @@
 'use client';
 import { useSession } from 'next-auth/react';
-import GetEventList from "../components/GetEventList";
-import NoPurview from "../components/NoPurview";
-import Loading from "../components/Loading";
-import AgreeButton from "../components/AgreeButton";
-import DeleteButton from "../components/DeleteButton";
+import GetEventList from "../../components/GetEventList";
+import NoPurview from "../../components/NoPurview";
+import Loading from "../../components/Loading";
+import AgreeButton from "../../components/AgreeButton";
+import DeleteButton from "../../components/DeleteButton";
 
 const adminEmails = [
   'eric29433453@gmail.com',

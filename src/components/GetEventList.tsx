@@ -1,6 +1,6 @@
 // GetEventList.tsx
 import { useEffect, useState } from "react";
-import db from "../../utils/firestore";
+import db from "../utils/firestore";
 import { collection, getDocs } from "firebase/firestore";
 
 interface Item {
