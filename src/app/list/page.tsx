@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import GetEventList from "../../components/firebase/GetEventList";
@@ -38,7 +39,9 @@ const List: React.FC = () => {
           {items.slice().reverse().map((item) => (
             <li key={item.id} className="border-b-2 p-2">
               <p>活動日期: {item.date}</p>
-              <p>活動名稱: {item.name}</p>
+              <Link href={`/events/${item.id}`}>
+                <span className="text-blue-500 hover:underline">活動名稱: {item.name}</span>
+              </Link>
               <p>開始時間: {item.start}</p>
               <p>結束時間: {item.end}</p>
               <p>使用分區: {item.area}</p>
