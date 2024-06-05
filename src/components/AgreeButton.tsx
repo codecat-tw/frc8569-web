@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { doc, updateDoc } from "firebase/firestore";
 import db from '../utils/firestore';
 
-const UpdateStatusButton = ({ id }) => {
+interface UpdateStatusButtonProps {
+  id: string;
+}
+
+const UpdateStatusButton: React.FC<UpdateStatusButtonProps> = ({ id }) => {
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<Error | null>(null);
 
     const handleUpdateStatus = async () => {
         setLoading(true);
@@ -18,7 +22,7 @@ const UpdateStatusButton = ({ id }) => {
             console.log("場地狀態更新成功");
         } catch (e) {
             console.error("檔案更新錯誤: ", e);
-            setError(e);
+            setError(e as Error);
         } finally {
             setLoading(false);
         }

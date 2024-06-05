@@ -1,8 +1,14 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import db from '../utils/firestore';
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
-export default function JoinButton({ id, userEmail, userName }) {
+interface JoinButtonProps {
+  id: string;
+  userEmail: string;
+  userName: string;
+}
+
+const JoinButton: React.FC<JoinButtonProps> = ({ id, userEmail, userName }) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -12,7 +18,7 @@ export default function JoinButton({ id, userEmail, userName }) {
 
     try {
       const docSnap = await getDoc(docRef);
-      let members = docSnap.exists() ? docSnap.data().members || [] : [];
+      let members = docSnap.exists() ? (docSnap.data()?.members as { name: string; email: string; createdAt: Date }[] || []) : [];
 
       if (members.some(member => member.email === userEmail)) {
         setMessage(`你已報名過了`);
@@ -48,3 +54,5 @@ export default function JoinButton({ id, userEmail, userName }) {
     </>
   );
 }
+
+export default JoinButton;
