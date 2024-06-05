@@ -1,10 +1,10 @@
 'use client';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
-import GetEventList from "../../components/GetEventList";
+import GetEventList from "../../components/firebase/GetEventList";
 import NoPurview from "../../components/NoPurview";
 import Loading from "../../components/Loading";
-import JoinButton from '../../components/JoinButton';
+import JoinButton from '../../components/firebase/JoinButton';
 
 const List: React.FC = () => {
   const items = GetEventList();

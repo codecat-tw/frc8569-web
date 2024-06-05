@@ -1,5 +1,5 @@
 import React from "react";
-import db from "../utils/firestore";
+import db from "../../utils/firestore";
 import { doc, deleteDoc } from "firebase/firestore";
 
 interface DeleteItemProps {

@@ -5,7 +5,7 @@ import { Inter } from 'next/font/google'
 import SessionProvider from './SessionProvider';
 import Login from './Login';
 import Navbar from "../components/Navbar";
-import FirebaseLoginTracker from "../components/FirebaseLoginTracker"; // 新增這行
+import FirebaseLoginTracker from "../components/firebase/FirebaseLoginTracker"; // 新增這行
 
 const inter = Inter({ subsets: ['latin'] })
 

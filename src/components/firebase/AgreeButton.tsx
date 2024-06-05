@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { doc, updateDoc } from "firebase/firestore";
-import db from '../utils/firestore';
+import db from '../../utils/firestore';
 
 interface AgreeButtonProps {
   id: string;
