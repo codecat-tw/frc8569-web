@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { doc, updateDoc } from "firebase/firestore";
 import db from '../utils/firestore';
 
-interface UpdateStatusButtonProps {
+interface AgreeButtonProps {
   id: string;
 }
 
-const UpdateStatusButton: React.FC<UpdateStatusButtonProps> = ({ id }) => {
+const AgreeButton: React.FC<AgreeButtonProps> = ({ id }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<Error | null>(null);
 
@@ -42,4 +42,4 @@ const UpdateStatusButton: React.FC<UpdateStatusButtonProps> = ({ id }) => {
     );
 };
 
-export default UpdateStatusButton;
+export default AgreeButton;
