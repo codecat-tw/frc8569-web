@@ -1,8 +1,10 @@
 "use client";
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import db from "../../../utils/firestore";
+import { joinEvent } from "../../../components/firebase/JoinEvent";
+import { useSession } from 'next-auth/react';
 
 interface Item {
   id: string;
@@ -19,9 +21,14 @@ interface Item {
 
 const EventsPage = () => {
   const params = useParams();
+  const searchParams = useSearchParams();
   const [eventData, setEventData] = useState<Item | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [joinExecuted, setJoinExecuted] = useState(false);
+  const { data: session, status } = useSession();
+  const userEmail = session?.user?.email || 'ErrorUser';
+  const userName = session?.user?.name || 'ErrorUser';
 
   useEffect(() => {
     const fetchEventData = async () => {
@@ -32,7 +39,7 @@ const EventsPage = () => {
       }
 
       try {
-        const docRef = doc(db, 'activity', params.id as string); // 明確指定 params.id 是 string
+        const docRef = doc(db, 'activity', params.id as string);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
@@ -46,10 +53,22 @@ const EventsPage = () => {
       } finally {
         setLoading(false);
       }
+
+      if (!joinExecuted) {
+        const joinParam = searchParams?.get('join') || '-';
+        console.log("Join parameter:", joinParam); // log join parameter
+
+        if (joinParam === '1') {
+          console.log("Calling joinEvent with ID:", params.id); // log before calling joinEvent
+          const resultMessage = await joinEvent(params.id as string, userEmail, userName);
+          console.log("joinEvent result:", resultMessage); // log result of joinEvent
+          setJoinExecuted(true);
+        }
+      }
     };
 
     fetchEventData();
-  }, [params]);
+  }, [params, searchParams, userEmail, userName, joinExecuted]);
 
   if (loading) {
     return <div className="min-h-screen flex items-center justify-center bg-gray-100">載入中...</div>;
