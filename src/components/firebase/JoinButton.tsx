@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import db from '../../utils/firestore';
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { joinEvent } from './JoinEvent';  // 路徑根據實際情況調整
 
 interface JoinButtonProps {
   id: string;
@@ -12,31 +11,11 @@ const JoinButton: React.FC<JoinButtonProps> = ({ id, userEmail, userName }) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  const addUserToFirebase = async () => {
+  const handleJoinEvent = async () => {
     setLoading(true);
-    const docRef = doc(db, "activity", id);
 
-    try {
-      const docSnap = await getDoc(docRef);
-      let members = docSnap.exists() ? (docSnap.data()?.members as { name: string; email: string; createdAt: Date }[] || []) : [];
-
-      if (members.some(member => member.email === userEmail)) {
-        setMessage(`你已報名過了`);
-      } else {
-        const newMember = {
-          name: userName,
-          email: userEmail,
-          createdAt: new Date()
-        };
-        members.push(newMember);
-
-        await setDoc(docRef, { members }, { merge: true });
-        setMessage(`你已成功報名`);
-      }
-    } catch (e) {
-      console.error("添加使用者失敗: ", e);
-      setMessage("添加使用者失敗");
-    }
+    const resultMessage = await joinEvent(id, userEmail, userName);
+    setMessage(resultMessage);
 
     setLoading(false);
   };
@@ -44,7 +23,7 @@ const JoinButton: React.FC<JoinButtonProps> = ({ id, userEmail, userName }) => {
   return (
     <>
       <button
-        onClick={addUserToFirebase}
+        onClick={handleJoinEvent}
         disabled={loading}
         className="border bg-orange-400 p-1 rounded text-white"
       >
