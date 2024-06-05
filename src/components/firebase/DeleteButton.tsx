@@ -8,13 +8,15 @@ interface DeleteItemProps {
 
 const DeleteItem: React.FC<DeleteItemProps> = ({ id }) => {
   const handleDelete = async () => {
-    const itemRef = doc(db, "activity", id);
-    try {
-      await deleteDoc(itemRef);
-      alert("Item deleted successfully");
-    } catch (error) {
-      console.error("Error deleting document: ", error);
-      alert("Error deleting item");
+    if (window.confirm("你確定要刪除這個活動嗎？")) {
+      const itemRef = doc(db, "activity", id);
+      try {
+        await deleteDoc(itemRef);
+        alert("活動成功刪除");
+      } catch (error) {
+        console.error("刪除文件時出錯：", error);
+        alert("刪除執行出現異常");
+      }
     }
   };
 

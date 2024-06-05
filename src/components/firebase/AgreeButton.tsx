@@ -7,24 +7,18 @@ interface AgreeButtonProps {
 }
 
 const AgreeButton: React.FC<AgreeButtonProps> = ({ id }) => {
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<Error | null>(null);
-
     const handleUpdateStatus = async () => {
-        setLoading(true);
-        setError(null);
-
-        try {
+        if (window.confirm("你確定要同意這個活動嗎？")) {
             const docRef = doc(db, "activity", id);
-            await updateDoc(docRef, {
-                status: "申請通過"
-            });
-            console.log("場地狀態更新成功");
-        } catch (e) {
-            console.error("檔案更新錯誤: ", e);
-            setError(e as Error);
-        } finally {
-            setLoading(false);
+            try {
+                await updateDoc(docRef, {
+                    status: "申請通過"
+                });
+                alert("已批准活動");
+            } catch (e) {
+                console.error("檔案更新錯誤: ", e);
+                alert("批准執行出現異常");
+            }
         }
     };
 
@@ -32,12 +26,10 @@ const AgreeButton: React.FC<AgreeButtonProps> = ({ id }) => {
         <div>
             <button 
                 onClick={handleUpdateStatus}
-                disabled={loading}
                 className="border bg-green-400 p-1 rounded text-white"
             >
-                {loading ? '更新中...' : '接受申請'}
+                接受申請
             </button>
-            {error && <p style={{ color: 'red' }}>Error: {error.message}</p>}
         </div>
     );
 };

@@ -5,7 +5,7 @@ import { Inter } from 'next/font/google'
 import SessionProvider from './SessionProvider';
 import Login from './Login';
 import Navbar from "../components/Navbar";
-import FirebaseLoginTracker from "../components/firebase/FirebaseLoginTracker"; // 新增這行
+import LoginInfo from "../components/firebase/LoginInfo"; // 新增這行
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,7 +28,7 @@ export default async function RootLayout({
           <Login/>
         ): (
           <div>
-            <FirebaseLoginTracker />
+            <LoginInfo />
             <Navbar />
             {children}
           </div>
