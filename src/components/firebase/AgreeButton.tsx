@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { doc, updateDoc } from "firebase/firestore";
+import React  from 'react';
 import db from '../../utils/firestore';
+import { doc, updateDoc } from "firebase/firestore";
 
 interface AgreeButtonProps {
-  id: string;
+    id: string;
 }
 
 const AgreeButton: React.FC<AgreeButtonProps> = ({ id }) => {
-    const handleUpdateStatus = async () => {
+    const handleUpdate = async () => {
         if (window.confirm("你確定要同意這個活動嗎？")) {
             const docRef = doc(db, "activity", id);
             try {
@@ -24,8 +24,8 @@ const AgreeButton: React.FC<AgreeButtonProps> = ({ id }) => {
 
     return (
         <div>
-            <button 
-                onClick={handleUpdateStatus}
+            <button
+                onClick={handleUpdate}
                 className="border bg-green-400 p-1 rounded text-white"
             >
                 接受申請
