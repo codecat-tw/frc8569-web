@@ -16,6 +16,7 @@ const FirebaseLoginTracker = () => {
                         email: session.user?.email,
                         loginTime: new Date()
                     });
+                    console.log("setDoc");
                 } catch (error) {
                     console.error("Error adding login record: ", error);
                 }

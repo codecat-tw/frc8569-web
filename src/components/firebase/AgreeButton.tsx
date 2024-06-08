@@ -14,6 +14,7 @@ const AgreeButton: React.FC<AgreeButtonProps> = ({ id }) => {
                 await updateDoc(docRef, {
                     status: "申請通過"
                 });
+                console.log("updateDoc");
                 alert("已批准活動");
             } catch (e) {
                 console.error("檔案更新錯誤: ", e);

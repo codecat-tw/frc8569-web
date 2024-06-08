@@ -28,7 +28,7 @@ const ApplyItem = async ({ formValues, userEmail, userName }: AddItemProps) => {
                 applyName: userName,
                 status: "尚未審核",
             });
-            console.log("Document written with ID: ", docRef.id);
+            console.log("setDoc");
         } catch (e) {
             console.error("Error adding document: ", e);
         }

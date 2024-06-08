@@ -19,6 +19,7 @@ export const joinEvent = async (id: string, userEmail: string, userName: string)
       members.push(newMember);
 
       await setDoc(docRef, { members }, { merge: true });
+      console.log("setDoc");
       return `你已成功報名`;
     }
   } catch (e) {

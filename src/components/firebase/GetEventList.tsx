@@ -26,6 +26,7 @@ const GetEventList = () => {
   useEffect(() => {
     const fetchItems = async () => {
       const querySnapshot = await getDocs(collection(db, "activity"));
+      console.log("getDocs");
       const itemsData = await Promise.all(
         querySnapshot.docs.map(async (doc) => {
           const data = doc.data() as DocumentData;

@@ -12,6 +12,7 @@ const DeleteItem: React.FC<DeleteItemProps> = ({ id }) => {
       const itemRef = doc(db, "activity", id);
       try {
         await deleteDoc(itemRef);
+        console.log("deleteDoc");
         alert("活動成功刪除");
       } catch (error) {
         console.error("刪除文件時出錯：", error);
