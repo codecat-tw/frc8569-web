@@ -20,7 +20,8 @@ const ApplyItem = async ({ formValues, userEmail, userName }: AddItemProps) => {
     const { date, name, start, end, area, teacher } = formValues;
     if (date && name && start && end && area && teacher) {
         try {
-            const docRef = doc(collection(db, "activity"), date);
+            const applyTime = new Date().toISOString();
+            const docRef = doc(collection(db, "activity"), applyTime);
             await setDoc(docRef, {
                 ...formValues,
                 applyEmail: userEmail,

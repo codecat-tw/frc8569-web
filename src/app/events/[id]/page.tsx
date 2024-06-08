@@ -20,26 +20,28 @@ interface Item {
 }
 
 const EventsPage = () => {
-  const params = useParams();
-  const searchParams = useSearchParams();
+  const params = useParams() || {};
+  const searchParams = useSearchParams()
   const [eventData, setEventData] = useState<Item | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [joinExecuted, setJoinExecuted] = useState(false);
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const userEmail = session?.user?.email || 'ErrorUser';
   const userName = session?.user?.name || 'ErrorUser';
 
   useEffect(() => {
     const fetchEventData = async () => {
-      if (!params || !params.id || Array.isArray(params.id)) {
+      if (!params.id || Array.isArray(params.id)) {
         setLoading(false);
         setError('無效的參數');
         return;
       }
 
+      const decodedId = decodeURIComponent(params.id);
+
       try {
-        const docRef = doc(db, 'activity', params.id as string);
+        const docRef = doc(db, 'activity', decodedId);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
@@ -53,22 +55,34 @@ const EventsPage = () => {
       } finally {
         setLoading(false);
       }
+    };
 
+    fetchEventData();
+  }, [params]);
+
+  useEffect(() => {
+    const executeJoinEvent = async () => {
       if (!joinExecuted) {
         const joinParam = searchParams?.get('join') || '-';
-        console.log("Join parameter:", joinParam); // log join parameter
+        console.log("Join parameter:", joinParam);
 
         if (joinParam === '1') {
-          console.log("Calling joinEvent with ID:", params.id); // log before calling joinEvent
-          const resultMessage = await joinEvent(params.id as string, userEmail, userName);
-          console.log("joinEvent result:", resultMessage); // log result of joinEvent
+          if (!params.id || Array.isArray(params.id)) {
+            setError('無效的參數');
+            return;
+          }
+
+          const decodedId = decodeURIComponent(params.id);
+          console.log("Calling joinEvent with ID:", decodedId);
+          const resultMessage = await joinEvent(decodedId, userEmail, userName);
+          console.log("joinEvent result:", resultMessage);
           setJoinExecuted(true);
         }
       }
     };
 
-    fetchEventData();
-  }, [params, searchParams, userEmail, userName, joinExecuted]);
+    executeJoinEvent();
+  }, [searchParams, params.id, userEmail, userName, joinExecuted]);
 
   if (loading) {
     return <div className="min-h-screen flex items-center justify-center bg-gray-100">載入中...</div>;
