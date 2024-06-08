@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import db from '../../utils/firestore';
 import { doc, updateDoc } from "firebase/firestore";
 
