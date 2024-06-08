@@ -26,6 +26,7 @@ const EventsPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [joinExecuted, setJoinExecuted] = useState(false);
+  const [resultMessage, setResultMessage] = useState<string | null>(null); // 新增狀態變量
   const { data: session } = useSession();
   const userEmail = session?.user?.email || 'ErrorUser';
   const userName = session?.user?.name || 'ErrorUser';
@@ -76,6 +77,7 @@ const EventsPage = () => {
           console.log("Calling joinEvent with ID:", decodedId);
           const resultMessage = await joinEvent(decodedId, userEmail, userName);
           console.log("joinEvent result:", resultMessage);
+          setResultMessage(resultMessage); // 設定 resultMessage 狀態變量
           setJoinExecuted(true);
         }
       }
@@ -104,6 +106,7 @@ const EventsPage = () => {
         <p>申請者姓名: {eventData?.applyName}</p>
         <p>教師: {eventData?.teacher}</p>
         <p>狀態: {eventData?.status}</p>
+        {resultMessage && <p className="mt-4 text-green-500">{resultMessage}</p>} {/* 顯示結果訊息 */}
       </div>
     </div>
   );
