@@ -89,15 +89,15 @@ const EventsPage = () => {
   }, [userEmail, userName]);
 
   if (loading) {
-    return <div className="min-h-screen flex items-center justify-center bg-gray-100">載入中...</div>;
+    return <div className="min-h-screen bg-blue-100 flex items-center justify-center">載入中...</div>;
   }
 
   if (error) {
-    return <div className="min-h-screen flex items-center justify-center bg-gray-100">{error}</div>;
+    return <div className="min-h-screen bg-blue-100 flex items-center justify-center">{error}</div>;
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-blue-50 p-6">
+    <div className="min-h-screen bg-blue-100 flex items-center justify-center p-6">
       <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
         <h1 className="text-3xl font-bold text-blue-600 mb-6 text-center">{eventData?.name}</h1>
         <div className="space-y-4">
