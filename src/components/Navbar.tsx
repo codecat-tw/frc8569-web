@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from 'next/link';
+import Image from 'next/image'
 import { signOut, useSession } from 'next-auth/react';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import MobileMenu from './MobileMenu';
@@ -21,7 +22,13 @@ const Navbar: React.FC = () => {
                 <div className="flex justify-between h-16">
                     <div className="flex items-center">
                         <Link href="/" passHref>
-                            <img className="h-8 w-auto cursor-pointer" src="/FRC.jpg" alt="Your Company" />
+                            <Image
+                                className="h-8 w-auto cursor-pointer"
+                                src="/FRC.jpg"
+                                alt="FRC Icon"
+                                width={64} // 設定圖片的寬度
+                                height={64} // 設定圖片的高度
+                            />
                         </Link>
                         <div className="hidden lg:flex lg:space-x-8 lg:ml-6">
                             {navigation.map((item) => (
@@ -36,7 +43,13 @@ const Navbar: React.FC = () => {
                     <div className="hidden lg:flex lg:items-center lg:space-x-4">
                         <Link href={`/user/${session?.user?.email}`} passHref>
                             <div className="flex items-center space-x-2 cursor-pointer">
-                                <img className="h-8 w-8 rounded-full" src={session?.user?.image || '/default-avatar.png'} alt={session?.user?.name || 'User Avatar'} />
+                                <Image
+                                    className="rounded-full"
+                                    src={session?.user?.image || '/default-avatar.png'}
+                                    alt={session?.user?.name || 'User Avatar'}
+                                    width={32} // 設定圖片的寬度
+                                    height={32} // 設定圖片的高度
+                                />
                                 <span className="text-gray-900 font-medium">{session?.user?.name}</span>
                             </div>
                         </Link>

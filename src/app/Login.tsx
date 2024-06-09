@@ -1,5 +1,6 @@
 'use client';
 import { signIn } from 'next-auth/react';
+import Image from 'next/image'
 
 export default function Login() {
   return (
@@ -7,9 +8,11 @@ export default function Login() {
       <div className="text-center">
         <h1 className="text-5xl font-bold mb-4">FRC管理系統</h1>
         <button className="flex items-center m-auto justify-center px-8 py-4 mb-8 bg-white rounded-lg shadow-md hover:bg-gray-100" onClick={() => signIn('google')}>
-          <img
+          <Image
             src="/google-icon.png"
             alt="Google Icon"
+            width={64}
+            height={64}
             className="w-8 h-8 mr-4"
           />
           <span className="text-xl md:text-2xl font-medium">使用 Google 登入</span>

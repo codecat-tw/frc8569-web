@@ -97,18 +97,23 @@ const EventsPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div>
-        <h1 className="text-2xl font-bold mb-4">{eventData?.name}</h1>
-        <p>日期: {eventData?.date}</p>
-        <p>開始時間: {eventData?.start}</p>
-        <p>結束時間: {eventData?.end}</p>
-        <p>地點: {eventData?.area}</p>
-        <p>申請者電子郵件: {eventData?.applyEmail}</p>
-        <p>申請者姓名: {eventData?.applyName}</p>
-        <p>教師: {eventData?.teacher}</p>
-        <p>狀態: {eventData?.status}</p>
-        {resultMessage && <p className="mt-4 text-green-500">{resultMessage}</p>} {/* 顯示結果訊息 */}
+    <div className="min-h-screen flex items-center justify-center bg-blue-50 p-6">
+      <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
+        <h1 className="text-3xl font-bold text-blue-600 mb-6 text-center">{eventData?.name}</h1>
+        <div className="space-y-4">
+          <p className="text-lg"><span className="font-semibold">活動日期:</span> {eventData?.date}</p>
+          <p className="text-lg"><span className="font-semibold">開始時間:</span> {eventData?.start}</p>
+          <p className="text-lg"><span className="font-semibold">結束時間:</span> {eventData?.end}</p>
+          <p className="text-lg"><span className="font-semibold">使用分區:</span> {eventData?.area}</p>
+          <p className="text-lg"><span className="font-semibold">活動代表:</span> {eventData?.applyName}</p>
+          <p className="text-lg"><span className="font-semibold">指導老師:</span> {eventData?.teacher}</p>
+          <p className="text-lg"><span className="font-semibold">審核狀態:</span> {eventData?.status}</p>
+          {resultMessage && (
+            <div className="mt-6 p-4 bg-green-100 border border-green-500 text-green-700 rounded-md text-lg font-semibold text-center">
+              {resultMessage}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image'
 import { signOut, useSession } from 'next-auth/react';
 
 const navigation = [
@@ -32,7 +33,13 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ setMobileMenuOpen }) => {
             <div className="border-t border-gray-200 pt-4 pb-3">
                 <Link href={`/user/${session?.user?.email}`} passHref>
                     <div className='flex justify-center items-center px-4'>
-                        <img className="h-8 w-8 m-4 rounded-full" src={session?.user?.image || '/default-avatar.png'} alt={session?.user?.name || 'User Avatar'} />
+                        <Image
+                            className="h-8 w-8 m-4 rounded-full"
+                            src={session?.user?.image || '/default-avatar.png'}
+                            alt={session?.user?.name || 'User Avatar'}
+                            width={32} // 設定圖片的寬度
+                            height={32} // 設定圖片的高度
+                        />
                         <div className='flex flex-col items-center'>
                             <span className="text-base font-medium text-gray-800 cursor-pointer">{session?.user?.name}</span>
                             <span className="text-sm font-medium text-gray-500">{session?.user?.email}</span>
