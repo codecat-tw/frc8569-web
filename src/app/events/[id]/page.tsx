@@ -32,6 +32,7 @@ const EventsPage = () => {
   const userName = session?.user?.name || 'ErrorUser';
 
   useEffect(() => {
+    console.log("fetchEventData useEffect");
     const fetchEventData = async () => {
       if (!params.id || Array.isArray(params.id)) {
         setLoading(false);
@@ -59,9 +60,10 @@ const EventsPage = () => {
     };
 
     fetchEventData();
-  }, [params]);
+  }, []);
 
   useEffect(() => {
+    console.log("executeJoinEvent useEffect");
     const executeJoinEvent = async () => {
       if (!joinExecuted) {
         const joinParam = searchParams?.get('join') || '-';
@@ -84,7 +86,7 @@ const EventsPage = () => {
     };
 
     executeJoinEvent();
-  }, [searchParams, params.id, userEmail, userName, joinExecuted]);
+  }, [userEmail, userName]);
 
   if (loading) {
     return <div className="min-h-screen flex items-center justify-center bg-gray-100">載入中...</div>;
