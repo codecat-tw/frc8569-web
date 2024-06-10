@@ -8,14 +8,14 @@ interface AreaInputProps {
 const AreaInput: React.FC<AreaInputProps> = ({ area, handleInputChange }) => {
   return (
     <div className="mb-4">
-      <label className="block text-sm font-bold mb-2">地區</label>
+      <label className="block text-sm font-bold mb-2">使用分區</label>
       <input
         type="text"
         name="area"
         value={area}
         onChange={handleInputChange}
         className="w-full p-2 border border-gray-300 rounded-md"
-        placeholder="Area"
+        placeholder="如:A、B、C"
         required
       />
     </div>

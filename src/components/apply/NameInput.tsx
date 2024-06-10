@@ -15,7 +15,7 @@ const NameInput: React.FC<NameInputProps> = ({ name, handleInputChange }) => {
         value={name}
         onChange={handleInputChange}
         className="w-full p-2 border border-gray-300 rounded-md"
-        placeholder="Name"
+        placeholder="活動主題、預期目標等..."
         required
       />
     </div>

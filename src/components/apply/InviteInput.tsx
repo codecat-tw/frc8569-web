@@ -5,20 +5,31 @@ interface InviteInputProps {
   handleInviteChange: (selectedInvite: string[]) => void;
 }
 
+const groupMembers: { [key: string]: string[] } = {
+  '全成員': ['mail2.chshs.ntpc.edu.tw'],
+  '程式組': ['110330', '楊光地', '鍋子'],
+  '機構組': ['螺', '小黑'],
+  '電控組': ['高', '王'],
+  '策略組': ['yd960528', 'Heidi'],
+  '公關組': ['Ivy', 'Jack']
+};
+
 const InviteInput: React.FC<InviteInputProps> = ({ invite, handleInviteChange }) => {
   const [selectedInvite, setSelectedInvite] = useState<string[]>(invite);
-
-  // 在這裡設定邀請對象選項
-  const inviteOptions = ['程式組', '機構組', '電控組', '策略組', '公關組'];
+  const inviteOptions = Object.keys(groupMembers);
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
     let updatedInvite = [...selectedInvite];
 
     if (checked) {
-      updatedInvite.push(value);
+      groupMembers[value].forEach(member => {
+        if (!updatedInvite.includes(member)) {
+          updatedInvite.push(member);
+        }
+      });
     } else {
-      updatedInvite = updatedInvite.filter(invite => invite !== value);
+      updatedInvite = updatedInvite.filter(invite => !groupMembers[value].includes(invite));
     }
 
     setSelectedInvite(updatedInvite);
@@ -27,14 +38,15 @@ const InviteInput: React.FC<InviteInputProps> = ({ invite, handleInviteChange })
 
   return (
     <div className="mb-4">
-      <label className="block text-sm font-bold mb-2">邀請對象</label>
+      <label className="block text-sm font-bold">邀請對象</label>
+      <label className="block text-gray-500 text-sm font-bold mb-2">隊員只要包含於任一選項中皆可參與活動</label>
       {inviteOptions.map((option, index) => (
         <div key={index} className="flex items-center">
           <input
             type="checkbox"
             id={`invite-${index}`}
             value={option}
-            checked={selectedInvite.includes(option)}
+            checked={groupMembers[option].every((member: string) => selectedInvite.includes(member))}
             onChange={handleCheckboxChange}
             className="mr-2"
           />
