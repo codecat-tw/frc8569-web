@@ -6,7 +6,7 @@ import SessionProvider from './SessionProvider';
 import Login from './Login';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import LoginInfo from "../components/firebase/LoginInfo"; // 新增這行
+import LoginInfo from "../components/firebase/LoginInfo";
 
 const inter = Inter({ subsets: ['latin'] })
 

@@ -17,7 +17,7 @@ interface Item {
   applyName: string;
   teacher: string;
   status: string;
-  members: Member[]; // 修改 members 屬性類型
+  members: Member[];
 }
 
 const GetEventList = () => {

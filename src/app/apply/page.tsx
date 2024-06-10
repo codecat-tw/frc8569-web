@@ -46,7 +46,7 @@ const AddItemForm: React.FC = () => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const result = await ApplyItem({ formValues, userEmail, userName });
-    setActivityUrl(result); // Assuming ApplyItem returns an object with a 'url' property
+    setActivityUrl(result);
     setIsSubmitted(true);
     setFormValues({
       date: '',

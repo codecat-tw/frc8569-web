@@ -1,4 +1,3 @@
-import { use } from 'react';
 import db from '../../utils/firestore';
 import { doc, getDoc, setDoc } from "firebase/firestore";
 

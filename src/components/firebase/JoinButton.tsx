@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { joinEvent } from './JoinEvent';  // 路徑根據實際情況調整
+import { joinEvent } from './JoinEvent';
 
 interface JoinButtonProps {
   id: string;

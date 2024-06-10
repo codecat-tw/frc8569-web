@@ -36,7 +36,7 @@ const Manage: React.FC = () => {
   return (
     <div className='text-black min-h-screen bg-blue-100 overflow-x-hidden'>
       <h1 className='text-center text-4xl font-bold py-4'>場地審核</h1>
-      <div className="border w-11/12 max-w-md mx-auto text-center p-4 bg-white shadow-lg rounded-lg">
+      <div className="border w-11/12 max-w-md mx-auto text-center p-4 my-2 bg-white shadow-lg rounded-lg">
         <ul>
           {items.slice().reverse().map((item) => (
             <li key={item.id} className="border-b-2 p-2">

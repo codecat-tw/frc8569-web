@@ -25,7 +25,7 @@ const EventsPage = () => {
   const [eventData, setEventData] = useState<Item | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [joinExecuted, setJoinExecuted] = useState(false);
-  const [resultMessage, setResultMessage] = useState<string | null>(null); // 新增狀態變量
+  const [resultMessage, setResultMessage] = useState<string | null>(null);
   const { data: session } = useSession();
   const userEmail = session?.user?.email || 'ErrorUser';
   const userName = session?.user?.name || 'ErrorUser';

@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react';
 import db from "../../utils/firestore"
 import { doc, setDoc } from 'firebase/firestore';
 
-const FirebaseLoginTracker = () => {
+const LoginInfo = () => {
     const { data: session } = useSession();
 
     useEffect(() => {
@@ -28,4 +28,4 @@ const FirebaseLoginTracker = () => {
     return null;
 };
 
-export default FirebaseLoginTracker;
+export default LoginInfo;

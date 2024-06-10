@@ -26,8 +26,8 @@ const Navbar: React.FC = () => {
                                 className="h-8 w-auto cursor-pointer"
                                 src="/FRC.jpg"
                                 alt="FRC Icon"
-                                width={64} // 設定圖片的寬度
-                                height={64} // 設定圖片的高度
+                                width={64}
+                                height={64}
                             />
                         </Link>
                         <div className="hidden lg:flex lg:space-x-8 lg:ml-6">
@@ -47,8 +47,8 @@ const Navbar: React.FC = () => {
                                     className="rounded-full"
                                     src={session?.user?.image || '/default-avatar.png'}
                                     alt={session?.user?.name || 'User Avatar'}
-                                    width={32} // 設定圖片的寬度
-                                    height={32} // 設定圖片的高度
+                                    width={32}
+                                    height={32}
                                 />
                                 <span className="text-gray-900 font-medium">{session?.user?.name}</span>
                             </div>

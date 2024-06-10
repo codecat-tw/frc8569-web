@@ -37,8 +37,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ setMobileMenuOpen }) => {
                             className="h-8 w-8 m-4 rounded-full"
                             src={session?.user?.image || '/default-avatar.png'}
                             alt={session?.user?.name || 'User Avatar'}
-                            width={32} // 設定圖片的寬度
-                            height={32} // 設定圖片的高度
+                            width={32}
+                            height={32}
                         />
                         <div className='flex flex-col items-center'>
                             <span className="text-base font-medium text-gray-800 cursor-pointer">{session?.user?.name}</span>
