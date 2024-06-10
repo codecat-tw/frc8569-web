@@ -16,7 +16,7 @@ interface AddItemProps {
     userName: string;
 }
 
-const ApplyItem = async ({ formValues, userEmail, userName }: AddItemProps) => {
+const ApplyItem = async ({ formValues, userEmail, userName }: AddItemProps): Promise<string> => {
     const { date, name, start, end, area, teacher } = formValues;
     if (date && name && start && end && area && teacher) {
         try {
@@ -29,12 +29,14 @@ const ApplyItem = async ({ formValues, userEmail, userName }: AddItemProps) => {
                 status: "尚未審核",
             });
             console.log("setDoc");
+            return applyTime;
         } catch (e) {
             console.error("Error adding document: ", e);
         }
     } else {
         console.log("All fields are required.");
     }
+    return "applyerror";
 };
 
 export default ApplyItem;

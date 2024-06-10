@@ -25,6 +25,9 @@ const AddItemForm: React.FC = () => {
     invite: [] as string[]
   });
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [activityUrl, setActivityUrl] = useState('');
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormValues({
@@ -42,7 +45,9 @@ const AddItemForm: React.FC = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await ApplyItem({ formValues, userEmail, userName });
+    const result = await ApplyItem({ formValues, userEmail, userName });
+    setActivityUrl(result); // Assuming ApplyItem returns an object with a 'url' property
+    setIsSubmitted(true);
     setFormValues({
       date: '',
       name: '',
@@ -52,6 +57,11 @@ const AddItemForm: React.FC = () => {
       teacher: '',
       invite: []
     });
+  };
+
+  const handleCopyUrl = () => {
+    navigator.clipboard.writeText("frc.kuang-ti.com/events/" + activityUrl );
+    alert('活動網址已複製到剪貼簿');
   };
 
   return (
@@ -67,6 +77,13 @@ const AddItemForm: React.FC = () => {
         <button type="submit" className="bg-blue-500 text-white p-2 rounded-md mt-4 w-full">
           提交
         </button>
+        {isSubmitted && (
+          <div className="mt-4">
+            <button onClick={handleCopyUrl} className="bg-green-500 text-white p-2 rounded-md mt-2 w-full">
+              複製活動網址
+            </button>
+          </div>
+        )}
       </form>
     </div>
   );
