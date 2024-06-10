@@ -8,6 +8,7 @@ import StartInput from '../../components/apply/StartInput';
 import EndInput from '../../components/apply/EndInput';
 import AreaInput from '../../components/apply/AreaInput';
 import TeacherInput from '../../components/apply/TeacherInput';
+import InviteesInput from '../../components/apply/InviteInput';
 
 const AddItemForm: React.FC = () => {
   const { data: session } = useSession();
@@ -20,7 +21,8 @@ const AddItemForm: React.FC = () => {
     start: '',
     end: '',
     area: '',
-    teacher: ''
+    teacher: '',
+    invite: [] as string[]
   });
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -28,6 +30,13 @@ const AddItemForm: React.FC = () => {
     setFormValues({
       ...formValues,
       [name]: value
+    });
+  };
+
+  const handleInviteChange = (selectedInvite: string[]) => {
+    setFormValues({
+      ...formValues,
+      invite: selectedInvite
     });
   };
 
@@ -40,7 +49,8 @@ const AddItemForm: React.FC = () => {
       start: '',
       end: '',
       area: '',
-      teacher: ''
+      teacher: '',
+      invite: []
     });
   };
 
@@ -53,6 +63,7 @@ const AddItemForm: React.FC = () => {
         <EndInput end={formValues.end} handleInputChange={handleInputChange} />
         <AreaInput area={formValues.area} handleInputChange={handleInputChange} />
         <TeacherInput teacher={formValues.teacher} handleInputChange={handleInputChange} />
+        <InviteesInput invite={formValues.invite} handleInviteChange={handleInviteChange}/>
         <button type="submit" className="bg-blue-500 text-white p-2 rounded-md mt-4 w-full">
           提交
         </button>
