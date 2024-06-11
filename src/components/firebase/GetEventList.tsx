@@ -17,6 +17,7 @@ interface Item {
   applyName: string;
   teacher: string;
   status: string;
+  remark: string;
   members: Member[];
 }
 

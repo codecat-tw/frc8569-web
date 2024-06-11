@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react';
 import GetEventList from "../../components/firebase/GetEventList";
 import AgreeButton from "../../components/firebase/AgreeButton";
 import DeleteButton from "../../components/firebase/DeleteButton";
+import RemarkUpdate from "../../components/firebase/RemarkUpdate";
 import NoPurview from "../../components/NoPurview";
 import Loading from "../../components/Loading";
 
@@ -48,6 +49,7 @@ const Manage: React.FC = () => {
               <p>活動代表: {item.applyName}</p>
               <p>指導老師: {item.teacher}</p>
               <p>場地狀態: {item.status}</p>
+              <p>場地評語: {item.remark}</p>
               <div className="mt-2">
                 <h2 className="text-lg font-bold cursor-pointer" onClick={() => toggleMembersList(item.id)}>
                   成員名單 {openEvent[item.id] ? '▲' : '▼'}
@@ -62,6 +64,7 @@ const Manage: React.FC = () => {
                   </ul>
                 )}
               </div>
+              <RemarkUpdate id={item.id} />
               <AgreeButton id={item.id} />
               <DeleteButton id={item.id} />
             </li>

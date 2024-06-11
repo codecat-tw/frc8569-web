@@ -27,6 +27,7 @@ const ApplyItem = async ({ formValues, userEmail, userName }: AddItemProps): Pro
                 applyEmail: userEmail,
                 applyName: userName,
                 status: "尚未審核",
+                remark: "(沒有評語)",
             });
             console.log("setDoc");
             return applyTime;

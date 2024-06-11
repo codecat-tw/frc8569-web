@@ -46,6 +46,7 @@ const List: React.FC = () => {
               <p>活動代表: {item.applyName}</p>
               <p>指導老師: {item.teacher}</p>
               <p>場地狀態: {item.status}</p>
+              <p>場地評語: {item.remark}</p>
               <div className="mt-2">
                 <h2 className="text-lg font-bold cursor-pointer" onClick={() => toggleMembersList(item.id)}>
                   成員名單 {openEvent[item.id] ? '▲' : '▼'}
