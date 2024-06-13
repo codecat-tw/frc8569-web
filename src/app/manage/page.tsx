@@ -10,7 +10,8 @@ import Loading from "../../components/Loading";
 
 const adminEmails = [
   'eric29433453@gmail.com',
-  '110330@mail2.chshs.ntpc.edu.tw'
+  '110330@mail2.chshs.ntpc.edu.tw',
+  'kkbike@mail2.chshs.ntpc.edu.tw'
 ];
 
 const Manage: React.FC = () => {
