@@ -8,6 +8,7 @@ export default function Footer() {
           <h3 className="text-xl font-semibold mb-4">網站資訊</h3>
           <p>FRC 管理團隊</p>
           <p>© 2024 所有權利保留</p>
+          <p>網站版本: 1.0.0</p>
         </div>
         <div className="w-full md:w-1/3 px-4 mb-8 md:mb-0">
           <h3 className="text-xl font-semibold mb-4">開發團隊</h3>
