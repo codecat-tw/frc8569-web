@@ -7,6 +7,7 @@ import Login from './Login';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import LoginInfo from "../components/firebase/LoginInfo";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,6 +25,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+      <GoogleAnalytics gaId="G-0BCZ9VLRYQ" />
       <SessionProvider session={session}>
         {!session ? (
           <Login/>
