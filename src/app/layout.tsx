@@ -3,7 +3,6 @@ import { getServerSession } from 'next-auth'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import SessionProvider from './SessionProvider';
-import Login from './Login';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import LoginInfo from "../components/firebase/LoginInfo";
@@ -27,16 +26,12 @@ export default async function RootLayout({
       <body className={inter.className}>
       <GoogleAnalytics gaId="G-0BCZ9VLRYQ" />
       <SessionProvider session={session}>
-        {!session ? (
-          <Login/>
-        ): (
-          <div>
-            <LoginInfo />
-            <Navbar />
-            {children}
-            <Footer />
-          </div>
-        )}
+        <div>
+          <LoginInfo />
+          <Navbar />
+          {children}
+          <Footer />
+        </div>
       </SessionProvider>
       </body>
     </html>
