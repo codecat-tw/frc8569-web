@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function Home() {
+export default function About() {
   return (
     <div className="text-black flex items-center justify-center min-h-screen bg-blue-100">
       <div className="text-center p-4">
