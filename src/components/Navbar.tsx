@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Link from 'next/link';
 import Image from 'next/image'
-import { signOut, useSession } from 'next-auth/react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import MobileMenu from './MobileMenu';
 
@@ -40,23 +40,29 @@ const Navbar: React.FC = () => {
                             ))}
                         </div>
                     </div>
-                    <div className="hidden lg:flex lg:items-center lg:space-x-4">
-                        <Link href={`/user/${session?.user?.email}`} passHref>
-                            <div className="flex items-center space-x-2 cursor-pointer">
-                                <Image
-                                    className="rounded-full"
-                                    src={session?.user?.image || '/default-avatar.png'}
-                                    alt={session?.user?.name || 'User Avatar'}
-                                    width={32}
-                                    height={32}
-                                />
-                                <span className="text-gray-900 font-medium">{session?.user?.name}</span>
-                            </div>
-                        </Link>
-                        <button onClick={() => signOut()} className="text-sm font-semibold text-gray-900 hover:text-gray-700">
-                            登出
+                    { session ? (
+                        <div className="hidden lg:flex lg:items-center lg:space-x-4">
+                            <Link href={`/user/${session?.user?.email}`} passHref>
+                                <div className="flex items-center space-x-2 cursor-pointer">
+                                    <Image
+                                        className="rounded-full"
+                                        src={session?.user?.image || '/default-avatar.png'}
+                                        alt={session?.user?.name || 'User Avatar'}
+                                        width={32}
+                                        height={32}
+                                    />
+                                    <span className="text-gray-900 font-medium">{session?.user?.name}</span>
+                                </div>
+                            </Link>
+                            <button onClick={() => signOut()} className="text-sm font-semibold text-gray-900 hover:text-gray-700">
+                                登出
+                            </button>
+                        </div>
+                    ): (
+                        <button onClick={() => signIn('google')} className="text-sm font-semibold text-gray-900 hover:text-gray-700">
+                            登入
                         </button>
-                    </div>
+                    )}
                     <div className="flex items-center lg:hidden">
                         <button
                             type="button"
