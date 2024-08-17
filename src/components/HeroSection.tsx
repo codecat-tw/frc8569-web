@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export default function HeroSection() {
   return (
-    <div className="min-h-screen grid grid-cols-1 sm:grid-cols-12">
+    <div className="min-h-screen container mx-auto grid grid-cols-1 sm:grid-cols-12">
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}

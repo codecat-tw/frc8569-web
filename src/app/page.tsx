@@ -4,9 +4,11 @@ import About from "../components/About";
 
 export default function Home() {
   return (
-    <div className="container mx-auto">
+    <>
+    <div className="bg-blue-200">
       <HeroSection />
-      <About />
     </div>
+    <About />
+    </>
   )
 }
