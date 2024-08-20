@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'FRC8569',
-  description: 'FRC團隊管理系統',
+  description: '中和高中FRC系統-從介紹到管理',
 }
 
 export default async function RootLayout({
@@ -22,12 +22,11 @@ export default async function RootLayout({
 }) {
   const session = await getServerSession(authOptions);
   return (
-    <html lang="en">
+    <html lang="zh-Hant">
       <body className={inter.className}>
       <GoogleAnalytics gaId="G-0BCZ9VLRYQ" />
       <SessionProvider session={session}>
         <div className='bg-blue-100'>
-          <LoginInfo />
           <Navbar />
           {children}
           <Footer />

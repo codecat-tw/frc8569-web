@@ -16,16 +16,16 @@ export default function HeroSection() {
       >
         <h1 className="text-black mb-4 text-2xl md:text-5xl lg:text-8xl lg:leading-normal font-extrabold">
           <span className="text-4xl md:text-6xl lg:text-8xl bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-600">
-            FRC管理系統{" "}
+            FRC8569{" "}
           </span>
           <br></br>
           <TypeAnimation
             sequence={[
-              "現代化管理系統",
+              "中和高中FRC",
               1000,
-              "自動活動報名",
+              "團隊管理系統",
               1000,
-              "出缺席管理",
+              "現代化網站",
               1000,
             ]}
             wrapper="span"
@@ -33,9 +33,6 @@ export default function HeroSection() {
             repeat={Infinity}
           />
         </h1>
-        <p className="text-orange-600 text-base sm:text-lg mb-6 lg:text-xl">
-          中和高中FRC管理系統
-        </p>
         <div>
           <button className="flex items-center m-auto justify-center px-8 py-4 mb-8 bg-white text-black rounded-lg shadow-md hover:bg-gray-100" onClick={() => signIn('google')}>
             <Image
