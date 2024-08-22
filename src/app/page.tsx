@@ -7,12 +7,12 @@ import HelpCard from "../components/home/HelpCard";
 export default function Home() {
   return (
     <>
-    <div className="bg-blue-200">
-      <HeroSection />
-    </div>
-    <ActivityCard />
-    <ApplyCard />
-    <HelpCard />
+      <div className="bg-blue-200">
+        <HeroSection />
+      </div>
+      <ActivityCard />
+      <ApplyCard />
+      <HelpCard />
     </>
   )
 }
