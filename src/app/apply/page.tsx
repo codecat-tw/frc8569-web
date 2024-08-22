@@ -65,7 +65,7 @@ const AddItemForm: React.FC = () => {
   };
 
   return (
-    <div className='text-black min-h-screen bg-blue-100 overflow-x-hidden p-4'>
+    <div className='min-h-screen overflow-x-hidden p-4'>
       <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-white mt-8 p-8 shadow-md rounded-md">
         <DateInput date={formValues.date} handleInputChange={handleInputChange} />
         <NameInput name={formValues.name} handleInputChange={handleInputChange} />
