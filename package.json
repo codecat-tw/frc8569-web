@@ -31,5 +31,8 @@
     "secretjs": "^1.12.5",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@iconify/react": "^5.0.2"
   }
 }
