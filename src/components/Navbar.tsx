@@ -52,8 +52,8 @@ const Navbar: React.FC = () => {
               <div className="flex flex-row items-center space-x-4">
                 <Image
                   className="h-8 w-auto cursor-pointer"
-                  src="/frc-debg.png"
-                  alt="FRC Icon"
+                  src="/logo.png"
+                  alt="logo"
                   width={64}
                   height={64}
                 />

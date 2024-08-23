@@ -59,7 +59,7 @@ export default function HeroSection() {
       >
         <div className="relative h-[250px] w-[250px] rounded-full bg-[#181818] lg:h-[400px] lg:w-[400px]">
           <Image
-            src="/FRC-debg.png"
+            src="/logo.png"
             alt="hero image"
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform"
             width={300}
