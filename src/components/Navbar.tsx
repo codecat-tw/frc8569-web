@@ -5,7 +5,6 @@ import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import MobileMenu from "./MobileMenu";
-import addLoginRecord from "./firebase/addLoginRecord";
 
 const navigation = [
   { name: "場地列表", href: "/list" },
@@ -16,24 +15,6 @@ const navigation = [
 const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { data: session } = useSession();
-
-  const handleSignIn = async () => {
-    try {
-      console.log("User clicked sign-in button.");
-      const result = await signIn("google", { redirect: false });
-
-      console.log("SignIn result:", result);
-      
-      if (result?.ok && session?.user?.email) {  // 確認登入成功且 session 有 email
-        console.log("User signed in successfully.");
-        console.log("Call Record");
-        addLoginRecord(session.user.email);  // 使用 session 中的 email
-      }
-      console.log("Run to dot");
-    } catch (error) {
-      console.error("Error during sign-in: ", error);
-    }
-  };
 
   return (
     <nav className="bg-gray-200 shadow-md">
@@ -108,7 +89,7 @@ const Navbar: React.FC = () => {
             </div>
           ) : (
             <button
-              onClick={handleSignIn}
+              onClick={() => signIn("google")}
               className="text-sm font-semibold text-gray-900 hover:text-gray-700"
             >
               登入
