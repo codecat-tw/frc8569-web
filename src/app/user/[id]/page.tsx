@@ -1,30 +1,34 @@
-"use client";
-import { useParams } from "next/navigation";
-import { signOut } from "next-auth/react";
+"use client"
+import React from 'react';
+import { signOut } from 'next-auth/react';
+import SearchUser from '../../../components/firebase/SearchUser';
 
 const UserPage = () => {
-  const params = useParams();
+  const { user, loading } = SearchUser();
 
-  if (!params || !params.id || Array.isArray(params.id)) {
+  if (loading) {
+    return <div className="flex min-h-screen items-center justify-center text-xl">載入中...</div>;
+  }
+
+  if (!user) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
-        Invalid user ID
+      <div className="flex min-h-screen items-center justify-center text-xl">
+        查無使用者
       </div>
     );
   }
 
-  const { id } = params;
-
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="w-full max-w-md rounded bg-white p-8 shadow-md">
-        <h1 className="mb-4 text-2xl font-bold">User Profile: {id}</h1>
-        <p className="text-gray-700">
-          This is the user profile page for user {id}.
+    <div className="flex min-h-screen items-center justify-center p-4">
+      <div className="w-full max-w-lg rounded-lg bg-white p-8 shadow-lg">
+        <h1 className="text-3xl font-bold text-gray-800 mb-4">{user.name}</h1>
+        <p className="text-gray-600 text-lg">
+          註冊帳號: {user.email} <br /> 組別: {user.team}
         </p>
+        
         <button
           onClick={() => signOut()}
-          className="text-sm font-semibold text-gray-900 hover:text-gray-700"
+          className="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
           登出
         </button>
