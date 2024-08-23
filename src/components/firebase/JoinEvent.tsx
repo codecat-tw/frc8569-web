@@ -1,4 +1,4 @@
-import db from '../../utils/firestore';
+import db from "../../utils/firestore";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
 interface Member {
@@ -12,7 +12,11 @@ interface ActivityData {
   members: Member[];
 }
 
-export const joinEvent = async (id: string, userEmail: string, userName: string) => {
+export const joinEvent = async (
+  id: string,
+  userEmail: string,
+  userName: string,
+) => {
   const docRef = doc(db, "activity", id);
 
   try {
@@ -25,8 +29,10 @@ export const joinEvent = async (id: string, userEmail: string, userName: string)
     const activityData = docSnap.data() as ActivityData;
     const inviteList = activityData.invite || [];
 
-    const isInvited = inviteList.some(invite => 
-      invite === userEmail.split('@')[0] || invite === userEmail.split('@')[1]
+    const isInvited = inviteList.some(
+      (invite) =>
+        invite === userEmail.split("@")[0] ||
+        invite === userEmail.split("@")[1],
     );
 
     if (!isInvited) {
@@ -35,13 +41,13 @@ export const joinEvent = async (id: string, userEmail: string, userName: string)
 
     let members = activityData.members || [];
 
-    if (members.some(member => member.email === userEmail)) {
+    if (members.some((member) => member.email === userEmail)) {
       return `你已報名過了`;
     } else {
       const newMember: Member = {
         name: userName,
         email: userEmail,
-        createdAt: new Date()
+        createdAt: new Date(),
       };
       members.push(newMember);
 

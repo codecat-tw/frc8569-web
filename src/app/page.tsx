@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import HeroSection from "../components/home/HeroSection";
 import ActivityCard from "../components/home/ActivityCard";
 import ApplyCard from "../components/home/ApplyCard";
@@ -14,5 +14,5 @@ export default function Home() {
       <ApplyCard />
       <HelpCard />
     </>
-  )
+  );
 }

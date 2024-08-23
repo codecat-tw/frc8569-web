@@ -31,9 +31,12 @@ const GetEventList = () => {
       const itemsData = await Promise.all(
         querySnapshot.docs.map(async (doc) => {
           const data = doc.data() as DocumentData;
-          const members: Member[] = data.members?.map((member: { name: string }) => ({ name: member.name })) || [];
+          const members: Member[] =
+            data.members?.map((member: { name: string }) => ({
+              name: member.name,
+            })) || [];
           return { ...data, id: doc.id, members } as Item;
-        })
+        }),
       );
       setItems(itemsData);
     };

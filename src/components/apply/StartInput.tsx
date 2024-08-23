@@ -1,20 +1,23 @@
-import React from 'react';
+import React from "react";
 
 interface StartInputProps {
   start: string;
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const StartInput: React.FC<StartInputProps> = ({ start, handleInputChange }) => {
+const StartInput: React.FC<StartInputProps> = ({
+  start,
+  handleInputChange,
+}) => {
   return (
     <div className="mb-4">
-      <label className="block text-sm font-bold mb-2">開始時間</label>
+      <label className="mb-2 block text-sm font-bold">開始時間</label>
       <input
         type="time"
         name="start"
         value={start}
         onChange={handleInputChange}
-        className="w-full p-2 border border-gray-300 rounded-md"
+        className="w-full rounded-md border border-gray-300 p-2"
         placeholder="Start"
         required
       />

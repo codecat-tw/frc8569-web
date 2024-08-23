@@ -24,11 +24,11 @@ const DeleteItem: React.FC<DeleteItemProps> = ({ id }) => {
   return (
     <button
       onClick={handleDelete}
-      className="border bg-red-400 p-1 rounded text-white"
+      className="rounded border bg-red-400 p-1 text-white"
     >
       刪除項目
     </button>
   );
-}
+};
 
 export default DeleteItem;
