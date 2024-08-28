@@ -7,7 +7,7 @@ import { Bars3Icon } from "@heroicons/react/24/outline";
 import MobileMenu from "./MobileMenu";
 
 const navigation = [
-  { name: "場地列表", href: "/list" },
+  { name: "場地列表", href: "/events" },
   { name: "申請場地", href: "/apply" },
   { name: "場地審核", href: "/manage" },
 ];
@@ -56,6 +56,7 @@ const Navbar: React.FC = () => {
                   alt="logo"
                   width={64}
                   height={64}
+                  priority
                 />
                 <span className="text-xl">FRC8569</span>
               </div>

@@ -46,7 +46,7 @@ export default function HeroSection() {
               className="mr-4 h-8 w-8"
             />
             <span className="text-xl font-medium md:text-2xl">
-              使用 中和高中Mail2 登入
+              使用 Google 登入
             </span>
           </button>
         </div>
@@ -64,6 +64,7 @@ export default function HeroSection() {
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform"
             width={300}
             height={300}
+            priority
           />
         </div>
       </motion.div>
