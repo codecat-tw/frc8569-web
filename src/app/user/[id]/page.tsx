@@ -23,7 +23,7 @@ const UserPage = () => {
       <div className="w-full max-w-lg rounded-lg bg-white p-8 shadow-lg">
         <h1 className="text-3xl font-bold text-gray-800 mb-4">{user.name}</h1>
         <p className="text-gray-600 text-lg">
-          註冊帳號: {user.email} <br /> 組別: {user.team}
+          註冊帳號: {user.email} <br /> 組別: {user.team} <br /> 最後登入: {user.lastLogin}
         </p>
         
         <button

@@ -19,7 +19,7 @@ export default function SessionProvider({ children, session }: Props) {
         await setDoc(
           sessionRef,
           {
-            lastLogin: new Date(),
+            lastLogin: new Date().toISOString(),
           },
           { merge: true },
         );
