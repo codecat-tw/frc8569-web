@@ -6,6 +6,7 @@ import db from "../../utils/firestore";
 interface IUser {
   email: string;
   name: string;
+  image: string;
   team: string;
   lastLogin: string;
 }

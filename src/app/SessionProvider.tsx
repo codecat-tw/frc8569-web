@@ -13,19 +13,28 @@ type Props = {
 export default function SessionProvider({ children, session }: Props) {
   useEffect(() => {
     const updateSessionData = async () => {
-      const userEmail = session?.user?.email || "ErrorUser";
-      const sessionRef = doc(db, "users", userEmail);
+      const userEmail = session?.user?.email;
+
+      if (!userEmail) {
+        console.error("使用者未登入");
+        return;
+      }
+
+      const docRef = doc(db, "users", userEmail);
       try {
         await setDoc(
-          sessionRef,
+          docRef,
           {
+            email: userEmail,
+            name: session.user?.name,
+            image: session.user?.image,
             lastLogin: new Date().toISOString(),
           },
           { merge: true },
         );
-        console.log("Session sent successful.");
+        console.log("登入記錄傳送成功");
       } catch (e) {
-        console.error("Session sent error. ", e);
+        console.error("登入紀錄傳送失敗:", e);
       }
     };
 

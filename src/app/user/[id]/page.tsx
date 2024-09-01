@@ -21,11 +21,23 @@ const UserPage = () => {
   return (
     <div className="flex min-h-screen items-center justify-center p-4">
       <div className="w-full max-w-lg rounded-lg bg-white p-8 shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">{user.name}</h1>
-        <p className="text-gray-600 text-lg">
+        {/* 使用者圖片 */}
+        <div className="flex justify-center mb-4">
+          <img
+            src={user.image}
+            alt={user.name}
+            className="w-24 h-24 rounded-full shadow-md"
+          />
+        </div>
+  
+        <h1 className="text-3xl font-bold text-gray-800 mb-2 text-center">
+          {user.name}
+        </h1>
+  
+        <p className="text-gray-600 text-lg text-center mb-4">
           註冊帳號: {user.email} <br /> 組別: {user.team} <br /> 最後登入: {user.lastLogin}
         </p>
-        
+  
         <button
           onClick={() => signOut()}
           className="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -34,7 +46,7 @@ const UserPage = () => {
         </button>
       </div>
     </div>
-  );
+  );  
 };
 
 export default UserPage;
