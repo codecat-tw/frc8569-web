@@ -3,7 +3,7 @@ import { useParams, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import db from "../../../utils/firestore";
-import { joinEvent } from "../../../components/firebase/JoinEvent";
+import { joinEvent } from "@/components/firebase/JoinEvent";
 import { useSession } from "next-auth/react";
 
 interface Item {

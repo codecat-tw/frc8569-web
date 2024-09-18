@@ -3,8 +3,8 @@ import { getServerSession } from "next-auth";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import SessionProvider from "./SessionProvider";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 const inter = Inter({ subsets: ["latin"] });

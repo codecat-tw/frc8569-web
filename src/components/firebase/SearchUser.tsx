@@ -29,7 +29,7 @@ export const SearchUser = () => {
       const userDoc = await getDoc(userDocRef);
 
       console.log(userDoc);
-  
+
       if (userDoc.exists()) {
         setUser(userDoc.data() as IUser);
       } else {

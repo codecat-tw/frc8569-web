@@ -1,14 +1,14 @@
 "use client";
 import { useSession } from "next-auth/react";
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import ApplyItem from "../../components/firebase/ApplyItem";
-import DateInput from "../../components/apply/DateInput";
-import NameInput from "../../components/apply/NameInput";
-import StartInput from "../../components/apply/StartInput";
-import EndInput from "../../components/apply/EndInput";
-import AreaInput from "../../components/apply/AreaInput";
-import TeacherInput from "../../components/apply/TeacherInput";
-import InviteesInput from "../../components/apply/InviteInput";
+import ApplyItem from "@/components/firebase/ApplyItem";
+import DateInput from "@/components/apply/DateInput";
+import NameInput from "@/components/apply/NameInput";
+import StartInput from "@/components/apply/StartInput";
+import EndInput from "@/components/apply/EndInput";
+import AreaInput from "@/components/apply/AreaInput";
+import TeacherInput from "@/components/apply/TeacherInput";
+import InviteesInput from "@/components/apply/InviteInput";
 
 const AddItemForm: React.FC = () => {
   const { data: session } = useSession();

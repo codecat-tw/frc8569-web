@@ -1,12 +1,12 @@
 "use client";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import GetEventList from "../../components/firebase/GetEventList";
-import AgreeButton from "../../components/firebase/AgreeButton";
-import DeleteButton from "../../components/firebase/DeleteButton";
-import RemarkUpdate from "../../components/firebase/RemarkUpdate";
-import NoPurview from "../../components/NoPurview";
-import Loading from "../../components/Loading";
+import GetEventList from "@/components/firebase/GetEventList";
+import AgreeButton from "@/components/firebase/AgreeButton";
+import DeleteButton from "@/components/firebase/DeleteButton";
+import RemarkUpdate from "@/components/firebase/RemarkUpdate";
+import NoPurview from "@/components/NoPurview";
+import Loading from "@/components/Loading";
 
 const adminEmails = [
   "eric29433453@gmail.com",

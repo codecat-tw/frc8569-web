@@ -2,10 +2,10 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import GetEventList from "../../components/firebase/GetEventList";
-import NoPurview from "../../components/NoPurview";
-import Loading from "../../components/Loading";
-import JoinButton from "../../components/firebase/JoinButton";
+import GetEventList from "@/components/firebase/GetEventList";
+import NoPurview from "@/components/NoPurview";
+import Loading from "@/components/Loading";
+import JoinButton from "@/components/firebase/JoinButton";
 
 const List: React.FC = () => {
   const items = GetEventList();
