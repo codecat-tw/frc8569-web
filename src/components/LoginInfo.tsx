@@ -1,16 +1,12 @@
 "use client";
+import { useSession } from "next-auth/react";
 import { useEffect } from "react";
-import { Session } from "next-auth";
-import { SessionProvider as Provider } from "next-auth/react";
 import db from "../utils/firestore";
 import { doc, setDoc } from "firebase/firestore";
 
-type Props = {
-  children: React.ReactNode;
-  session: Session | null;
-};
+export default function SessionUpdater() {
+  const { data: session } = useSession();
 
-export default function SessionProvider({ children, session }: Props) {
   useEffect(() => {
     const updateSessionData = async () => {
       const userEmail = session?.user?.email;
@@ -30,7 +26,7 @@ export default function SessionProvider({ children, session }: Props) {
             image: session.user?.image,
             lastLogin: new Date().toISOString(),
           },
-          { merge: true },
+          { merge: true }
         );
         console.log("登入記錄傳送成功");
       } catch (e) {
@@ -38,8 +34,10 @@ export default function SessionProvider({ children, session }: Props) {
       }
     };
 
-    updateSessionData();
+    if (session) {
+      updateSessionData();
+    }
   }, [session]);
 
-  return <Provider session={session}>{children}</Provider>;
+  return null;
 }
