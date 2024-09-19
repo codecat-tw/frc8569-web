@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 const navigation = [
-  { name: "場地列表", href: "/list" },
+  { name: "場地列表", href: "/events" },
   { name: "申請場地", href: "/apply" },
   { name: "場地審核", href: "/manage" },
 ];

@@ -63,7 +63,7 @@ const AddItemForm: React.FC = () => {
 
   const handleCopyUrl = () => {
     navigator.clipboard.writeText(
-      "frc.kuang-ti.com/events/" +
+      "frc.codecat.tw/events/" +
         activityUrl +
         "?join=1&openExternalBrowser=1",
     );

@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="mb-8 w-full px-4 md:mb-0 md:w-1/3">
           <h3 className="mb-4 text-xl font-semibold">網站資訊</h3>
           <p>FRC 管理團隊</p>
-          <p>© 2024 所有權利保留</p>
+          <p>© 2024 版權所有</p>
           <p>網站版本: 1.0.0</p>
         </div>
         <div className="mb-8 w-full px-4 md:mb-0 md:w-1/3">
@@ -27,7 +27,7 @@ export default function Footer() {
               href="https://www.instagram.com/codecat.tw"
               className="text-blue-400 transition duration-300 hover:text-blue-600"
             >
-              程式貓團隊
+              程式貓
             </a>
           </p>
         </div>
