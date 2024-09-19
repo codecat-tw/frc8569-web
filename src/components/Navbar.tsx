@@ -73,7 +73,7 @@ const Navbar: React.FC = () => {
           </div>
           {session ? (
             <div className="flex items-center space-x-4">
-              <Link href={`/user/${session?.user?.email}`} passHref>
+              <Link href={`/user`} passHref>
                 <div className="flex cursor-pointer items-center space-x-4">
                   <Image
                     className="rounded-full"

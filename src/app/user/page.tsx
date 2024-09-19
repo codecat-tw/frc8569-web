@@ -1,9 +1,13 @@
 "use client";
 import React from "react";
-import SearchUser from "@/components/firebase/SearchUser";
+import { useSession, signOut } from "next-auth/react";
+import { LoadUser } from "@/components/firebase/LoadUser";
 
 export default function UserPage() {
-  const { user, loading } = SearchUser();
+  const { data: session } = useSession();
+  const userId = session?.user?.email || "ErrorUser";
+
+  const { user, loading } = LoadUser({userId});
 
   if (loading) {
     return (
@@ -31,13 +35,22 @@ export default function UserPage() {
             className="h-24 w-24 rounded-full shadow-md"
           />
         </div>
+
         <h1 className="mb-2 text-center text-3xl font-bold text-gray-800">
           {user.name}
         </h1>
+
         <p className="mb-4 text-center text-lg text-gray-600">
           註冊帳號: {user.email} <br /> 組別: {user.team} <br /> 最後登入:{" "}
           {user.lastLogin}
         </p>
+
+        <button
+          onClick={() => signOut()}
+          className="mt-4 w-full rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+        >
+          登出
+        </button>
       </div>
     </div>
   );
