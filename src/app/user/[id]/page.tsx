@@ -1,9 +1,17 @@
 "use client";
 import React from "react";
-import SearchUser from "@/components/firebase/SearchUser";
+import { useParams } from "next/navigation";
+import LoadUser from "@/components/firebase/LoadUser";
 
 export default function UserPage() {
-  const { user, loading } = SearchUser();
+  const params = useParams();
+
+  if (!params || !params.id || Array.isArray(params.id)) {
+    return;
+  }
+
+  const userId = decodeURIComponent(params.id);
+  const { user, loading } = LoadUser({userId});
 
   if (loading) {
     return (
@@ -26,7 +34,7 @@ export default function UserPage() {
       <div className="w-full max-w-lg rounded-lg bg-white p-8 shadow-lg">
         <div className="mb-4 flex justify-center">
           <img
-            src={user.image}
+            src={user.image || '/default-avatar.png'}
             alt={user.name}
             className="h-24 w-24 rounded-full shadow-md"
           />
