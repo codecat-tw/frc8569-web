@@ -2,7 +2,7 @@
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import db from "../utils/firestore";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export default function SessionUpdater() {
   const { data: session } = useSession();
@@ -17,20 +17,27 @@ export default function SessionUpdater() {
       }
 
       const docRef = doc(db, "users", userEmail);
+      
       try {
-        await setDoc(
-          docRef,
-          {
-            email: userEmail,
-            name: session.user?.name,
-            image: session.user?.image,
-            lastLogin: new Date().toISOString(),
-          },
-          { merge: true }
-        );
-        console.log("登入記錄傳送成功");
+        const docSnap = await getDoc(docRef);
+        let userData = {};
+
+        if (docSnap.exists()) {
+          userData = docSnap.data();
+        }
+
+        const mergedData = {
+          ...userData,
+          email: userEmail,
+          name: session.user?.name,
+          image: session.user?.image,
+          lastLogin: new Date().toISOString(),
+        };
+
+        await setDoc(docRef, mergedData, { merge: true });
+        console.log("使用者資料更新成功");
       } catch (e) {
-        console.error("登入紀錄傳送失敗:", e);
+        console.error("更新使用者資料失敗:", e);
       }
     };
 

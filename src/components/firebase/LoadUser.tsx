@@ -29,8 +29,6 @@ export const LoadUser = ({ userId }: LoadUserProps) => {
       const userDocRef = doc(db, "users", userId);
       const userDoc = await getDoc(userDocRef);
 
-      console.log(userDoc);
-
       if (userDoc.exists()) {
         setUser(userDoc.data() as IUser);
       } else {

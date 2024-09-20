@@ -2,6 +2,7 @@
 import React from "react";
 import { useSession, signOut } from "next-auth/react";
 import { LoadUser } from "@/components/firebase/LoadUser";
+import SetUserTeam from "@/components/firebase/SetUserTeam";
 
 export default function UserPage() {
   const { data: session } = useSession();
@@ -40,10 +41,13 @@ export default function UserPage() {
           {user.name}
         </h1>
 
-        <p className="mb-4 text-center text-lg text-gray-600">
-          註冊帳號: {user.email} <br /> 組別: {user.team} <br /> 最後登入:{" "}
-          {user.lastLogin}
-        </p>
+        <div className="mb-4 text-center text-lg text-gray-800">
+          註冊帳號: {user.email}
+          <br />
+          最後登入: {user.lastLogin}
+          <br />
+          <SetUserTeam id={user.email} team={user.team} />
+        </div>  
 
         <button
           onClick={() => signOut()}
