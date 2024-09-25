@@ -1,4 +1,4 @@
-import db from "../../utils/firestore";
+import db from "@/utils/firestore";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
 interface Member {

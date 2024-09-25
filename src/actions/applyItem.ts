@@ -1,6 +1,6 @@
 "use server";
-import { collection, setDoc, doc } from "firebase/firestore";
 import db from "@/utils/firestore";
+import { collection, setDoc, doc } from "firebase/firestore";
 
 interface FormValues {
   date: string;

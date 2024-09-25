@@ -1,6 +1,6 @@
 "use server";
-import { doc, deleteDoc } from "firebase/firestore";
 import db from "@/utils/firestore";
+import { doc, deleteDoc } from "firebase/firestore";
 
 export const deleteActivity = async (id: string): Promise<void> => {
   if (!id) {

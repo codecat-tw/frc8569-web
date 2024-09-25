@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import db from "../../utils/firestore";
+import db from "@/utils/firestore";
 import { doc, updateDoc } from "firebase/firestore";
 
 interface RemarkProps {
@@ -12,16 +12,16 @@ const SetUserTeam: React.FC<RemarkProps> = ({ id, team }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleUpdate = async () => {
-      const docRef = doc(db, "users", id);
-      try {
-        await updateDoc(docRef, {
-          team: teamName,
-        });
-        console.log("updateDoc");
-        setIsEditing(false);
-      } catch (e) {
-        console.error("檔案更新錯誤: ", e);
-      }
+    const docRef = doc(db, "users", id);
+    try {
+      await updateDoc(docRef, {
+        team: teamName,
+      });
+      console.log("updateDoc");
+      setIsEditing(false);
+    } catch (e) {
+      console.error("檔案更新錯誤: ", e);
+    }
   };
 
   return (
@@ -46,14 +46,14 @@ const SetUserTeam: React.FC<RemarkProps> = ({ id, team }) => {
       {isEditing ? (
         <button
           onClick={handleUpdate}
-          className="rounded border bg-gray-400 p-1 text-white ml-2"
+          className="ml-2 rounded border bg-gray-400 p-1 text-white"
         >
           傳送
         </button>
       ) : (
         <button
           onClick={() => setIsEditing(true)}
-          className="rounded border bg-gray-400 p-1 text-white ml-2"
+          className="ml-2 rounded border bg-gray-400 p-1 text-white"
         >
           編輯
         </button>

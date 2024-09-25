@@ -8,7 +8,7 @@ export default function UserPage() {
   const { data: session } = useSession();
   const userId = session?.user?.email || "ErrorUser";
 
-  const { user, loading } = LoadUser({userId});
+  const { user, loading } = LoadUser({ userId });
 
   if (loading) {
     return (
@@ -47,7 +47,7 @@ export default function UserPage() {
           最後登入: {user.lastLogin}
           <br />
           <SetUserTeam id={user.email} team={user.team} />
-        </div>  
+        </div>
 
         <button
           onClick={() => signOut()}
@@ -58,4 +58,4 @@ export default function UserPage() {
       </div>
     </div>
   );
-};
+}

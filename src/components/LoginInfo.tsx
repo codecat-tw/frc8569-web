@@ -17,7 +17,7 @@ export default function SessionUpdater() {
       }
 
       const docRef = doc(db, "users", userEmail);
-      
+
       try {
         const docSnap = await getDoc(docRef);
         let userData = {};

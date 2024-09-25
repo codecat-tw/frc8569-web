@@ -1,10 +1,10 @@
 "use client";
-import { useState } from "react";
+import React, { useState, FormEvent } from "react";
 import { useSession } from "next-auth/react";
 import GetEventList from "@/components/firebase/GetEventList";
-import AgreeButton from "@/components/firebase/AgreeButton";
-import DeleteButton from "@/components/firebase/DeleteButton";
-import RemarkUpdate from "@/components/firebase/RemarkUpdate";
+import { approveActivity } from "@/actions/agreeAction";
+import { deleteActivity } from "@/actions/deleteItem";
+import { updateRemark } from "@/actions/updateRemark";
 import NoPurview from "@/components/NoPurview";
 import Loading from "@/components/Loading";
 
@@ -18,6 +18,7 @@ const Manage: React.FC = () => {
   const items = GetEventList();
   const { data: session, status } = useSession();
   const userEmail = session?.user?.email || "ErrorUser";
+  const [remark, setRemark] = useState("");
 
   const [openEvent, setOpenEvent] = useState<{ [key: string]: boolean }>({});
   const toggleMembersList = (id: string) => {
@@ -25,6 +26,53 @@ const Manage: React.FC = () => {
       ...prevState,
       [id]: !prevState[id],
     }));
+  };
+
+  const handleUpdate = async (id: string) => {
+    if (window.confirm("你確定要同意這個活動嗎？")) {
+      try {
+        await approveActivity(id);
+        alert("已批准活動");
+      } catch (error) {
+        if (error instanceof Error) {
+          alert("批准失敗: " + error.message);
+        } else {
+          alert("批准失敗，未知錯誤");
+        }
+      }
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    if (window.confirm("你確定要刪除這個活動嗎？")) {
+      try {
+        await deleteActivity(id);
+        alert("活動成功刪除");
+      } catch (error) {
+        if (error instanceof Error) {
+          alert(`刪除失敗: ${error.message}`);
+        } else {
+          alert("刪除失敗，未知錯誤");
+        }
+      }
+    }
+  };
+
+  const handleSubmit = async (e: FormEvent, id: string) => {
+    e.preventDefault();
+
+    if (window.confirm("你確定要傳送活動評語嗎?")) {
+      try {
+        await updateRemark(id, remark);
+        alert("已傳送活動評語");
+      } catch (error) {
+        if (error instanceof Error) {
+          alert("傳送評語失敗: " + error.message);
+        } else {
+          alert("傳送評語失敗，未知錯誤");
+        }
+      }
+    }
   };
 
   if (status === "loading") {
@@ -71,9 +119,33 @@ const Manage: React.FC = () => {
                     </ul>
                   )}
                 </div>
-                <RemarkUpdate id={item.id} />
-                <AgreeButton id={item.id} />
-                <DeleteButton id={item.id} />
+                <form onSubmit={(e: FormEvent) => handleSubmit(e, item.id)}>
+                  <input
+                    type="text"
+                    value={remark}
+                    onChange={(e) => setRemark(e.target.value)}
+                    placeholder="輸入備註"
+                    className="mb-2 rounded border p-1"
+                  />
+                  <button
+                    type="submit"
+                    className="rounded border bg-gray-400 p-1 text-white"
+                  >
+                    傳送評語
+                  </button>
+                </form>
+                <button
+                  onClick={() => handleUpdate(item.id)}
+                  className="rounded border bg-green-400 p-1 text-white"
+                >
+                  接受申請
+                </button>
+                <button
+                  onClick={() => handleDelete(item.id)}
+                  className="rounded border bg-red-400 p-1 text-white"
+                >
+                  刪除項目
+                </button>
               </li>
             ))}
         </ul>

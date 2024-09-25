@@ -11,7 +11,7 @@ export default function UserPage() {
   }
 
   const userId = decodeURIComponent(params.id);
-  const { user, loading } = LoadUser({userId});
+  const { user, loading } = LoadUser({ userId });
 
   if (loading) {
     return (
@@ -34,7 +34,7 @@ export default function UserPage() {
       <div className="w-full max-w-lg rounded-lg bg-white p-8 shadow-lg">
         <div className="mb-4 flex justify-center">
           <img
-            src={user.image || '/default-avatar.png'}
+            src={user.image || "/default-avatar.png"}
             alt={user.name}
             className="h-24 w-24 rounded-full shadow-md"
           />
@@ -48,8 +48,8 @@ export default function UserPage() {
           最後登入: {user.lastLogin}
           <br />
           組別: {user.team}
-        </div> 
+        </div>
       </div>
     </div>
   );
-};
+}
