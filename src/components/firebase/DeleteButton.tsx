@@ -1,6 +1,6 @@
+"use client";
 import React from "react";
-import db from "../../utils/firestore";
-import { doc, deleteDoc } from "firebase/firestore";
+import { deleteActivity } from "@/actions/deleteItem";
 
 interface DeleteItemProps {
   id: string;
@@ -9,14 +9,15 @@ interface DeleteItemProps {
 const DeleteItem: React.FC<DeleteItemProps> = ({ id }) => {
   const handleDelete = async () => {
     if (window.confirm("你確定要刪除這個活動嗎？")) {
-      const itemRef = doc(db, "activity", id);
       try {
-        await deleteDoc(itemRef);
-        console.log("deleteDoc");
+        await deleteActivity(id);
         alert("活動成功刪除");
       } catch (error) {
-        console.error("刪除文件時出錯：", error);
-        alert("刪除執行出現異常");
+        if (error instanceof Error) {
+          alert(`刪除失敗: ${error.message}`);
+        } else {
+          alert("刪除失敗，未知錯誤");
+        }
       }
     }
   };

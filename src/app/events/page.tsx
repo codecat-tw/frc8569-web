@@ -25,9 +25,10 @@ const List: React.FC = () => {
     return <Loading />;
   }
 
-  if (!session || !userEmail.endsWith("@mail2.chshs.ntpc.edu.tw")) {
+  /*if (!session || !userEmail.endsWith("@mail2.chshs.ntpc.edu.tw")) {
     return <NoPurview />;
   }
+    */
 
   return (
     <div className="min-h-screen overflow-x-hidden">

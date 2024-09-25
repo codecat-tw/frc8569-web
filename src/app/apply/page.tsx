@@ -1,7 +1,7 @@
 "use client";
 import { useSession } from "next-auth/react";
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import ApplyItem from "@/components/firebase/ApplyItem";
+import applyItem from "@/actions/applyItem";
 import DateInput from "@/components/apply/DateInput";
 import NameInput from "@/components/apply/NameInput";
 import StartInput from "@/components/apply/StartInput";
@@ -47,7 +47,7 @@ const AddItemForm: React.FC = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const result = await ApplyItem({ formValues, userEmail, userName });
+    const result = await applyItem({ formValues, userEmail, userName });
     setActivityUrl(result);
     setIsSubmitted(true);
     setFormValues({

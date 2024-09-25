@@ -1,6 +1,6 @@
+"use client";
 import React from "react";
-import db from "../../utils/firestore";
-import { doc, updateDoc } from "firebase/firestore";
+import { approveActivity } from "@/actions/agreeAction";
 
 interface AgreeButtonProps {
   id: string;
@@ -9,16 +9,15 @@ interface AgreeButtonProps {
 const AgreeButton: React.FC<AgreeButtonProps> = ({ id }) => {
   const handleUpdate = async () => {
     if (window.confirm("你確定要同意這個活動嗎？")) {
-      const docRef = doc(db, "activity", id);
       try {
-        await updateDoc(docRef, {
-          status: "申請通過",
-        });
-        console.log("updateDoc");
+        await approveActivity(id);
         alert("已批准活動");
-      } catch (e) {
-        console.error("檔案更新錯誤: ", e);
-        alert("批准執行出現異常");
+      } catch (error) {
+        if (error instanceof Error) {
+          alert("批准失敗: " + error.message);
+        } else {
+          alert("批准失敗，未知錯誤");
+        }
       }
     }
   };

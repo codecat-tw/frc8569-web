@@ -1,5 +1,6 @@
+"use server";
 import { collection, setDoc, doc } from "firebase/firestore";
-import db from "../../utils/firestore";
+import db from "@/utils/firestore";
 
 interface FormValues {
   date: string;
@@ -37,11 +38,11 @@ const ApplyItem = async ({
       return applyTime;
     } catch (e) {
       console.error("Error adding document: ", e);
+      throw new Error("文件添加失敗");
     }
   } else {
-    console.log("All fields are required.");
+    throw new Error("所有字段為必填");
   }
-  return "applyerror";
 };
 
 export default ApplyItem;
