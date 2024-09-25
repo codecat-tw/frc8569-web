@@ -18,7 +18,7 @@ const Manage: React.FC = () => {
   const items = GetEventList();
   const { data: session, status } = useSession();
   const userEmail = session?.user?.email || "ErrorUser";
-  const [remark, setRemark] = useState("");
+  const [remark, setRemark] = useState<{ [key: string]: string }>({});
 
   const [openEvent, setOpenEvent] = useState<{ [key: string]: boolean }>({});
   const toggleMembersList = (id: string) => {
@@ -27,6 +27,14 @@ const Manage: React.FC = () => {
       [id]: !prevState[id],
     }));
   };
+
+  const handleRemarkChange = (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
+    setRemark((prevState) => ({
+      ...prevState,
+      [id]: e.target.value,
+    }));
+  };
+  
 
   const handleUpdate = async (id: string) => {
     if (window.confirm("你確定要同意這個活動嗎？")) {
@@ -60,10 +68,12 @@ const Manage: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent, id: string) => {
     e.preventDefault();
-
+  
+    const activityRemark = remark[id];
+  
     if (window.confirm("你確定要傳送活動評語嗎?")) {
       try {
-        await updateRemark(id, remark);
+        await updateRemark(id, activityRemark);
         alert("已傳送活動評語");
       } catch (error) {
         if (error instanceof Error) {
@@ -74,6 +84,7 @@ const Manage: React.FC = () => {
       }
     }
   };
+  
 
   if (status === "loading") {
     return <Loading />;
@@ -122,8 +133,8 @@ const Manage: React.FC = () => {
                 <form onSubmit={(e: FormEvent) => handleSubmit(e, item.id)}>
                   <input
                     type="text"
-                    value={remark}
-                    onChange={(e) => setRemark(e.target.value)}
+                    value={remark[item.id] || ""}
+                    onChange={(e) => handleRemarkChange(e, item.id)}
                     placeholder="輸入備註"
                     className="mb-2 rounded border p-1"
                   />

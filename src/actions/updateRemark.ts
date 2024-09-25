@@ -10,7 +10,6 @@ export const updateRemark = async (id: string, remark: string) => {
   try {
     const docRef = doc(db, "activity", id);
     await updateDoc(docRef, {
-      status: "申請通過",
       remark: remark,
     });
     return { success: true, message: "評語已更新" };
