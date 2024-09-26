@@ -8,11 +8,5 @@ export const deleteActivity = async (id: string): Promise<void> => {
   }
 
   const itemRef = doc(db, "activity", id);
-  try {
-    await deleteDoc(itemRef);
-    console.log("deleteDoc");
-  } catch (error) {
-    console.error("刪除文件時出錯：", error);
-    throw new Error("刪除活動失敗");
-  }
+  await deleteDoc(itemRef);
 };

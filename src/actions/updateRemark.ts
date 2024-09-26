@@ -7,14 +7,10 @@ export const updateRemark = async (id: string, remark: string) => {
     throw new Error("缺少必要的參數");
   }
 
-  try {
-    const docRef = doc(db, "activity", id);
-    await updateDoc(docRef, {
-      remark: remark,
-    });
-    return { success: true, message: "評語已更新" };
-  } catch (error) {
-    console.error("檔案更新錯誤: ", error);
-    throw new Error("評語更新失敗");
-  }
+  const docRef = doc(db, "activity", id);
+  await updateDoc(docRef, {
+    remark: remark,
+  });
+  return { success: true, message: "評語已更新" };
+
 };

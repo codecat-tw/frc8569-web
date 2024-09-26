@@ -1,3 +1,4 @@
+"use server";
 import db from "@/utils/firestore";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -15,8 +16,8 @@ interface ActivityData {
 export const joinEvent = async (
   id: string,
   userEmail: string,
-  userName: string,
-) => {
+  userName: string
+): Promise<string> => {
   const docRef = doc(db, "activity", id);
 
   try {
@@ -32,7 +33,7 @@ export const joinEvent = async (
     const isInvited = inviteList.some(
       (invite) =>
         invite === userEmail.split("@")[0] ||
-        invite === userEmail.split("@")[1],
+        invite === userEmail.split("@")[1]
     );
 
     if (!isInvited) {

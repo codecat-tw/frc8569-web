@@ -1,8 +1,8 @@
 "use client";
-import React, { useState, FormEvent } from "react";
+import React, { useState, FormEvent, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import GetEventList from "@/components/firebase/GetEventList";
-import { approveActivity } from "@/actions/agreeAction";
+import { getEventList } from "@/actions/getEventList";
+import { approveActivity } from "@/actions/approveActivity";
 import { deleteActivity } from "@/actions/deleteItem";
 import { updateRemark } from "@/actions/updateRemark";
 import NoPurview from "@/components/NoPurview";
@@ -14,8 +14,28 @@ const adminEmails = [
   "kkbike@mail2.chshs.ntpc.edu.tw",
 ];
 
+interface Member {
+  name: string;
+}
+
+interface Item {
+  id: string;
+  date: string;
+  name: string;
+  start: string;
+  end: string;
+  area: string;
+  applyEmail: string;
+  applyName: string;
+  teacher: string;
+  status: string;
+  remark: string;
+  members: Member[];
+}
+
 const Manage: React.FC = () => {
-  const items = GetEventList();
+  const [items, setItems] = useState<Item[]>([]);
+  const [hasPermission, setHasPermission] = useState(true);
   const { data: session, status } = useSession();
   const userEmail = session?.user?.email || "ErrorUser";
   const [remark, setRemark] = useState<{ [key: string]: string }>({});
@@ -34,6 +54,21 @@ const Manage: React.FC = () => {
       [id]: e.target.value,
     }));
   };
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      const eventList = await getEventList();
+      console.log(eventList);
+
+      if ("message" in eventList) {
+        setHasPermission(false);
+      } else {
+        setItems(eventList);
+      }
+    };
+
+    fetchItems();
+  }, []);
   
 
   const handleUpdate = async (id: string) => {

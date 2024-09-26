@@ -1,6 +1,6 @@
+"use client";
 import React, { useState } from "react";
-import db from "@/utils/firestore";
-import { doc, updateDoc } from "firebase/firestore";
+import { updateUserTeam } from "@/actions/updateUserTeam";
 
 interface RemarkProps {
   id: string;
@@ -12,15 +12,12 @@ const SetUserTeam: React.FC<RemarkProps> = ({ id, team }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleUpdate = async () => {
-    const docRef = doc(db, "users", id);
     try {
-      await updateDoc(docRef, {
-        team: teamName,
-      });
-      console.log("updateDoc");
+      await updateUserTeam(id, teamName);
       setIsEditing(false);
+      console.log("更新成功");
     } catch (e) {
-      console.error("檔案更新錯誤: ", e);
+      console.error("更新失敗: ", e);
     }
   };
 

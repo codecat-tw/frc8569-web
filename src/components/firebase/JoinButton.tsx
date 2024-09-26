@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { joinEvent } from "./JoinEvent";
+import { joinEvent } from "@/actions/joinEvent";
 
 interface JoinButtonProps {
   id: string;

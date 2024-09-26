@@ -1,14 +1,34 @@
 "use client";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { useState } from "react";
 import { useSession } from "next-auth/react";
-import GetEventList from "@/components/firebase/GetEventList";
+import { getEventList } from "@/actions/getEventList";
 import NoPurview from "@/components/NoPurview";
 import Loading from "@/components/Loading";
 import JoinButton from "@/components/firebase/JoinButton";
 
+interface Member {
+  name: string;
+}
+
+interface Item {
+  id: string;
+  date: string;
+  name: string;
+  start: string;
+  end: string;
+  area: string;
+  applyEmail: string;
+  applyName: string;
+  teacher: string;
+  status: string;
+  remark: string;
+  members: Member[];
+}
+
 const List: React.FC = () => {
-  const items = GetEventList();
+  const [items, setItems] = useState<Item[]>([]);
+  const [hasPermission, setHasPermission] = useState(true);
   const { data: session, status } = useSession();
   const userEmail = session?.user?.email || "ErrorUser";
   const userName = session?.user?.name || "ErrorUser";
@@ -21,14 +41,28 @@ const List: React.FC = () => {
     }));
   };
 
+  useEffect(() => {
+    const fetchItems = async () => {
+      const eventList = await getEventList();
+      console.log(eventList);
+
+      if ("message" in eventList) {
+        setHasPermission(false);
+      } else {
+        setItems(eventList);
+      }
+    };
+
+    fetchItems();
+  }, []);
+
   if (status === "loading") {
     return <Loading />;
   }
 
-  /*if (!session || !userEmail.endsWith("@mail2.chshs.ntpc.edu.tw")) {
+  if (!hasPermission) {
     return <NoPurview />;
   }
-    */
 
   return (
     <div className="min-h-screen overflow-x-hidden">
