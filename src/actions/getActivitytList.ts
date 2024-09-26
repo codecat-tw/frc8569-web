@@ -1,4 +1,5 @@
 "use server";
+
 import db from "@/utils/firestore";
 import { collection, getDocs } from "firebase/firestore";
 import { getSession } from "./auth";
@@ -22,10 +23,22 @@ interface Item {
   members: Member[];
 }
 
-export const getEventList = async (): Promise<Item[] | { message: string }> => {
+const adminEmails = [
+  "eric29433453@gmail.com",
+  "110330@mail2.chshs.ntpc.edu.tw",
+  "kkbike@mail2.chshs.ntpc.edu.tw",
+];
+
+export const getActivitytList = async (): Promise<
+  Item[] | { message: string }
+> => {
   const session = await getSession();
-  
-  if (!session || !session.user?.email?.endsWith("@gmail.com")) {
+
+  if (
+    !session ||
+    !session.user?.email?.endsWith("@gmail.com") ||
+    !adminEmails.includes(session.user?.email)
+  ) {
     return { message: "權限不足" };
   }
 

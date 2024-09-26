@@ -1,18 +1,12 @@
 "use client";
 import React, { useState, FormEvent, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { getEventList } from "@/actions/getEventList";
+import { getActivitytList } from "@/actions/getActivitytList";
 import { approveActivity } from "@/actions/approveActivity";
 import { deleteActivity } from "@/actions/deleteItem";
 import { updateRemark } from "@/actions/updateRemark";
 import NoPurview from "@/components/NoPurview";
 import Loading from "@/components/Loading";
-
-const adminEmails = [
-  "eric29433453@gmail.com",
-  "110330@mail2.chshs.ntpc.edu.tw",
-  "kkbike@mail2.chshs.ntpc.edu.tw",
-];
 
 interface Member {
   name: string;
@@ -48,7 +42,10 @@ const Manage: React.FC = () => {
     }));
   };
 
-  const handleRemarkChange = (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
+  const handleRemarkChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    id: string,
+  ) => {
     setRemark((prevState) => ({
       ...prevState,
       [id]: e.target.value,
@@ -57,7 +54,7 @@ const Manage: React.FC = () => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const eventList = await getEventList();
+      const eventList = await getActivitytList();
       console.log(eventList);
 
       if ("message" in eventList) {
@@ -69,7 +66,6 @@ const Manage: React.FC = () => {
 
     fetchItems();
   }, []);
-  
 
   const handleUpdate = async (id: string) => {
     if (window.confirm("你確定要同意這個活動嗎？")) {
@@ -103,9 +99,9 @@ const Manage: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent, id: string) => {
     e.preventDefault();
-  
+
     const activityRemark = remark[id];
-  
+
     if (window.confirm("你確定要傳送活動評語嗎?")) {
       try {
         await updateRemark(id, activityRemark);
@@ -119,14 +115,9 @@ const Manage: React.FC = () => {
       }
     }
   };
-  
 
   if (status === "loading") {
     return <Loading />;
-  }
-
-  if (!session || !adminEmails.includes(userEmail)) {
-    return <NoPurview />;
   }
 
   return (

@@ -1,63 +1,53 @@
 "use server";
+
 import db from "@/utils/firestore";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import { getSession } from "./auth";
 
 interface Member {
   name: string;
   email: string;
-  createdAt: Date;
+  createdAt: string;
 }
 
 interface ActivityData {
-  invite: string[];
   members: Member[];
 }
 
-export const joinEvent = async (
-  id: string,
-  userEmail: string,
-  userName: string
-): Promise<string> => {
-  const docRef = doc(db, "activity", id);
+export const joinEvent = async (id: string): Promise<string> => {
+  const session = await getSession();
 
-  try {
-    const docSnap = await getDoc(docRef);
-
-    if (!docSnap.exists()) {
-      return "活動不存在";
-    }
-
-    const activityData = docSnap.data() as ActivityData;
-    const inviteList = activityData.invite || [];
-
-    const isInvited = inviteList.some(
-      (invite) =>
-        invite === userEmail.split("@")[0] ||
-        invite === userEmail.split("@")[1]
-    );
-
-    if (!isInvited) {
-      return "你未被邀請參加";
-    }
-
-    let members = activityData.members || [];
-
-    if (members.some((member) => member.email === userEmail)) {
-      return `你已報名過了`;
-    } else {
-      const newMember: Member = {
-        name: userName,
-        email: userEmail,
-        createdAt: new Date(),
-      };
-      members.push(newMember);
-
-      await setDoc(docRef, { members }, { merge: true });
-      console.log("setDoc");
-      return `你已成功報名`;
-    }
-  } catch (e) {
-    console.error("添加使用者失敗: ", e);
-    return "添加使用者失敗";
+  if (!session || !session.user?.email || !session.user?.name) {
+    return "session載入失敗";
   }
+
+  const userEmail = session.user.email;
+  const userName = session.user.name;
+
+  const docRef = doc(db, "activity", id);
+  const docSnap = await getDoc(docRef);
+
+  if (!docSnap.exists()) {
+    return "找不到活動";
+  }
+
+  const activityData = docSnap.data() as ActivityData;
+  let members = activityData.members || [];
+
+  const isAlreadyJoined = members.some((member) => member.email === userEmail);
+  if (isAlreadyJoined) {
+    return "你已報名過了";
+  }
+
+  const newMember: Member = {
+    name: userName,
+    email: userEmail,
+    createdAt: new Date().toISOString(),
+  };
+
+  members.push(newMember);
+
+  await setDoc(docRef, { members }, { merge: true });
+
+  return "你已成功報名";
 };

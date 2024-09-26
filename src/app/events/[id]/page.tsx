@@ -74,11 +74,7 @@ const EventsPage = () => {
           const decodedId = decodeURIComponent(params.id);
           console.log("Calling joinEvent with ID:", decodedId);
           if (userEmail !== "ErrorUser" && userName !== "ErrorUser") {
-            const resultMessage = await joinEvent(
-              decodedId,
-              userEmail,
-              userName,
-            );
+            const resultMessage = await joinEvent(decodedId);
             console.log("joinEvent result:", resultMessage);
             setResultMessage(resultMessage);
             setJoinExecuted(true);

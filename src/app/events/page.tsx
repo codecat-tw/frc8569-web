@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { getEventList } from "@/actions/getEventList";
+import { getActivitytList } from "@/actions/getActivitytList";
 import NoPurview from "@/components/NoPurview";
 import Loading from "@/components/Loading";
 import JoinButton from "@/components/firebase/JoinButton";
@@ -43,7 +43,7 @@ const List: React.FC = () => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const eventList = await getEventList();
+      const eventList = await getActivitytList();
       console.log(eventList);
 
       if ("message" in eventList) {

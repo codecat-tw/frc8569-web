@@ -1,8 +1,9 @@
 "use server";
-import { doc, updateDoc } from "firebase/firestore";
-import db from "@/utils/firestore";
 
-export const updateUserTeam = async (id: string, teamName: string): Promise<void> => {
+import db from "@/utils/firestore";
+import { doc, updateDoc } from "firebase/firestore";
+
+export const updateUserTeam = async (id: string, teamName: string) => {
   if (!id || !teamName) {
     throw new Error("缺少必須的參數");
   }
@@ -11,5 +12,6 @@ export const updateUserTeam = async (id: string, teamName: string): Promise<void
   await updateDoc(docRef, {
     team: teamName,
   });
-  console.log("updateDoc");
+
+  return "刪除完成";
 };

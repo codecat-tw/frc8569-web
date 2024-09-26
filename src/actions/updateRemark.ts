@@ -1,4 +1,5 @@
 "use server";
+
 import db from "@/utils/firestore";
 import { doc, updateDoc } from "firebase/firestore";
 
@@ -11,6 +12,6 @@ export const updateRemark = async (id: string, remark: string) => {
   await updateDoc(docRef, {
     remark: remark,
   });
-  return { success: true, message: "評語已更新" };
 
+  return "評語已更新";
 };

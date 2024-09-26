@@ -14,7 +14,7 @@ const JoinButton: React.FC<JoinButtonProps> = ({ id, userEmail, userName }) => {
   const handleJoinEvent = async () => {
     setLoading(true);
 
-    const resultMessage = await joinEvent(id, userEmail, userName);
+    const resultMessage = await joinEvent(id);
     setMessage(resultMessage);
 
     setLoading(false);

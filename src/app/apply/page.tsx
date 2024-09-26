@@ -1,7 +1,6 @@
 "use client";
-import { useSession } from "next-auth/react";
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import applyItem from "@/actions/applyItem";
+import { applyItem } from "@/actions/applyItem";
 import DateInput from "@/components/apply/DateInput";
 import NameInput from "@/components/apply/NameInput";
 import StartInput from "@/components/apply/StartInput";
@@ -11,10 +10,6 @@ import TeacherInput from "@/components/apply/TeacherInput";
 import InviteesInput from "@/components/apply/InviteInput";
 
 const AddItemForm: React.FC = () => {
-  const { data: session } = useSession();
-  const userEmail = session?.user?.email || "ErrorUser";
-  const userName = session?.user?.name || "ErrorUser";
-
   const [formValues, setFormValues] = useState({
     date: "",
     name: "",
@@ -47,7 +42,7 @@ const AddItemForm: React.FC = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const result = await applyItem({ formValues, userEmail, userName });
+    const result = await applyItem({ formValues });
     setActivityUrl(result);
     setIsSubmitted(true);
     setFormValues({
