@@ -1,10 +1,10 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
-import db from "../utils/firestore";
+import db from "@/utils/firestore";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
-export default function SessionUpdater() {
+export default function LoginLog() {
   const { data: session } = useSession();
 
   useEffect(() => {

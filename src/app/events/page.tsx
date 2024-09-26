@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { getActivitytList } from "@/actions/getActivitytList";
-import NoPurview from "@/components/NoPurview";
-import Loading from "@/components/Loading";
-import JoinButton from "@/components/firebase/JoinButton";
+import NoPurview from "@/components/layout/NoPurview";
+import Loading from "@/components/layout/Loading";
+import JoinButton from "@/components/events/JoinButton";
 
 interface Member {
   name: string;

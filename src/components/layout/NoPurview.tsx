@@ -1,6 +1,6 @@
 export default function NoPurview() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-blue-100">
+    <div className="flex min-h-screen items-center justify-center">
       <div className="p-4 text-center">
         <h1 className="mb-4 text-3xl font-bold">糟糕，你好像不能看</h1>
         <h1>

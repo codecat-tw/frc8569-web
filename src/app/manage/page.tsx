@@ -5,8 +5,8 @@ import { getActivitytList } from "@/actions/getActivitytList";
 import { approveActivity } from "@/actions/approveActivity";
 import { deleteActivity } from "@/actions/deleteItem";
 import { updateRemark } from "@/actions/updateRemark";
-import NoPurview from "@/components/NoPurview";
-import Loading from "@/components/Loading";
+import NoPurview from "@/components/layout/NoPurview";
+import Loading from "@/components/layout/Loading";
 
 interface Member {
   name: string;

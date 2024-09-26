@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import { useSession, signOut } from "next-auth/react";
-import { LoadUser } from "@/components/firebase/LoadUser";
-import SetUserTeam from "@/components/firebase/SetUserTeam";
+import { LoadUser } from "@/components/user/LoadUser";
+import SetUserTeam from "@/components/user/SetUserTeam";
 
 export default function UserPage() {
   const { data: session } = useSession();
