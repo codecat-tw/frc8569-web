@@ -1,4 +1,19 @@
-# frc8569-web FRC團隊管理系統
+<div align="center">
+  <a href="https://frc.codecat.tw">
+    <picture>
+      <img alt="logo" src="https://frc.codecat.tw/logo.png" height="64">
+    </picture>
+  </a>
+  <h1>frc8569-web FRC團隊管理系統</h1>
+
+<a href="https://github.com/codecat-tw/frc8569-web/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/badge/license-MIT-green"></a>
+<a href="https://github.com/codecat-tw/frc8569-web/blob/main/package.json"><img alt="version" src="https://img.shields.io/badge/Next.js-14-blue"></a>
+<a href="https://github.com/codecat-tw/frc8569-web/blob/main/package.json"><img alt="version" src="https://img.shields.io/badge/React-18-blue"></a>
+<a href="https://github.com/codecat-tw/frc8569-web/blob/main/package.json"><img alt="version" src="https://img.shields.io/badge/TailwindCSS-3-blue"></a>
+
+</div>
+
+## 專案介紹
 這是一個基於 Next.js 的開源網站，專案同步作為中和高中FRC團隊的管理系統。專案採用 MIT 開源，因此你可以使用這項專案來做任何你所想要的事，只需要標註來源出處即可。如果你想要簡單且快速地建立一個活動報名或場地管理網站，這個專案會是一個好選擇。
 
 我們推薦你能夠做的事:
