@@ -31,7 +31,10 @@ export default function UserInfo() {
       await createUserData(id, team);
       setIsSubmitted(true);
     } catch (error) {
-      setErrorMessage((error as Error).message || "發生無法預期的錯誤，請稍後再試或連繫客服團隊。");
+      setErrorMessage(
+        (error as Error).message ||
+          "發生無法預期的錯誤，請稍後再試或連繫客服團隊。",
+      );
     }
   };
 
@@ -44,13 +47,13 @@ export default function UserInfo() {
 
   if (isSubmitted) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
-        <div className="bg-white p-6 rounded-lg shadow-lg space-y-4 text-center">
+      <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="space-y-4 rounded-lg bg-white p-6 text-center shadow-lg">
           <h2 className="text-lg font-bold">感謝註冊！</h2>
           <p className="text-gray-600">您的註冊已成功。</p>
           <button
             onClick={handleClose}
-            className="mt-4 w-full py-2 px-4 bg-blue-600 text-white font-bold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="mt-4 w-full rounded-lg bg-blue-600 px-4 py-2 font-bold text-white shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             關閉
           </button>
@@ -61,13 +64,16 @@ export default function UserInfo() {
 
   if (isNewUser) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
+      <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50">
         <form
           onSubmit={handleSubmit}
-          className="bg-white p-6 rounded-lg shadow-lg space-y-4"
+          className="space-y-4 rounded-lg bg-white p-6 shadow-lg"
         >
           <div>
-            <label htmlFor="userId" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="userId"
+              className="block text-sm font-medium text-gray-700"
+            >
               用戶ID：
             </label>
             <input
@@ -76,11 +82,14 @@ export default function UserInfo() {
               value={id}
               onChange={(e) => setUserId(e.target.value)}
               required
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
             />
           </div>
           <div>
-            <label htmlFor="userGroup" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="userGroup"
+              className="block text-sm font-medium text-gray-700"
+            >
               組別：
             </label>
             <input
@@ -89,15 +98,15 @@ export default function UserInfo() {
               value={team}
               onChange={(e) => setUserGroup(e.target.value)}
               required
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
             />
           </div>
           {errorMessage && (
-            <div className="text-red-600 text-sm mt-2">{errorMessage}</div>
+            <div className="mt-2 text-sm text-red-600">{errorMessage}</div>
           )}
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-blue-600 text-white font-bold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-lg bg-blue-600 px-4 py-2 font-bold text-white shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             提交
           </button>

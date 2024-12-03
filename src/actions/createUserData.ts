@@ -1,7 +1,15 @@
 "use server";
 
 import { getSession } from "./auth";
-import { doc, setDoc, getDoc, query, where, getDocs, collection } from "firebase/firestore";
+import {
+  doc,
+  setDoc,
+  getDoc,
+  query,
+  where,
+  getDocs,
+  collection,
+} from "firebase/firestore";
 import db from "@/utils/firestore";
 
 export async function createUserData(id: string, team: string) {
