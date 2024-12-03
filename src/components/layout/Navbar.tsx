@@ -61,7 +61,7 @@ const Navbar: React.FC = () => {
                   height={64}
                   priority
                 />
-                <span className="text-xl">專題百科</span>
+                <span className="text-xl">中和高中 FRC8569</span>
               </div>
             </Link>
             <div className="hidden lg:ml-6 lg:flex lg:space-x-8">
