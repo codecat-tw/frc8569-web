@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
-import { Bars3Icon } from "@heroicons/react/24/outline";
-import MobileMenu from "./MobileMenu";
+import { Icon } from "@iconify/react";
 
 const navigation = [
   { name: "場地列表", href: "/events" },
@@ -17,7 +16,7 @@ const Navbar: React.FC = () => {
   const { data: session } = useSession();
 
   return (
-    <nav className="bg-gray-200 shadow-md">
+    <nav className="sticky left-0 right-0 top-0 z-[1000] select-none border-b bg-gray-200 shadow-md">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 justify-between">
           <div className="flex items-center lg:hidden">
@@ -43,7 +42,11 @@ const Navbar: React.FC = () => {
                   />
                 </svg>
               ) : (
-                <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                <Icon
+                  icon="tabler:baseline-density-medium"
+                  width="24"
+                  height="24"
+                />
               )}
             </button>
           </div>
@@ -58,7 +61,7 @@ const Navbar: React.FC = () => {
                   height={64}
                   priority
                 />
-                <span className="text-xl">FRC8569</span>
+                <span className="text-xl">專題百科</span>
               </div>
             </Link>
             <div className="hidden lg:ml-6 lg:flex lg:space-x-8">
@@ -73,7 +76,7 @@ const Navbar: React.FC = () => {
           </div>
           {session ? (
             <div className="flex items-center space-x-4">
-              <Link href={`/user`} passHref>
+              <Link href={`/dash`} passHref>
                 <div className="flex cursor-pointer items-center space-x-4">
                   <Image
                     className="rounded-full"
@@ -99,7 +102,22 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {mobileMenuOpen && <MobileMenu setMobileMenuOpen={setMobileMenuOpen} />}
+      {mobileMenuOpen && (
+        <div className="text-center lg:hidden">
+          <div className="space-y-1 pb-3 pt-2">
+            {navigation.map((item) => (
+              <Link key={item.name} href={item.href} passHref>
+                <span
+                  className="block cursor-pointer border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-700 hover:border-gray-300 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
