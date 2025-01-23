@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@next/third-parties": "^15.1.6",
-    "firebase": "^10.14.1",
-    "framer-motion": "^11.18.2",
+    "firebase": "^11.2.0",
+    "framer-motion": "^12.0.3",
     "next": "^15.1.6",
     "next-auth": "^4.24.11",
     "react": "^19.0.0",
