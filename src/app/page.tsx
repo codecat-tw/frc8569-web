@@ -1,4 +1,5 @@
 "use client";
+
 import HeroSection from "@/components/home/HeroSection";
 import InfoCard from "@/components/home/InfoCard";
 

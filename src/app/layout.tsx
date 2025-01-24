@@ -9,7 +9,10 @@ import UserInfo from "@/components/layout/UserInfo";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "中和高中 FRC8569",
+  title: {
+    template: "%s | FRC8569",
+    default: "FRC8569 - 中和高中機器人校隊",
+  },
   description: "中和高中FRC系統-從介紹到管理",
 };
 

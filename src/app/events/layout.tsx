@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "場地列表 | FRC8569",
+  title: "場地列表",
   description: "完整列出過去中和高中FRC場地借用紀錄",
 };
 
