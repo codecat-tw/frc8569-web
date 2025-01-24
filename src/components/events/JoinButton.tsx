@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { joinEvent } from "@/actions/joinEvent";
 
 interface JoinButtonProps {

@@ -1,4 +1,5 @@
 "use client";
+
 import { useParams, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";

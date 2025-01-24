@@ -1,5 +1,3 @@
-import React from "react";
-
 interface AreaInputProps {
   area: string;
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

@@ -1,5 +1,3 @@
-import React from "react";
-
 interface TeacherInputProps {
   teacher: string;
   handleInputChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;

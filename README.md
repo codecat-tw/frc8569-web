@@ -7,8 +7,8 @@
   <h1>frc8569-web FRC團隊管理系統</h1>
 
 <a href="https://github.com/codecat-tw/frc8569-web/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/badge/license-MIT-green"></a>
-<a href="https://github.com/codecat-tw/frc8569-web/blob/main/package.json"><img alt="version" src="https://img.shields.io/badge/Next.js-14-blue"></a>
-<a href="https://github.com/codecat-tw/frc8569-web/blob/main/package.json"><img alt="version" src="https://img.shields.io/badge/React-18-blue"></a>
+<a href="https://github.com/codecat-tw/frc8569-web/blob/main/package.json"><img alt="version" src="https://img.shields.io/badge/Next.js-15-blue"></a>
+<a href="https://github.com/codecat-tw/frc8569-web/blob/main/package.json"><img alt="version" src="https://img.shields.io/badge/React-19-blue"></a>
 <a href="https://github.com/codecat-tw/frc8569-web/blob/main/package.json"><img alt="version" src="https://img.shields.io/badge/TailwindCSS-3-blue"></a>
 
 </div>

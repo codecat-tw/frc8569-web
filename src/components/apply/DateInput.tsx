@@ -1,5 +1,3 @@
-import React from "react";
-
 interface DateInputProps {
   date: string;
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

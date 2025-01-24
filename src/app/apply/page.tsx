@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, ChangeEvent, FormEvent } from "react";
+
+import { useState, ChangeEvent, FormEvent } from "react";
 import { applyItem } from "@/actions/applyItem";
 import DateInput from "@/components/apply/DateInput";
 import NameInput from "@/components/apply/NameInput";

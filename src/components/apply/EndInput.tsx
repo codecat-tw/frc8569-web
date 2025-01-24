@@ -1,5 +1,3 @@
-import React from "react";
-
 interface EndInputProps {
   end: string;
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

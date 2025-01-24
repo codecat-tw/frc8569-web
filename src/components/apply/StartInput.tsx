@@ -1,5 +1,3 @@
-import React from "react";
-
 interface StartInputProps {
   start: string;
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
