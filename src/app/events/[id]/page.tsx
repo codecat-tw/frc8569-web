@@ -60,11 +60,10 @@ const EventsPage = () => {
   }, [params.id]);
 
   useEffect(() => {
-    console.log("executeJoinEvent useEffect");
     const executeJoinEvent = async () => {
+      console.log("hi");
       if (!joinExecuted) {
         const joinParam = searchParams?.get("join") || "-";
-        console.log("Join parameter:", joinParam);
 
         if (joinParam === "1") {
           if (!params.id || Array.isArray(params.id)) {
@@ -73,10 +72,8 @@ const EventsPage = () => {
           }
 
           const decodedId = decodeURIComponent(params.id);
-          console.log("Calling joinEvent with ID:", decodedId);
           if (userEmail !== "ErrorUser" && userName !== "ErrorUser") {
             const resultMessage = await joinEvent(decodedId);
-            console.log("joinEvent result:", resultMessage);
             setResultMessage(resultMessage);
             setJoinExecuted(true);
           }
@@ -85,7 +82,7 @@ const EventsPage = () => {
     };
 
     executeJoinEvent();
-  }, [userEmail, userName]);
+  }, [userEmail, userName, joinExecuted, params.id, searchParams]);
 
   if (error) {
     return (

@@ -2,6 +2,7 @@
 
 import { useParams } from "next/navigation";
 import LoadUser from "@/components/user/LoadUser";
+import Image from "next/image";
 
 export default function UserPage() {
   const params = useParams();
@@ -33,10 +34,12 @@ export default function UserPage() {
     <div className="flex min-h-screen items-center justify-center p-4">
       <div className="w-full max-w-lg rounded-lg bg-white p-8 shadow-lg">
         <div className="mb-4 flex justify-center">
-          <img
+          <Image
             src={user.image || "/default-avatar.png"}
             alt={user.name}
-            className="h-24 w-24 rounded-full shadow-md"
+            width={96}
+            height={96}
+            className="rounded-full shadow-md"
           />
         </div>
         <h1 className="mb-2 text-center text-3xl font-bold text-gray-800">
