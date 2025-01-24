@@ -1,14 +1,15 @@
 import Link from "next/link";
+import { version } from "../../../package.json"
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 py-12 text-white">
+    <footer className="bg-gray-800 py-8 text-white">
       <div className="container mx-auto flex flex-wrap justify-around text-center">
         <div className="mb-8 w-full px-4 md:mb-0 md:w-1/3">
           <h3 className="mb-4 text-xl font-semibold">網站資訊</h3>
-          <p>FRC 管理團隊</p>
-          <p>© 2024 版權所有</p>
-          <p>網站版本: 1.0.1</p>
+          <p>中和高中 FRC8569</p>
+          <p>© 2024-205 版權所有</p>
+          <p>網站版本: {version}</p>
         </div>
         <div className="mb-8 w-full px-4 md:mb-0 md:w-1/3">
           <h3 className="mb-4 text-xl font-semibold">開發團隊</h3>
@@ -32,7 +33,7 @@ export default function Footer() {
           </p>
         </div>
         <div className="w-full px-4 md:w-1/3">
-          <h3 className="mb-4 font-semibold">相關連結</h3>
+          <h3 className="mb-4 text-xl font-semibold">相關連結</h3>
           <ul className="list-none space-y-2 p-0">
             <li>
               <Link href="https://sites.google.com/mail2.chshs.ntpc.edu.tw/frc8569">

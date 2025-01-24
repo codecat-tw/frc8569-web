@@ -3,6 +3,7 @@ import React from "react";
 import { useSession, signOut } from "next-auth/react";
 import { LoadUser } from "@/components/user/LoadUser";
 import SetUserTeam from "@/components/user/SetUserTeam";
+import Image from "next/image";
 
 export default function UserPage() {
   const { data: session } = useSession();
@@ -30,10 +31,12 @@ export default function UserPage() {
     <div className="flex min-h-screen items-center justify-center p-4">
       <div className="w-full max-w-lg rounded-lg bg-white p-8 shadow-lg">
         <div className="mb-4 flex justify-center">
-          <img
+          <Image
             src={user.image}
             alt={user.name}
-            className="h-24 w-24 rounded-full shadow-md"
+            width={96}
+            height={96}
+            className="rounded-full shadow-md"
           />
         </div>
 
