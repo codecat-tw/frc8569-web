@@ -29,9 +29,7 @@ interface Item {
 
 const Manage: React.FC = () => {
   const [items, setItems] = useState<Item[]>([]);
-  const [hasPermission, setHasPermission] = useState(true);
-  const { data: session, status } = useSession();
-  const userEmail = session?.user?.email || "ErrorUser";
+  const { status } = useSession();
   const [remark, setRemark] = useState<{ [key: string]: string }>({});
 
   const [openEvent, setOpenEvent] = useState<{ [key: string]: boolean }>({});
@@ -58,7 +56,7 @@ const Manage: React.FC = () => {
       console.log(eventList);
 
       if ("message" in eventList) {
-        setHasPermission(false);
+
       } else {
         setItems(eventList);
       }

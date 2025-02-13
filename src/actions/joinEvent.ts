@@ -32,7 +32,7 @@ export const joinEvent = async (id: string): Promise<string> => {
   }
 
   const activityData = docSnap.data() as ActivityData;
-  let members = activityData.members || [];
+  const members = activityData.members || [];
 
   const isAlreadyJoined = members.some((member) => member.email === userEmail);
   if (isAlreadyJoined) {

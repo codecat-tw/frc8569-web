@@ -3,11 +3,9 @@ import { joinEvent } from "@/actions/joinEvent";
 
 interface JoinButtonProps {
   id: string;
-  userEmail: string;
-  userName: string;
 }
 
-const JoinButton: React.FC<JoinButtonProps> = ({ id, userEmail, userName }) => {
+const JoinButton: React.FC<JoinButtonProps> = ({ id }) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
