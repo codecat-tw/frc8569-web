@@ -30,9 +30,7 @@ interface Item {
 const List: React.FC = () => {
   const [items, setItems] = useState<Item[]>([]);
   const [hasPermission, setHasPermission] = useState(true);
-  const { data: session, status } = useSession();
-  const userEmail = session?.user?.email || "ErrorUser";
-  const userName = session?.user?.name || "ErrorUser";
+  const { status } = useSession();
 
   const [openEvent, setOpenEvent] = useState<{ [key: string]: boolean }>({});
   const toggleMembersList = (id: string) => {
@@ -107,8 +105,6 @@ const List: React.FC = () => {
                 </div>
                 <JoinButton
                   id={item.id}
-                  userEmail={userEmail}
-                  userName={userName}
                 />
               </li>
             ))}

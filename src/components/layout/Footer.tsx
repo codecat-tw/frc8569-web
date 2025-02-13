@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { version } from "../../../package.json";
+import pkg from "../../../package.json";
 
 export default function Footer() {
   return (
@@ -9,7 +9,7 @@ export default function Footer() {
           <h3 className="mb-4 text-xl font-semibold">網站資訊</h3>
           <p>中和高中 FRC8569</p>
           <p>© 2024-205 版權所有</p>
-          <p>網站版本: {version}</p>
+          <p>網站版本: {pkg.version}</p>
         </div>
         <div className="mb-8 w-full px-4 md:mb-0 md:w-1/3">
           <h3 className="mb-4 text-xl font-semibold">開發團隊</h3>
