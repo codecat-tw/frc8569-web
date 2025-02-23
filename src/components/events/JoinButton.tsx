@@ -23,7 +23,7 @@ const JoinButton: React.FC<JoinButtonProps> = ({ id }) => {
       <button
         onClick={handleJoinEvent}
         disabled={loading}
-        className="rounded border bg-orange-400 p-1 text-white"
+        className="rounded-sm border bg-orange-400 p-1 text-white"
       >
         {loading ? "添加中..." : "報名活動"}
       </button>

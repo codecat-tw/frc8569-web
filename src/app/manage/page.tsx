@@ -160,24 +160,24 @@ const Manage: React.FC = () => {
                     value={remark[item.id] || ""}
                     onChange={(e) => handleRemarkChange(e, item.id)}
                     placeholder="輸入備註"
-                    className="mb-2 rounded border p-1"
+                    className="mb-2 rounded-sm border p-1"
                   />
                   <button
                     type="submit"
-                    className="rounded border bg-gray-400 p-1 text-white"
+                    className="rounded-sm border bg-gray-400 p-1 text-white"
                   >
                     傳送評語
                   </button>
                 </form>
                 <button
                   onClick={() => handleUpdate(item.id)}
-                  className="rounded border bg-green-400 p-1 text-white"
+                  className="rounded-sm border bg-green-400 p-1 text-white"
                 >
                   接受申請
                 </button>
                 <button
                   onClick={() => handleDelete(item.id)}
-                  className="rounded border bg-red-400 p-1 text-white"
+                  className="rounded-sm border bg-red-400 p-1 text-white"
                 >
                   刪除項目
                 </button>

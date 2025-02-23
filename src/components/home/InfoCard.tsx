@@ -50,7 +50,7 @@ export default function InfoCard() {
               {item.description}
             </p>
             <div className="flex justify-center md:justify-start">
-              <button className="rounded bg-blue-500 px-5 py-3 font-semibold text-white transition duration-300 hover:bg-blue-600 sm:px-4 sm:py-2">
+              <button className="rounded-sm bg-blue-500 px-5 py-3 font-semibold text-white transition duration-300 hover:bg-blue-600 sm:px-4 sm:py-2">
                 {item.buttonText}
               </button>
             </div>

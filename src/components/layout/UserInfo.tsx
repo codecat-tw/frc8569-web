@@ -54,7 +54,7 @@ export default function UserInfo() {
           <p className="text-gray-600">您的註冊已成功。</p>
           <button
             onClick={handleClose}
-            className="mt-4 w-full rounded-lg bg-blue-600 px-4 py-2 font-bold text-white shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="mt-4 w-full rounded-lg bg-blue-600 px-4 py-2 font-bold text-white shadow-md hover:bg-blue-700 focus:outline-hidden focus:ring-2 focus:ring-blue-500"
           >
             關閉
           </button>
@@ -83,7 +83,7 @@ export default function UserInfo() {
               value={id}
               onChange={(e) => setUserId(e.target.value)}
               required
-              className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-blue-500"
             />
           </div>
           <div>
@@ -99,7 +99,7 @@ export default function UserInfo() {
               value={team}
               onChange={(e) => setUserGroup(e.target.value)}
               required
-              className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-xs focus:border-blue-500 focus:outline-hidden focus:ring-blue-500"
             />
           </div>
           {errorMessage && (
@@ -107,7 +107,7 @@ export default function UserInfo() {
           )}
           <button
             type="submit"
-            className="w-full rounded-lg bg-blue-600 px-4 py-2 font-bold text-white shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-lg bg-blue-600 px-4 py-2 font-bold text-white shadow-md hover:bg-blue-700 focus:outline-hidden focus:ring-2 focus:ring-blue-500"
           >
             提交
           </button>

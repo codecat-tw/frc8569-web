@@ -15,7 +15,7 @@ export default function HeroSection() {
         className="col-span-8 w-full place-self-center justify-self-start text-center sm:text-left"
       >
         <h1 className="mb-4 text-2xl font-extrabold text-black md:text-5xl lg:text-8xl lg:leading-normal">
-          <span className="from-primary-400 to-secondary-600 bg-gradient-to-r bg-clip-text text-4xl md:text-6xl lg:text-8xl">
+          <span className="from-primary-400 to-secondary-600 bg-linear-to-r bg-clip-text text-4xl md:text-6xl lg:text-8xl">
             FRC8569{" "}
           </span>
           <br></br>

@@ -29,7 +29,7 @@ const SetUserTeam: React.FC<RemarkProps> = ({ id, team }) => {
         <select
           value={teamName}
           onChange={(e) => setTeamName(e.target.value)}
-          className="mb-2 rounded border p-1"
+          className="mb-2 rounded-sm border p-1"
         >
           <option value="未分組">未分組</option>
           <option value="程式組">程式組</option>
@@ -44,14 +44,14 @@ const SetUserTeam: React.FC<RemarkProps> = ({ id, team }) => {
       {isEditing ? (
         <button
           onClick={handleUpdate}
-          className="ml-2 rounded border bg-gray-400 p-1 text-white"
+          className="ml-2 rounded-sm border bg-gray-400 p-1 text-white"
         >
           傳送
         </button>
       ) : (
         <button
           onClick={() => setIsEditing(true)}
-          className="ml-2 rounded border bg-gray-400 p-1 text-white"
+          className="ml-2 rounded-sm border bg-gray-400 p-1 text-white"
         >
           編輯
         </button>
