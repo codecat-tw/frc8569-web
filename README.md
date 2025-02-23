@@ -5,13 +5,18 @@
     </picture>
   </a>
   <h1>frc8569-web FRC團隊管理系統</h1>
-
-<a href="https://github.com/codecat-tw/frc8569-web/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/badge/license-MIT-green"></a>
-<a href="https://github.com/codecat-tw/frc8569-web/blob/main/package.json"><img alt="version" src="https://img.shields.io/badge/Next.js-15-blue"></a>
-<a href="https://github.com/codecat-tw/frc8569-web/blob/main/package.json"><img alt="version" src="https://img.shields.io/badge/React-19-blue"></a>
-<a href="https://github.com/codecat-tw/frc8569-web/blob/main/package.json"><img alt="version" src="https://img.shields.io/badge/TailwindCSS-3-blue"></a>
-
+  <a href="https://github.com/codecat-tw/frc8569-web/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/badge/license-MIT-green"></a>
+  <a href="https://github.com/codecat-tw/frc8569-web/blob/main/package.json"><img alt="version" src="https://img.shields.io/badge/Next.js-15-blue"></a>
+  <a href="https://github.com/codecat-tw/frc8569-web/blob/main/package.json"><img alt="version" src="https://img.shields.io/badge/React-19-blue"></a>
+  <a href="https://github.com/codecat-tw/frc8569-web/blob/main/package.json"><img alt="version" src="https://img.shields.io/badge/TailwindCSS-4-blue"></a>
 </div>
+
+- 專案標籤: frc8569-web
+- 專案名稱: FRC團隊管理系統
+- 專案狀態: 長期維護
+- 運作團隊: 程式貓
+- 提案人: 中和高中-KKbike
+- 開發人: 程式貓-YD
 
 ## 專案介紹
 
@@ -42,8 +47,8 @@
 
 1. 拉取專案: 透過 git clone 指令將程式貓社群的網站專案拉取到本地。
 2. 安裝依賴: 使用 npm install 來安裝專案所需的依賴項。
-3. 修改內容: 打開 src 資料夾，將裡面的 Markdown 文件及靜態資源替換成你自己的內容。
-4. 部署網站: 當你完成所有修改後，即可部屬到像是 GitHub Pages、Netlify 或 Vercel 這樣的伺服器上。
+3. 修改內容: 打開 src 資料夾，將裡面的資源替換成你自己的內容。
+4. 部署網站: 當你完成所有修改後，即可部屬到像是 Netlify 或 Vercel 這樣的伺服器上。
 5. 程式貓社群提供了完整的技術支援，如果你在建置過程中遇到任何問題，都可以透過社群平台與我們聯繫，社群成員會熱心協助你解決。
 
 ## 加入我們
