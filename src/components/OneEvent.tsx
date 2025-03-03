@@ -1,29 +1,17 @@
 "use client";
 
-import { useParams, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
-import db from "@/lib/firebase";
-import { joinEvent } from "@/actions/activity";
+import { useParams, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
-
-interface Item {
-  id: string;
-  date: string;
-  name: string;
-  start: string;
-  end: string;
-  area: string;
-  applyEmail: string;
-  applyName: string;
-  teacher: string;
-  status: string;
-}
+import db from "@/lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { joinEvent } from "@/actions/activity";
+import { Activity } from "@/types/activity";
 
 export default function Page() {
   const params = useParams() || {};
   const searchParams = useSearchParams();
-  const [eventData, setEventData] = useState<Item | null>(null);
+  const [eventData, setEventData] = useState<Activity | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [joinExecuted, setJoinExecuted] = useState(false);
   const [resultMessage, setResultMessage] = useState<string | null>(null);
@@ -46,7 +34,7 @@ export default function Page() {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-          setEventData(docSnap.data() as Item);
+          setEventData(docSnap.data() as Activity);
         } else {
           setError("活動未找到");
         }

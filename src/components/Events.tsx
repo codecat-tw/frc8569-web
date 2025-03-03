@@ -1,34 +1,15 @@
-"use client";
+"use client"
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { getActivitytList } from "@/actions/activity";
+import { getActivitytList, joinEvent } from "@/actions/activity";
 import NoPurview from "@/components/layout/NoPurview";
 import Loading from "@/components/layout/Loading";
-import JoinButton from "@/components/events/JoinButton";
-
-interface Member {
-  name: string;
-}
-
-interface Item {
-  id: string;
-  date: string;
-  name: string;
-  start: string;
-  end: string;
-  area: string;
-  applyEmail: string;
-  applyName: string;
-  teacher: string;
-  status: string;
-  remark: string;
-  members: Member[];
-}
+import { Activity } from "@/types/activity";
 
 export default function Page() {
-  const [items, setItems] = useState<Item[]>([]);
+  const [items, setItems] = useState<Activity[]>([]);
   const [hasPermission, setHasPermission] = useState(true);
   const { status } = useSession();
 
@@ -41,19 +22,12 @@ export default function Page() {
   };
 
   useEffect(() => {
-    const fetchItems = async () => {
-      const eventList = await getActivitytList();
-      console.log(eventList);
-
-      if ("message" in eventList) {
-        setHasPermission(false);
-      } else {
-        setItems(eventList);
-      }
-    };
-
-    fetchItems();
+    getActivitytList().then(setItems).catch(console.error);
   }, []);
+
+  const handleJoinEvent = async (id: string) => {
+    await joinEvent(id);
+  };
 
   if (status === "loading") {
     return <Loading />;
@@ -103,7 +77,12 @@ export default function Page() {
                     </ul>
                   )}
                 </div>
-                <JoinButton id={item.id} />
+                <button
+                  onClick={() => handleJoinEvent(item.id)}
+                  className="rounded-sm border bg-orange-400 p-1 text-white"
+                >
+                  報名活動
+                </button>
               </li>
             ))}
         </ul>

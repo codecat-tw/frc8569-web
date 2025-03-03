@@ -2,33 +2,12 @@
 
 import { useState, FormEvent, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { getActivitytList } from "@/actions/activity";
-import { approveActivity } from "@/actions/activity";
-import { deleteActivity } from "@/actions/activity";
-import { updateRemark } from "@/actions/activity";
+import { getActivitytList, approveActivity, deleteActivity, updateRemark } from "@/actions/activity";
+import { Activity } from "@/types/activity";
 import Loading from "@/components/layout/Loading";
 
-interface Member {
-  name: string;
-}
-
-interface Item {
-  id: string;
-  date: string;
-  name: string;
-  start: string;
-  end: string;
-  area: string;
-  applyEmail: string;
-  applyName: string;
-  teacher: string;
-  status: string;
-  remark: string;
-  members: Member[];
-}
-
 export default function Page() {
-  const [items, setItems] = useState<Item[]>([]);
+  const [items, setItems] = useState<Activity[]>([]);
   const { status } = useSession();
   const [remark, setRemark] = useState<{ [key: string]: string }>({});
 
@@ -51,17 +30,7 @@ export default function Page() {
   };
 
   useEffect(() => {
-    const fetchItems = async () => {
-      const eventList = await getActivitytList();
-      console.log(eventList);
-
-      if ("message" in eventList) {
-      } else {
-        setItems(eventList);
-      }
-    };
-
-    fetchItems();
+    getActivitytList().then(setItems).catch(console.error);
   }, []);
 
   const handleUpdate = async (id: string) => {
