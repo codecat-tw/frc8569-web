@@ -13,7 +13,12 @@ export async function isNewUser(id: string) {
   return true;
 }
 
-export async function createAccount(id:string, email: string, name: string, image: string) {
+export async function createAccount(
+  id: string,
+  email: string,
+  name: string,
+  image: string,
+) {
   const docRef = doc(db, "users", email);
 
   const userData = {

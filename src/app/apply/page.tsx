@@ -10,7 +10,7 @@ import AreaInput from "@/components/apply/AreaInput";
 import TeacherInput from "@/components/apply/TeacherInput";
 import InviteesInput from "@/components/apply/InviteInput";
 
-const AddItemForm: React.FC = () => {
+export default function Page() {
   const [formValues, setFormValues] = useState({
     date: "",
     name: "",
@@ -114,6 +114,4 @@ const AddItemForm: React.FC = () => {
       </form>
     </div>
   );
-};
-
-export default AddItemForm;
+}

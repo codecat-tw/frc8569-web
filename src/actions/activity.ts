@@ -1,7 +1,15 @@
 "use server";
 
 import db from "@/lib/firebase";
-import { collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { getSession } from "./auth";
 
 interface Member {
@@ -62,11 +70,7 @@ interface FormValues {
   teacher: string;
 }
 
-export async function applyItem({
-  formValues,
-}: {
-  formValues: FormValues;
-}){
+export async function applyItem({ formValues }: { formValues: FormValues }) {
   const session = await getSession();
   const { date, name, start, end, area, teacher } = formValues;
 

@@ -17,7 +17,12 @@ export const authOptions: NextAuthOptions = {
       console.log("isNewUser", q);
 
       if (q) {
-        await createAccount(user.id, user.email || "", user.name || "", user.image || "");
+        await createAccount(
+          user.id,
+          user.email || "",
+          user.name || "",
+          user.image || "",
+        );
       }
 
       await updateLastLogin(user.email || "");

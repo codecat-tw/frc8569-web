@@ -1,10 +1,13 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import LoadUser from "@/components/user/LoadUser";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { getUserData } from "@/actions/user";
+import { User } from "@/types/user";
 
 export default function UserPage() {
+  const [user, setUser] = useState<User | null>(null);
   const params = useParams();
 
   if (!params || !params.id || Array.isArray(params.id)) {
@@ -12,15 +15,12 @@ export default function UserPage() {
   }
 
   const userId = decodeURIComponent(params.id);
-  const { user, loading } = LoadUser({ userId });
 
-  if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center text-xl">
-        載入中...
-      </div>
-    );
-  }
+  useEffect(() => {
+    if (userId !== "ErrorUser") {
+      getUserData(userId).then(setUser);
+    }
+  }, [userId]);
 
   if (!user) {
     return (

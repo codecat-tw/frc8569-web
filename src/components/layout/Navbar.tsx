@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
   const { data: session } = useSession();
 
   return (
-    <nav className="sticky left-0 right-0 top-0 z-1000 select-none border-b bg-gray-200 shadow-md">
+    <nav className="sticky left-0 right-0 top-0 z-1000 select-none bg-gray-200 shadow-md">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 justify-between">
           <div className="flex items-center lg:hidden">

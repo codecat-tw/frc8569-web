@@ -3,8 +3,8 @@
 import { useParams, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
-import db from "../../../utils/firestore";
-import { joinEvent } from "@/actions/joinEvent";
+import db from "@/lib/firebase";
+import { joinEvent } from "@/actions/activity";
 import { useSession } from "next-auth/react";
 
 interface Item {
@@ -20,7 +20,7 @@ interface Item {
   status: string;
 }
 
-const EventsPage = () => {
+export default function Page() {
   const params = useParams() || {};
   const searchParams = useSearchParams();
   const [eventData, setEventData] = useState<Item | null>(null);
@@ -131,6 +131,4 @@ const EventsPage = () => {
       </div>
     </div>
   );
-};
-
-export default EventsPage;
+}

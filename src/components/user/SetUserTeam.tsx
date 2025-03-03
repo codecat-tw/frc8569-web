@@ -5,7 +5,7 @@ import { setTeam } from "@/actions/user";
 
 export default function SetUserTeam({
   id,
-  team
+  team,
 }: {
   id: string;
   team: string;
@@ -59,4 +59,4 @@ export default function SetUserTeam({
       )}
     </div>
   );
-};
+}

@@ -27,7 +27,7 @@ interface Item {
   members: Member[];
 }
 
-const Manage: React.FC = () => {
+export default function Page() {
   const [items, setItems] = useState<Item[]>([]);
   const { status } = useSession();
   const [remark, setRemark] = useState<{ [key: string]: string }>({});
@@ -56,7 +56,6 @@ const Manage: React.FC = () => {
       console.log(eventList);
 
       if ("message" in eventList) {
-
       } else {
         setItems(eventList);
       }
@@ -187,6 +186,4 @@ const Manage: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default Manage;
+}

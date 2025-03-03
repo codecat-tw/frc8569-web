@@ -27,7 +27,7 @@ interface Item {
   members: Member[];
 }
 
-const List: React.FC = () => {
+export default function Page() {
   const [items, setItems] = useState<Item[]>([]);
   const [hasPermission, setHasPermission] = useState(true);
   const { status } = useSession();
@@ -103,15 +103,11 @@ const List: React.FC = () => {
                     </ul>
                   )}
                 </div>
-                <JoinButton
-                  id={item.id}
-                />
+                <JoinButton id={item.id} />
               </li>
             ))}
         </ul>
       </div>
     </div>
   );
-};
-
-export default List;
+}

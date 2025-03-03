@@ -7,7 +7,7 @@ import { User } from "@/types/user";
 import SetUserTeam from "@/components/user/SetUserTeam";
 import Image from "next/image";
 
-export default function UserPage() {
+export default function Page() {
   const [user, setUser] = useState<User | null>(null);
   const { data: session } = useSession();
   const userId = session?.user?.email || "ErrorUser";
