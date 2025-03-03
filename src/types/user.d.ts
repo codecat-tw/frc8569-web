@@ -3,5 +3,5 @@ export interface User {
   name: string;
   image: string;
   lastLogin: string;
-  team: string;
+  team?: string;
 }

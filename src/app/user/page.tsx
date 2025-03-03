@@ -1,23 +1,22 @@
 "use client";
 
 import { useSession, signOut } from "next-auth/react";
-import { LoadUser } from "@/components/user/LoadUser";
+import { useEffect, useState } from "react";
+import { getUserData } from "@/actions/user";
+import { User } from "@/types/user";
 import SetUserTeam from "@/components/user/SetUserTeam";
 import Image from "next/image";
 
 export default function UserPage() {
+  const [user, setUser] = useState<User | null>(null);
   const { data: session } = useSession();
-  const userId = session?.user?.email || "ErrorUser";
+  const userId = session?.user?.email || "ErrorUser";  // 用 session 來取得 email 作為 userId
 
-  const { user, loading } = LoadUser({ userId });
-
-  if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center text-xl">
-        載入中...
-      </div>
-    );
-  }
+  useEffect(() => {
+    if (userId !== "ErrorUser") { // 當有有效的 userId 時才進行資料查詢
+      getUserData(userId).then(setUser);
+    }
+  }, [userId]); // 依賴於 userId，當 session 更新時觸發
 
   if (!user) {
     return (
@@ -49,7 +48,7 @@ export default function UserPage() {
           <br />
           最後登入: {user.lastLogin}
           <br />
-          <SetUserTeam id={user.email} team={user.team} />
+          <SetUserTeam id={user.email} team={user.team || ""} />
         </div>
 
         <button

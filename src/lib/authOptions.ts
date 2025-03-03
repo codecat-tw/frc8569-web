@@ -20,7 +20,7 @@ export const authOptions: NextAuthOptions = {
         await createAccount(user.id, user.email || "", user.name || "", user.image || "");
       }
 
-      await updateLastLogin(user.id);
+      await updateLastLogin(user.email || "");
 
       return true;
     },

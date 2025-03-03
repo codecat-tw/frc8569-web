@@ -1,20 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
-import { updateUserTeam } from "@/actions/user";
+import { useState } from "react";
+import { setTeam } from "@/actions/user";
 
-interface RemarkProps {
+export default function SetUserTeam({
+  id,
+  team
+}: {
   id: string;
   team: string;
-}
-
-const SetUserTeam: React.FC<RemarkProps> = ({ id, team }) => {
+}) {
   const [teamName, setTeamName] = useState(team || "未分組");
   const [isEditing, setIsEditing] = useState(false);
 
   const handleUpdate = async () => {
     try {
-      await updateUserTeam(id, teamName);
+      await setTeam(id, teamName);
       setIsEditing(false);
       console.log("更新成功");
     } catch (e) {
@@ -59,5 +60,3 @@ const SetUserTeam: React.FC<RemarkProps> = ({ id, team }) => {
     </div>
   );
 };
-
-export default SetUserTeam;
