@@ -1,4 +1,4 @@
-import { createAccount, isNewUser } from "@/actions/user";
+import { createAccount, isNewUser, updateLastLogin } from "@/actions/user";
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
@@ -19,6 +19,8 @@ export const authOptions: NextAuthOptions = {
       if (q) {
         await createAccount(user.id, user.email || "", user.name || "", user.image || "");
       }
+
+      await updateLastLogin(user.id);
 
       return true;
     },

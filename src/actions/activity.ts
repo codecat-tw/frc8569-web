@@ -1,6 +1,6 @@
 "use server";
 
-import db from "@/utils/firestore";
+import db from "@/lib/firebase";
 import { collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore";
 import { getSession } from "./auth";
 
