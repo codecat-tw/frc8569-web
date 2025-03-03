@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { getActivitytList } from "@/actions/getActivitytList";
+import { getActivitytList } from "@/actions/activity";
 import NoPurview from "@/components/layout/NoPurview";
 import Loading from "@/components/layout/Loading";
 import JoinButton from "@/components/events/JoinButton";

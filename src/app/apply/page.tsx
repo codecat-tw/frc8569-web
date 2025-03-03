@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, ChangeEvent, FormEvent } from "react";
-import { applyItem } from "@/actions/applyItem";
+import { applyItem } from "@/actions/activity";
 import DateInput from "@/components/apply/DateInput";
 import NameInput from "@/components/apply/NameInput";
 import StartInput from "@/components/apply/StartInput";

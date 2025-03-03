@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState, FormEvent, useEffect } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { getActivitytList } from "@/actions/getActivitytList";
-import { approveActivity } from "@/actions/approveActivity";
-import { deleteActivity } from "@/actions/deleteItem";
-import { updateRemark } from "@/actions/updateRemark";
+import { getActivitytList } from "@/actions/activity";
+import { approveActivity } from "@/actions/activity";
+import { deleteActivity } from "@/actions/activity";
+import { updateRemark } from "@/actions/activity";
 import Loading from "@/components/layout/Loading";
 
 interface Member {

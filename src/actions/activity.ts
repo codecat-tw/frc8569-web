@@ -29,9 +29,7 @@ const adminEmails = [
   "kkbike@mail2.chshs.ntpc.edu.tw",
 ];
 
-export const getActivitytList = async (): Promise<
-  Item[] | { message: string }
-> => {
+export async function getActivitytList() {
   const session = await getSession();
 
   if (
@@ -53,7 +51,7 @@ export const getActivitytList = async (): Promise<
   });
 
   return itemsData;
-};
+}
 
 interface FormValues {
   date: string;
@@ -64,11 +62,11 @@ interface FormValues {
   teacher: string;
 }
 
-export const applyItem = async ({
+export async function applyItem({
   formValues,
 }: {
   formValues: FormValues;
-}): Promise<string> => {
+}){
   const session = await getSession();
   const { date, name, start, end, area, teacher } = formValues;
 
@@ -91,9 +89,9 @@ export const applyItem = async ({
   });
 
   return applyTime;
-};
+}
 
-export const approveActivity = async (id: string) => {
+export async function approveActivity(id: string) {
   if (!id) {
     throw new Error("活動ID缺失");
   }
@@ -104,18 +102,18 @@ export const approveActivity = async (id: string) => {
   });
 
   return "活動已批准";
-};
+}
 
-export const deleteActivity = async (id: string) => {
+export async function deleteActivity(id: string) {
   if (!id) {
-    throw new Error("缺少活動ID");
+    throw new Error("活動ID缺失");
   }
 
-  const itemRef = doc(db, "activity", id);
-  await deleteDoc(itemRef);
+  const docRef = doc(db, "activity", id);
+  await deleteDoc(docRef);
 
-  return "活動刪除完成";
-};
+  return "活動已刪除";
+}
 
 interface Member {
   name: string;
@@ -165,7 +163,7 @@ export const joinEvent = async (id: string): Promise<string> => {
   return "你已成功報名";
 };
 
-export const updateRemark = async (id: string, remark: string) => {
+export async function updateRemark(id: string, remark: string) {
   if (!id || !remark) {
     throw new Error("缺少必要的參數");
   }
@@ -176,4 +174,4 @@ export const updateRemark = async (id: string, remark: string) => {
   });
 
   return "評語已更新";
-};
+}

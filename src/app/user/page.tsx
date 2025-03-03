@@ -10,13 +10,13 @@ import Image from "next/image";
 export default function UserPage() {
   const [user, setUser] = useState<User | null>(null);
   const { data: session } = useSession();
-  const userId = session?.user?.email || "ErrorUser";  // 用 session 來取得 email 作為 userId
+  const userId = session?.user?.email || "ErrorUser";
 
   useEffect(() => {
-    if (userId !== "ErrorUser") { // 當有有效的 userId 時才進行資料查詢
+    if (userId !== "ErrorUser") {
       getUserData(userId).then(setUser);
     }
-  }, [userId]); // 依賴於 userId，當 session 更新時觸發
+  }, [userId]);
 
   if (!user) {
     return (
