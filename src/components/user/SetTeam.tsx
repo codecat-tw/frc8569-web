@@ -3,13 +3,7 @@
 import { useState } from "react";
 import { setTeam } from "@/actions/user";
 
-export default function SetUserTeam({
-  id,
-  team,
-}: {
-  id: string;
-  team: string;
-}) {
+export default function SetTeam({ id, team }: { id: string; team: string }) {
   const [teamName, setTeamName] = useState(team || "未分組");
   const [isEditing, setIsEditing] = useState(false);
 
