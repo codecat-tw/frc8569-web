@@ -40,7 +40,7 @@ export const LoadUser = ({ userId }: LoadUserProps) => {
     fetchUser();
   }, [userId]);
 
-  console.log(user);
+  // console.log(user);
 
   return { user, loading };
 };

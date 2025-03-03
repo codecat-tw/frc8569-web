@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { updateUserTeam } from "@/actions/updateUserTeam";
+import { updateUserTeam } from "@/actions/user";
 
 interface RemarkProps {
   id: string;

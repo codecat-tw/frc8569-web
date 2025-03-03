@@ -1,6 +1,6 @@
 {
   "name": "frc8569-web",
-  "version": "1.1.3",
+  "version": "2.0.0-beta.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,10 +10,10 @@
     "format": "npx prettier --write ."
   },
   "dependencies": {
-    "@next/third-parties": "^15.1.7",
-    "firebase": "^11.3.1",
+    "@next/third-parties": "^15.2.0",
+    "firebase": "^11.4.0",
     "framer-motion": "^12.4.7",
-    "next": "^15.1.7",
+    "next": "^15.2.0",
     "next-auth": "^4.24.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -22,14 +22,14 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.0",
     "@iconify/react": "^5.2.0",
-    "@tailwindcss/postcss": "^4.0.8",
-    "@types/node": "^22.13.5",
+    "@tailwindcss/postcss": "^4.0.9",
+    "@types/node": "^22.13.8",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "eslint": "^9.21.0",
-    "eslint-config-next": "^15.1.7",
+    "eslint-config-next": "^15.2.0",
     "postcss": "^8.5.3",
-    "prettier": "^3.5.2",
+    "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwindcss": "^4.0.8",
     "typescript": "^5.7.3"
