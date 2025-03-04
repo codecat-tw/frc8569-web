@@ -2,6 +2,7 @@ export interface User {
   email: string;
   name: string;
   image: string;
-  lastLogin: string;
+  loginAt: string;
+  createAt: string;
   team?: string;
 }

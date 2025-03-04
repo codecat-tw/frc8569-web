@@ -10,13 +10,13 @@ import Image from "next/image";
 export default function UserInfoCard() {
   const [user, setUser] = useState<User | null>(null);
   const { data: session } = useSession();
-  const userId = session?.user?.email || "ErrorUser";
 
   useEffect(() => {
-    if (userId !== "ErrorUser") {
-      getUserData(userId).then(setUser);
+    if (!session || !session.user || !session.user.id) {
+      return;
     }
-  }, [userId]);
+    getUserData(session.user.id).then(setUser);
+  }, [session]);
 
   if (!user) {
     return (
@@ -46,7 +46,7 @@ export default function UserInfoCard() {
         <div className="mb-4 text-center text-lg text-gray-800">
           註冊帳號: {user.email}
           <br />
-          最後登入: {user.lastLogin}
+          最後登入: {user.loginAt}
           <br />
           <SetUserTeam id={user.email} team={user.team || ""} />
         </div>

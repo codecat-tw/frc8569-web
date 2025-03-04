@@ -1,37 +1,8 @@
 "use server";
 
 import db from "@/lib/firebase";
-import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { User } from "@/types/user";
-
-export async function isNewUser(id: string) {
-  const docRef = doc(db, "users", id);
-  const existingDoc = await getDoc(docRef);
-  if (existingDoc.exists()) {
-    return false;
-  }
-  return true;
-}
-
-export async function createAccount(
-  id: string,
-  email: string,
-  name: string,
-  image: string,
-) {
-  const docRef = doc(db, "users", email);
-
-  const userData = {
-    id: id,
-    email: email,
-    name: name,
-    image: image,
-    lastLogin: new Date().toISOString(),
-    createAt: new Date().toISOString(),
-  };
-
-  await setDoc(docRef, userData);
-}
 
 export async function updateLastLogin(id: string) {
   if (!id) {
