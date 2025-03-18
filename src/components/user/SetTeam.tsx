@@ -3,13 +3,13 @@
 import { useState } from "react";
 import { setTeam } from "@/actions/user";
 
-export default function SetTeam({ id, team }: { id: string; team: string }) {
+export default function SetTeam({ team }: { team: string }) {
   const [teamName, setTeamName] = useState(team || "未分組");
   const [isEditing, setIsEditing] = useState(false);
 
   const handleUpdate = async () => {
     try {
-      await setTeam(id, teamName);
+      await setTeam(teamName);
       setIsEditing(false);
       console.log("更新成功");
     } catch (e) {

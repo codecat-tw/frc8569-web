@@ -3,6 +3,7 @@
 import db from "@/lib/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { User } from "@/types/user";
+import { getSession } from "./auth";
 
 export async function updateLastLogin(id: string) {
   if (!id) {
@@ -29,11 +30,12 @@ export async function getUserData(id: string) {
   }
 }
 
-export async function setTeam(id: string, teamName: string) {
-  if (!id || !teamName) {
+export async function setTeam(teamName: string) {
+  if (!teamName) {
     throw new Error("缺少必須的參數");
   }
-  const docRef = doc(db, "users", id);
+  const session = await getSession();
+  const docRef = doc(db, "users", session.user.id);
   await updateDoc(docRef, {
     team: teamName,
   });

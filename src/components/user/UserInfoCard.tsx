@@ -38,19 +38,16 @@ export default function UserInfoCard() {
             className="rounded-full shadow-md"
           />
         </div>
-
         <h1 className="mb-2 text-center text-3xl font-bold text-gray-800">
           {user.name}
         </h1>
-
         <div className="mb-4 text-center text-lg text-gray-800">
           註冊帳號: {user.email}
           <br />
           最後登入: {user.loginAt}
           <br />
-          <SetUserTeam id={user.email} team={user.team || ""} />
+          <SetUserTeam team={user.team || ""} />
         </div>
-
         <button
           onClick={() => signOut()}
           className="mt-4 w-full rounded-sm bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"

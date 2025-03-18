@@ -7,19 +7,18 @@ import { getUserData } from "@/actions/user";
 import { User } from "@/types/user";
 
 export default function UserPage() {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User>();
   const params = useParams();
 
-  if (!params || !params.id || Array.isArray(params.id)) {
+  if (!params.id || Array.isArray(params.id)) {
     return;
   }
 
   const userId = decodeURIComponent(params.id);
 
   useEffect(() => {
-    if (userId !== "ErrorUser") {
-      getUserData(userId).then(setUser);
-    }
+    getUserData(userId)
+      .then(setUser);
   }, [userId]);
 
   if (!user) {
@@ -48,7 +47,7 @@ export default function UserPage() {
         <div className="mb-4 text-center text-lg text-gray-800">
           註冊帳號: {user.email}
           <br />
-          最後登入: {user.lastLogin}
+          最後登入: {user.loginAt}
           <br />
           組別: {user.team}
         </div>
