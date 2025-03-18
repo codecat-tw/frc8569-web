@@ -1,9 +1,9 @@
 {
   "name": "frc8569-web",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -11,11 +11,11 @@
   },
   "dependencies": {
     "@auth/firebase-adapter": "^2.8.0",
-    "@next/third-parties": "^15.2.0",
+    "@next/third-parties": "^15.2.3",
     "firebase": "^11.4.0",
-    "firebase-admin": "^12.7.0",
-    "framer-motion": "^12.4.7",
-    "next": "^15.2.0",
+    "firebase-admin": "^13.2.0",
+    "framer-motion": "^12.5.0",
+    "next": "^15.2.3",
     "next-auth": "^4.24.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -24,16 +24,16 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.0",
     "@iconify/react": "^5.2.0",
-    "@tailwindcss/postcss": "^4.0.9",
-    "@types/node": "^22.13.8",
-    "@types/react": "^19.0.10",
+    "@tailwindcss/postcss": "^4.0.14",
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.11",
     "@types/react-dom": "^19.0.4",
-    "eslint": "^9.21.0",
-    "eslint-config-next": "^15.2.0",
+    "eslint": "^9.22.0",
+    "eslint-config-next": "^15.2.3",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
-    "tailwindcss": "^4.0.8",
-    "typescript": "^5.7.3"
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.8.2"
   }
 }
