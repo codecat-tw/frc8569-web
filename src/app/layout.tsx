@@ -25,7 +25,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <GoogleAnalytics gaId="G-0BCZ9VLRYQ" />
         <SessionProvider>
-          <div className="bg-blue-100 text-black">
+          <div>
             <Navbar />
             {children}
             <Footer />

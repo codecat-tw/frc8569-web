@@ -7,11 +7,12 @@ import db from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { joinEvent } from "@/actions/activity";
 import { Activity } from "@/types/activity";
+import ActivityCard from "./ActivityCard";
 
 export default function Page() {
   const params = useParams() || {};
   const searchParams = useSearchParams();
-  const [eventData, setEventData] = useState<Activity | null>(null);
+  const [eventData, setEventData] = useState<Activity>();
   const [error, setError] = useState<string | null>(null);
   const [joinExecuted, setJoinExecuted] = useState(false);
   const [resultMessage, setResultMessage] = useState<string | null>(null);
@@ -20,7 +21,6 @@ export default function Page() {
   const userName = session?.user?.name || "ErrorUser";
 
   useEffect(() => {
-    console.log("fetchEventData useEffect");
     const fetchEventData = async () => {
       if (!params.id || Array.isArray(params.id)) {
         setError("無效的參數");
@@ -28,19 +28,11 @@ export default function Page() {
       }
 
       const decodedId = decodeURIComponent(params.id);
+      const docRef = doc(db, "activity", decodedId);
+      const docSnap = await getDoc(docRef);
 
-      try {
-        const docRef = doc(db, "activity", decodedId);
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          setEventData(docSnap.data() as Activity);
-        } else {
-          setError("活動未找到");
-        }
-      } catch (error) {
-        console.error("Error fetching document: ", error);
-        setError("獲取資料時出錯");
+      if (docSnap.exists()) {
+        setEventData(docSnap.data() as Activity);
       }
     };
 
@@ -80,42 +72,19 @@ export default function Page() {
     );
   }
 
+  if (!eventData) {
+    return;
+  }
+
   return (
     <div className="flex min-h-screen items-center justify-center p-6">
       <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
-        <h1 className="mb-6 text-center text-3xl font-bold text-blue-600">
-          {eventData?.name}
-        </h1>
-        <div className="space-y-4">
-          <p className="text-lg">
-            <span className="font-semibold">活動日期:</span> {eventData?.date}
-          </p>
-          <p className="text-lg">
-            <span className="font-semibold">開始時間:</span> {eventData?.start}
-          </p>
-          <p className="text-lg">
-            <span className="font-semibold">結束時間:</span> {eventData?.end}
-          </p>
-          <p className="text-lg">
-            <span className="font-semibold">使用分區:</span> {eventData?.area}
-          </p>
-          <p className="text-lg">
-            <span className="font-semibold">活動代表:</span>{" "}
-            {eventData?.applyName}
-          </p>
-          <p className="text-lg">
-            <span className="font-semibold">指導老師:</span>{" "}
-            {eventData?.teacher}
-          </p>
-          <p className="text-lg">
-            <span className="font-semibold">審核狀態:</span> {eventData?.status}
-          </p>
-          {resultMessage && (
-            <div className="mt-6 rounded-md border border-green-500 bg-green-100 p-4 text-center text-lg font-semibold text-green-700">
-              {resultMessage}
-            </div>
-          )}
-        </div>
+        <ActivityCard activity={eventData} />
+        {resultMessage && (
+          <div className="mt-6 rounded-md border border-green-500 bg-green-100 p-4 text-center text-lg font-semibold text-green-700">
+            {resultMessage}
+          </div>
+        )}
       </div>
     </div>
   );

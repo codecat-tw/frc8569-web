@@ -26,14 +26,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async session({ session, user }) {
       session.user.id = user.id;
-      console.log("session:", session);
       return session;
-    },
-    async signIn({ user, account }) {
-      console.log("signIn", account);
-      //await updateLastLogin(account?.userId as string);
-
-      return true;
     },
   },
 };
