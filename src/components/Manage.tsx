@@ -2,7 +2,12 @@
 
 import { useState, FormEvent, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { getActivitytList, approveActivity, deleteActivity, updateRemark } from "@/actions/activity";
+import {
+  getActivitytList,
+  approveActivity,
+  deleteActivity,
+  updateRemark,
+} from "@/actions/activity";
 import { Activity } from "@/types/activity";
 import Loading from "@/components/layout/Loading";
 import ActivityCard from "./ActivityCard";

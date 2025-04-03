@@ -17,8 +17,7 @@ export default function UserPage() {
   const userId = decodeURIComponent(params.id);
 
   useEffect(() => {
-    getUserData(userId)
-      .then(setUser);
+    getUserData(userId).then(setUser);
   }, [userId]);
 
   if (!user) {

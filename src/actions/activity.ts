@@ -37,7 +37,8 @@ export async function getActivitytList() {
   return querySnapshot.docs.map((doc) => ({
     ...doc.data(),
     id: doc.id,
-    members: doc.data().members?.map(({ name }: { name: string }) => ({ name })) || [],
+    members:
+      doc.data().members?.map(({ name }: { name: string }) => ({ name })) || [],
   })) as Activity[];
 }
 

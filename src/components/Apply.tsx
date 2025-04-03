@@ -1,60 +1,33 @@
 "use client";
 
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { applyItem } from "@/actions/activity";
-import DateInput from "@/components/apply/DateInput";
-import NameInput from "@/components/apply/NameInput";
-import StartInput from "@/components/apply/StartInput";
-import EndInput from "@/components/apply/EndInput";
-import AreaInput from "@/components/apply/AreaInput";
-import TeacherInput from "@/components/apply/TeacherInput";
-import InviteesInput from "@/components/apply/InviteInput";
+import { useState } from "react";
 
-export default function Page() {
-  const [formValues, setFormValues] = useState({
-    date: "",
-    name: "",
-    start: "",
-    end: "",
-    area: "",
-    teacher: "",
-    invite: [] as string[],
-  });
+interface Inputs {
+  date: string;
+  name: string;
+  start: string;
+  end: string;
+  area: string;
+  teacher: string;
+  invite: string[];
+}
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
+const groupList = ["全成員", "程式組", "機構組", "電控組", "策略組", "公關組"];
+
+export default function Apply() {
   const [activityUrl, setActivityUrl] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
 
-  const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  ) => {
-    const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
-
-  const handleInviteChange = (selectedInvite: string[]) => {
-    setFormValues({
-      ...formValues,
-      invite: selectedInvite,
-    });
-  };
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const result = await applyItem({ formValues });
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    console.log(data);
+    const result = await applyItem({ formValues: data });
     setActivityUrl(result);
-    setIsSubmitted(true);
-    setFormValues({
-      date: "",
-      name: "",
-      start: "",
-      end: "",
-      area: "",
-      teacher: "",
-      invite: [],
-    });
   };
 
   const handleCopyUrl = () => {
@@ -65,53 +38,85 @@ export default function Page() {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <form
-        onSubmit={handleSubmit}
-        className="mx-auto mt-8 max-w-lg rounded-md bg-white p-8 shadow-md"
+        onSubmit={handleSubmit(onSubmit)}
+        className="mx-auto max-w-lg rounded-md bg-white p-8 shadow-md"
       >
-        <DateInput
-          date={formValues.date}
-          handleInputChange={handleInputChange}
+        <label className="text-sm font-bold">活動日期</label>
+        <input
+          type="date"
+          {...register("date")}
+          className="w-full rounded-md border border-gray-300 p-2 mb-4"
         />
-        <NameInput
-          name={formValues.name}
-          handleInputChange={handleInputChange}
+        <label className="text-sm font-bold">活動名稱</label>
+        <input
+          placeholder="活動主題、預期目標等..."
+          {...register("name")}
+          className="w-full rounded-md border border-gray-300 p-2 mb-4"
         />
-        <StartInput
-          start={formValues.start}
-          handleInputChange={handleInputChange}
+        <label className="text-sm font-bold">開始時間</label>
+        <input
+          type="time"
+          {...register("start")}
+          className="w-full rounded-md border border-gray-300 p-2 mb-4"
         />
-        <EndInput end={formValues.end} handleInputChange={handleInputChange} />
-        <AreaInput
-          area={formValues.area}
-          handleInputChange={handleInputChange}
+        <label className="text-sm font-bold">結束時間</label>
+        <input
+          type="time"
+          {...register("end")}
+          className="w-full rounded-md border border-gray-300 p-2 mb-4"
         />
-        <TeacherInput
-          teacher={formValues.teacher}
-          handleInputChange={handleInputChange}
+        <label className="text-sm font-bold">使用分區</label>
+        <input
+          placeholder="如:A、B、C"
+          {...register("area")}
+          className="w-full rounded-md border border-gray-300 p-2 mb-4"
         />
-        <InviteesInput
-          invite={formValues.invite}
-          handleInviteChange={handleInviteChange}
-        />
+        <label className="text-sm font-bold">指導老師</label>
+        <select
+          {...register("teacher", { required: true })}
+          className="w-full rounded-md border border-gray-300 p-2 mb-4"
+        >
+          <option value="kkbike">華光永</option>
+          <option value="crispin">周長益</option>
+          <option value="angella">李淑卿</option>
+          <option value="eric">系統測試</option>
+        </select>
+        <label className="text-sm font-bold">邀請對象</label>
+        <label className="mb-2 block text-sm font-bold text-gray-500">
+          成員只要包含於選中項其中之一即可參與
+        </label>
+        {groupList.map((group, index) => (
+          <div key={index} className="flex items-center">
+            <input
+              type="checkbox"
+              id={`invite-${index}`}
+              value={group}
+              {...register("invite")}
+              className="mr-2"
+            />
+            <label htmlFor={`invite-${index}`}>{group}</label>
+          </div>
+        ))}
+        {errors.name && <span>必填</span>}
         <button
           type="submit"
           className="mt-4 w-full rounded-md bg-blue-500 p-2 text-white"
         >
           提交
         </button>
-        {isSubmitted && (
-          <div className="mt-4">
-            <button
-              onClick={handleCopyUrl}
-              className="mt-2 w-full rounded-md bg-green-500 p-2 text-white"
-            >
-              複製活動網址
-            </button>
-          </div>
-        )}
       </form>
+      {activityUrl && (
+        <div className="mt-4">
+          <button
+            onClick={handleCopyUrl}
+            className="mt-2 w-full rounded-md bg-green-500 p-2 text-white"
+          >
+            複製活動網址
+          </button>
+        </div>
+      )}
     </div>
   );
 }
