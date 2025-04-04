@@ -8,20 +8,18 @@ import SetUserTeam from "@/components/user/SetTeam";
 import Image from "next/image";
 
 export default function UserInfoCard() {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User>();
   const { data: session } = useSession();
 
   useEffect(() => {
-    if (!session || !session.user || !session.user.id) {
-      return;
-    }
+    if (!session?.user?.id) return;
     getUserData(session.user.id).then(setUser);
   }, [session]);
 
   if (!user) {
     return (
-      <div className="flex min-h-screen items-center justify-center text-xl">
-        查無使用者
+      <div className="flex min-h-screen items-center justify-center">
+        <p className="text-gray-600">載入使用者資料中...</p>
       </div>
     );
   }
