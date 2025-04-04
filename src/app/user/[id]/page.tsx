@@ -8,18 +8,30 @@ export const metadata = {
     "管理自己的帳號、尋找隊友們的帳號一應具全，完整的權限配置與設定功能頁面",
 };
 
-export default async function Page({ params }: { params: Promise<{ id: string }>}) {
-  const { id } = await params
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
 
-  if (!id) { 
-    return <div className="flex min-h-screen items-center justify-center text-xl">查無使用者</div>;
+  if (!id) {
+    return (
+      <div className="flex min-h-screen items-center justify-center text-xl">
+        查無使用者
+      </div>
+    );
   }
 
   const userId = decodeURIComponent(id);
   const user: User | null = await getUserData(userId);
 
   if (!user) {
-    return <div className="flex min-h-screen items-center justify-center text-xl">查無使用者</div>;
+    return (
+      <div className="flex min-h-screen items-center justify-center text-xl">
+        查無使用者
+      </div>
+    );
   }
 
   return (

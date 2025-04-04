@@ -1,18 +1,18 @@
-'use client'
+"use client";
 
-import { useEffect } from 'react'
-import { LuTriangle } from 'react-icons/lu'
+import { useEffect } from "react";
+import { LuTriangle } from "react-icons/lu";
 
 export default function Error({
   error,
   reset,
 }: {
-  error: Error & { digest?: string }
-  reset: () => void
+  error: Error & { digest?: string };
+  reset: () => void;
 }) {
   useEffect(() => {
-    console.error(error)
-  }, [error])
+    console.error(error);
+  }, [error]);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 px-6">
@@ -41,5 +41,5 @@ export default function Error({
         </button>
       </div>
     </div>
-  )
+  );
 }
