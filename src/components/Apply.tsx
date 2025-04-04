@@ -30,47 +30,49 @@ export default function Apply() {
     setActivityUrl(result);
   };
 
-  const handleCopyUrl = () => {
+  function handleCopyUrl() {
     navigator.clipboard.writeText(
-      "frc.codecat.tw/events/" + activityUrl + "?join=1&openExternalBrowser=1",
+      "https://frc.codecat.tw/events/" +
+        activityUrl +
+        "?join=1&openExternalBrowser=1",
     );
     alert("活動網址已複製到剪貼簿");
-  };
+  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="mx-auto max-w-lg rounded-md bg-white p-8 shadow-md"
+        className="mx-auto max-w-lg rounded-md bg-white p-8 border border-gray-300"
       >
         <label className="text-sm font-bold">活動日期</label>
         <input
           type="date"
-          {...register("date")}
+          {...register("date", { required: true })}
           className="w-full rounded-md border border-gray-300 p-2 mb-4"
         />
         <label className="text-sm font-bold">活動名稱</label>
         <input
           placeholder="活動主題、預期目標等..."
-          {...register("name")}
+          {...register("name", { required: true })}
           className="w-full rounded-md border border-gray-300 p-2 mb-4"
         />
         <label className="text-sm font-bold">開始時間</label>
         <input
           type="time"
-          {...register("start")}
+          {...register("start", { required: true })}
           className="w-full rounded-md border border-gray-300 p-2 mb-4"
         />
         <label className="text-sm font-bold">結束時間</label>
         <input
           type="time"
-          {...register("end")}
+          {...register("end", { required: true })}
           className="w-full rounded-md border border-gray-300 p-2 mb-4"
         />
         <label className="text-sm font-bold">使用分區</label>
         <input
           placeholder="如:A、B、C"
-          {...register("area")}
+          {...register("area", { required: true })}
           className="w-full rounded-md border border-gray-300 p-2 mb-4"
         />
         <label className="text-sm font-bold">指導老師</label>
@@ -93,7 +95,7 @@ export default function Apply() {
               type="checkbox"
               id={`invite-${index}`}
               value={group}
-              {...register("invite")}
+              {...register("invite", { required: true })}
               className="mr-2"
             />
             <label htmlFor={`invite-${index}`}>{group}</label>

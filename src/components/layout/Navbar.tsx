@@ -7,7 +7,7 @@ import { signIn, useSession } from "next-auth/react";
 import { Icon } from "@iconify/react";
 
 const navigation = [
-  { name: "場地列表", href: "/events" },
+  { name: "活動清單", href: "/events" },
   { name: "申請場地", href: "/apply" },
   { name: "場地審核", href: "/manage" },
 ];

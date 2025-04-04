@@ -67,33 +67,36 @@ export default function Page() {
             .map((item) => (
               <li
                 key={item.id}
-                className="border-2 p-2 m-4 border-gray-300 rounded-lg"
+                className="border p-4 m-4 border-gray-300 rounded-lg"
               >
                 <ActivityCard activity={item} />
-                <form onSubmit={(e: FormEvent) => handleSubmit(e, item.id)}>
+                <form
+                  onSubmit={(e: FormEvent) => handleSubmit(e, item.id)}
+                  className="flex"
+                >
                   <input
                     type="text"
                     value={remark[item.id] || ""}
                     onChange={(e) => handleRemarkChange(e, item.id)}
                     placeholder="輸入備註"
-                    className="mb-2 rounded-sm border p-1"
+                    className="mb-2 rounded-sm border p-1 w-full"
                   />
                   <button
                     type="submit"
-                    className="rounded-sm border bg-gray-400 p-1 text-white"
+                    className="rounded-sm border bg-gray-400 p-1 text-white w-20"
                   >
-                    傳送評語
+                    傳送
                   </button>
                 </form>
                 <button
                   onClick={() => handleApprove(item.id)}
-                  className="rounded-md bg-green-400 p-2 w-full cursor-pointer"
+                  className="rounded-md bg-green-400 my-2 p-2 w-full cursor-pointer"
                 >
                   接受申請
                 </button>
                 <button
                   onClick={() => handleDelete(item.id)}
-                  className="rounded-md bg-red-400 p-2 w-full cursor-pointer"
+                  className="rounded-md bg-red-400 my-2 p-2 w-full cursor-pointer"
                 >
                   刪除項目
                 </button>

@@ -29,12 +29,12 @@ export default function Page() {
             .map((item) => (
               <li
                 key={item.id}
-                className="border-2 p-2 m-4 border-gray-300 rounded-lg"
+                className="border p-4 m-4 border-gray-300 rounded-lg"
               >
                 <ActivityCard activity={item} />
                 <button
                   onClick={() => handleJoinEvent(item.id)}
-                  className="rounded-md bg-orange-400 p-2 w-full cursor-pointer"
+                  className="rounded-md bg-orange-400 my-2 p-2 w-full cursor-pointer"
                 >
                   報名活動
                 </button>
