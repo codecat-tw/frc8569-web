@@ -1,5 +1,4 @@
 import { FirestoreAdapter } from "@auth/firebase-adapter";
-import { updateLastLogin } from "@/actions/user";
 import { NextAuthOptions } from "next-auth";
 import { cert } from "firebase-admin/app";
 import { Adapter } from "next-auth/adapters";

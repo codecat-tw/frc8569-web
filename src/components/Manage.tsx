@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, FormEvent, useEffect } from "react";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 import { Activity } from "@/types/activity";
 import ActivityCard from "./ActivityCard";
 import { LuSend, LuCheck, LuTrash2 } from "react-icons/lu";
@@ -15,7 +15,7 @@ import {
 export default function Manage() {
   const [items, setItems] = useState<Activity[]>([]);
   const [remark, setRemark] = useState<{ [key: string]: string }>({});
-  const { status } = useSession();
+  // const { status } = useSession();
 
   useEffect(() => {
     getActivitytList().then(setItems).catch(console.error);
