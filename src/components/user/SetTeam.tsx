@@ -7,7 +7,7 @@ export default function SetTeam({ team }: { team: string }) {
   const [teamName, setTeamName] = useState(team || "未分組");
   const [isEditing, setIsEditing] = useState(false);
 
-  const handleUpdate = async () => {
+  async function handleUpdate() {
     try {
       await setTeam(teamName);
       setIsEditing(false);
@@ -15,7 +15,7 @@ export default function SetTeam({ team }: { team: string }) {
     } catch (e) {
       console.error("更新失敗: ", e);
     }
-  };
+  }
 
   return (
     <div>

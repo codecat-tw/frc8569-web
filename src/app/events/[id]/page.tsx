@@ -15,31 +15,23 @@ export default async function Page({
   const { id } = await params;
   const { join } = await searchParams;
 
-  if (!id) {
-    return notFound();
-  }
+  if (!id) return notFound();
 
   const decodedId = decodeURIComponent(id);
   const docRef = doc(db, "activity", decodedId);
   const docSnap = await getDoc(docRef);
 
-  if (!docSnap.exists()) {
-    return notFound();
-  }
+  if (!docSnap.exists()) return notFound();
 
   const eventData = docSnap.data() as Activity;
-  let resultMessage: string | null = null;
-
-  if (join === "1") {
-    resultMessage = await joinEvent(decodedId);
-  }
+  const resultMessage = join === "1" ? await joinEvent(decodedId) : null;
 
   return (
     <div className="flex min-h-screen items-center justify-center p-6">
-      <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
+      <div className="w-full max-w-md rounded-lg bg-white p-8 border border-gray-300">
         <ActivityCard activity={eventData} />
         {resultMessage && (
-          <div className="mt-6 rounded-md border border-green-500 bg-green-100 p-4 text-center text-lg font-semibold text-green-700">
+          <div className="rounded-md border border-green-500 bg-green-100 p-4 text-center text-lg font-semibold text-green-700">
             {resultMessage}
           </div>
         )}

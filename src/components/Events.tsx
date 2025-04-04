@@ -14,9 +14,9 @@ export default function Events() {
     getActivitytList().then(setItems).catch(console.error);
   }, []);
 
-  const handleJoinEvent = async (id: string) => {
+  async function handleJoinEvent(id: string) {
     await joinEvent(id);
-  };
+  }
 
   return (
     <div className="min-h-screen overflow-x-hidden">

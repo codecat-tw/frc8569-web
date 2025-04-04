@@ -37,7 +37,7 @@ export default function Manage() {
       .catch(console.error);
   }
 
-  const handleSubmit = async (e: FormEvent, id: string) => {
+  async function handleSubmit(e: FormEvent, id: string) {
     e.preventDefault();
 
     updateRemark(id, remark[id])
@@ -45,17 +45,17 @@ export default function Manage() {
         alert("已傳送活動評語");
       })
       .catch(console.error);
-  };
+  }
 
-  const handleRemarkChange = (
+  function handleRemarkChange(
     e: React.ChangeEvent<HTMLInputElement>,
     id: string,
-  ) => {
+  ) {
     setRemark((prevState) => ({
       ...prevState,
       [id]: e.target.value,
     }));
-  };
+  }
 
   return (
     <div className="min-h-screen overflow-x-hidden">

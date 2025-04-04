@@ -32,9 +32,7 @@ export default function Apply() {
 
   function handleCopyUrl() {
     navigator.clipboard.writeText(
-      "https://frc.codecat.tw/events/" +
-        activityUrl +
-        "?join=1&openExternalBrowser=1",
+      `https://frc.codecat.tw/events/${activityUrl}?join=1&openExternalBrowser=1`,
     );
     alert("活動網址已複製到剪貼簿");
   }
@@ -51,30 +49,35 @@ export default function Apply() {
           {...register("date", { required: true })}
           className="w-full rounded-md border border-gray-300 p-2 mb-4"
         />
+
         <label className="text-sm font-bold">活動名稱</label>
         <input
           placeholder="活動主題、預期目標等..."
           {...register("name", { required: true })}
           className="w-full rounded-md border border-gray-300 p-2 mb-4"
         />
+
         <label className="text-sm font-bold">開始時間</label>
         <input
           type="time"
           {...register("start", { required: true })}
           className="w-full rounded-md border border-gray-300 p-2 mb-4"
         />
+
         <label className="text-sm font-bold">結束時間</label>
         <input
           type="time"
           {...register("end", { required: true })}
           className="w-full rounded-md border border-gray-300 p-2 mb-4"
         />
+
         <label className="text-sm font-bold">使用分區</label>
         <input
           placeholder="如:A、B、C"
           {...register("area", { required: true })}
           className="w-full rounded-md border border-gray-300 p-2 mb-4"
         />
+
         <label className="text-sm font-bold">指導老師</label>
         <select
           {...register("teacher", { required: true })}
@@ -85,6 +88,7 @@ export default function Apply() {
           <option value="angella">李淑卿</option>
           <option value="eric">系統測試</option>
         </select>
+
         <label className="text-sm font-bold">邀請對象</label>
         <label className="mb-2 block text-sm font-bold text-gray-500">
           成員只要包含於選中項其中之一即可參與
@@ -101,7 +105,9 @@ export default function Apply() {
             <label htmlFor={`invite-${index}`}>{group}</label>
           </div>
         ))}
+
         {errors.name && <span>必填</span>}
+
         <button
           type="submit"
           className="mt-4 w-full rounded-md bg-blue-500 p-2 text-white"

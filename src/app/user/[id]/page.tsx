@@ -1,6 +1,6 @@
+import { notFound } from "next/navigation";
 import Image from "next/image";
 import { getUserData } from "@/actions/user";
-import { User } from "@/types/user";
 
 export const metadata = {
   title: "帳號查詢",
@@ -15,24 +15,12 @@ export default async function Page({
 }) {
   const { id } = await params;
 
-  if (!id) {
-    return (
-      <div className="flex min-h-screen items-center justify-center text-xl">
-        查無使用者
-      </div>
-    );
-  }
+  if (!id) return notFound();
 
   const userId = decodeURIComponent(id);
-  const user: User | null = await getUserData(userId);
+  const user = await getUserData(userId);
 
-  if (!user) {
-    return (
-      <div className="flex min-h-screen items-center justify-center text-xl">
-        查無使用者
-      </div>
-    );
-  }
+  if (!user) return notFound();
 
   return (
     <div className="flex min-h-screen items-center justify-center p-4">
