@@ -9,7 +9,6 @@ import {
   updateRemark,
 } from "@/actions/activity";
 import { Activity } from "@/types/activity";
-import Loading from "@/components/layout/Loading";
 import ActivityCard from "./ActivityCard";
 
 export default function Page() {
@@ -57,20 +56,19 @@ export default function Page() {
     }));
   };
 
-  if (status === "loading") {
-    return <Loading />;
-  }
-
   return (
     <div className="min-h-screen overflow-x-hidden">
       <h1 className="py-4 text-center text-4xl font-bold">場地審核</h1>
-      <div className="mx-auto my-2 w-11/12 max-w-md rounded-lg border bg-white p-4 text-center shadow-lg">
+      <div className="mx-auto my-2 max-w-lg">
         <ul>
           {items
             .slice()
             .reverse()
             .map((item) => (
-              <li key={item.id} className="border-b-2 p-2">
+              <li
+                key={item.id}
+                className="border-2 p-2 m-4 border-gray-300 rounded-lg"
+              >
                 <ActivityCard activity={item} />
                 <form onSubmit={(e: FormEvent) => handleSubmit(e, item.id)}>
                   <input
@@ -89,13 +87,13 @@ export default function Page() {
                 </form>
                 <button
                   onClick={() => handleApprove(item.id)}
-                  className="rounded-sm border bg-green-400 p-1 text-white"
+                  className="rounded-md bg-green-400 p-2 w-full cursor-pointer"
                 >
                   接受申請
                 </button>
                 <button
                   onClick={() => handleDelete(item.id)}
-                  className="rounded-sm border bg-red-400 p-1 text-white"
+                  className="rounded-md bg-red-400 p-2 w-full cursor-pointer"
                 >
                   刪除項目
                 </button>

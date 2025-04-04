@@ -41,7 +41,6 @@ export default function Page() {
 
   useEffect(() => {
     const executeJoinEvent = async () => {
-      console.log("hi");
       if (!joinExecuted) {
         const joinParam = searchParams?.get("join") || "-";
 

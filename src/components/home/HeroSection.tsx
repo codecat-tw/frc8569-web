@@ -25,7 +25,7 @@ export default function HeroSection() {
               1000,
               "團隊管理系統",
               1000,
-              "現代化網站",
+              "程式貓維護建置",
               1000,
             ]}
             wrapper="span"
