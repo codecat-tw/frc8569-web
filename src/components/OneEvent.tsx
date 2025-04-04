@@ -9,7 +9,7 @@ import { joinEvent } from "@/actions/activity";
 import { Activity } from "@/types/activity";
 import ActivityCard from "./ActivityCard";
 
-export default function Page() {
+export default function OneEvent() {
   const params = useParams() || {};
   const searchParams = useSearchParams();
   const [eventData, setEventData] = useState<Activity>();

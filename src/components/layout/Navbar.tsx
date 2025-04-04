@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
-import { Icon } from "@iconify/react";
+import { LuMenu, LuX } from "react-icons/lu";
 
 const navigation = [
   { name: "活動清單", href: "/events" },
@@ -28,26 +28,9 @@ export default function Navbar() {
             >
               <span className="sr-only">Open main menu</span>
               {mobileMenuOpen ? (
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
+                <LuX className="h-6 w-6" />
               ) : (
-                <Icon
-                  icon="tabler:baseline-density-medium"
-                  width="24"
-                  height="24"
-                />
+                <LuMenu className="h-6 w-6" />
               )}
             </button>
           </div>

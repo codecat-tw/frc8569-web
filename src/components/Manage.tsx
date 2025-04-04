@@ -2,16 +2,17 @@
 
 import { useState, FormEvent, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import { Activity } from "@/types/activity";
+import ActivityCard from "./ActivityCard";
+import { LuSend, LuCheck, LuTrash2 } from "react-icons/lu";
 import {
   getActivitytList,
   approveActivity,
   deleteActivity,
   updateRemark,
 } from "@/actions/activity";
-import { Activity } from "@/types/activity";
-import ActivityCard from "./ActivityCard";
 
-export default function Page() {
+export default function Manage() {
   const [items, setItems] = useState<Activity[]>([]);
   const [remark, setRemark] = useState<{ [key: string]: string }>({});
   const { status } = useSession();
@@ -78,26 +79,30 @@ export default function Page() {
                     type="text"
                     value={remark[item.id] || ""}
                     onChange={(e) => handleRemarkChange(e, item.id)}
-                    placeholder="輸入備註"
+                    placeholder="輸入活動評語"
                     className="mb-2 rounded-sm border p-1 w-full"
                   />
                   <button
                     type="submit"
-                    className="rounded-sm border bg-gray-400 p-1 text-white w-20"
+                    className="mb-2 ml-2 flex w-12 items-center justify-center rounded-sm border bg-gray-400 p-1 text-white hover:bg-gray-500"
                   >
-                    傳送
+                    <LuSend />
                   </button>
                 </form>
+
                 <button
                   onClick={() => handleApprove(item.id)}
-                  className="rounded-md bg-green-400 my-2 p-2 w-full cursor-pointer"
+                  className="my-2 flex w-full items-center justify-center rounded-md bg-green-400 p-2 text-white hover:bg-green-500"
                 >
+                  <LuCheck className="mr-2" />
                   接受申請
                 </button>
+
                 <button
                   onClick={() => handleDelete(item.id)}
-                  className="rounded-md bg-red-400 my-2 p-2 w-full cursor-pointer"
+                  className="my-2 flex w-full items-center justify-center rounded-md bg-red-400 p-2 text-white hover:bg-red-500"
                 >
+                  <LuTrash2 className="mr-2" />
                   刪除項目
                 </button>
               </li>

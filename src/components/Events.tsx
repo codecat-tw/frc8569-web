@@ -6,7 +6,7 @@ import { getActivitytList, joinEvent } from "@/actions/activity";
 import { Activity } from "@/types/activity";
 import ActivityCard from "./ActivityCard";
 
-export default function Page() {
+export default function Events() {
   const [items, setItems] = useState<Activity[]>([]);
   const { status } = useSession();
 
