@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, FormEvent, useEffect } from "react";
-// import { useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { Activity } from "@/types/activity";
 import ActivityCard from "./ActivityCard";
 import { LuSend, LuCheck, LuTrash2 } from "react-icons/lu";
+import Loading from "@/components/layout/Loading";
+import Unauth from "@/components/layout/Unauth";
 import {
   getActivitytList,
   approveActivity,
@@ -15,11 +17,12 @@ import {
 export default function Manage() {
   const [items, setItems] = useState<Activity[]>([]);
   const [remark, setRemark] = useState<{ [key: string]: string }>({});
-  // const { status } = useSession();
+  const { status } = useSession();
 
   useEffect(() => {
-    getActivitytList().then(setItems).catch(console.error);
-  }, []);
+    if (status === "authenticated")
+      getActivitytList().then(setItems).catch(console.error);
+  }, [status]);
 
   function handleApprove(id: string) {
     approveActivity(id)
@@ -56,6 +59,9 @@ export default function Manage() {
       [id]: e.target.value,
     }));
   }
+
+  if (status === "loading") return <Loading />;
+  if (status === "unauthenticated") return <Unauth />;
 
   return (
     <div className="min-h-screen overflow-x-hidden">

@@ -1,22 +1,28 @@
 "use client";
 
 import { useState, useEffect } from "react";
-// import { useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { getActivitytList, joinEvent } from "@/actions/activity";
 import { Activity } from "@/types/activity";
 import ActivityCard from "./ActivityCard";
+import Loading from "@/components/layout/Loading";
+import Unauth from "@/components/layout/Unauth";
 
 export default function Events() {
   const [items, setItems] = useState<Activity[]>([]);
-  // const { status } = useSession();
+  const { status } = useSession();
 
   useEffect(() => {
-    getActivitytList().then(setItems).catch(console.error);
-  }, []);
+    if (status === "authenticated")
+      getActivitytList().then(setItems).catch(console.error);
+  }, [status]);
 
   async function handleJoinEvent(id: string) {
     await joinEvent(id);
   }
+
+  if (status === "loading") return <Loading />;
+  if (status === "unauthenticated") return <Unauth />;
 
   return (
     <div className="min-h-screen overflow-x-hidden">
