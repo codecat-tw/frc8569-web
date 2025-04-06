@@ -3,16 +3,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { applyItem } from "@/actions/activity";
 import { useState } from "react";
-
-interface Inputs {
-  date: string;
-  name: string;
-  start: string;
-  end: string;
-  area: string;
-  teacher: string;
-  invite: string[];
-}
+import { Form } from "@/types/form";
 
 const groupList = ["全成員", "程式組", "機構組", "電控組", "策略組", "公關組"];
 
@@ -22,9 +13,9 @@ export default function Apply() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<Form>();
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<Form> = async (data) => {
     console.log(data);
     const result = await applyItem({ formValues: data });
     setActivityUrl(result);

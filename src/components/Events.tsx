@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { getActivitytList, joinEvent } from "@/actions/activity";
+import { getActivityList, joinEvent } from "@/actions/activity";
 import { Activity } from "@/types/activity";
 import ActivityCard from "./ActivityCard";
 import Loading from "@/components/layout/Loading";
@@ -14,7 +14,7 @@ export default function Events() {
 
   useEffect(() => {
     if (status === "authenticated")
-      getActivitytList().then(setItems).catch(console.error);
+      getActivityList().then(setItems).catch(console.error);
   }, [status]);
 
   async function handleJoinEvent(id: string) {

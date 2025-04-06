@@ -1,6 +1,9 @@
 "use server";
 
 import db from "@/lib/firebase";
+import { getSession } from "./auth";
+import { Activity } from "@/types/activity";
+import { Form } from "@/types/form";
 import {
   collection,
   deleteDoc,
@@ -10,12 +13,6 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
-import { getSession } from "./auth";
-import { Activity } from "@/types/activity";
-
-interface Member {
-  name: string;
-}
 
 const adminEmails = [
   "yd960528@gmail.com",
@@ -23,13 +20,14 @@ const adminEmails = [
   "kkbike@mail2.chshs.ntpc.edu.tw",
 ];
 
-export async function getActivitytList() {
+export async function getActivityList() {
   const session = await getSession();
 
   if (
-    !session?.user?.email?.endsWith("@gmail.com") ||
-    !adminEmails.includes(session.user.email)
+    session?.user?.email?.endsWith("@mail2.chshs.ntpc.edu.tw") ||
+    adminEmails.includes(session.user.email)
   ) {
+  } else {
     throw new Error("權限不足");
   }
 
@@ -42,22 +40,9 @@ export async function getActivitytList() {
   })) as Activity[];
 }
 
-interface FormValues {
-  date: string;
-  name: string;
-  start: string;
-  end: string;
-  area: string;
-  teacher: string;
-}
-
-export async function applyItem({ formValues }: { formValues: FormValues }) {
+export async function applyItem({ formValues }: { formValues: Form }) {
   const session = await getSession();
   const { date, name, start, end, area, teacher } = formValues;
-
-  if (!session || !session?.user?.email || !session?.user?.name) {
-    throw new Error("session載入失敗");
-  }
 
   if (!date || !name || !start || !end || !area || !teacher) {
     throw new Error("所有字段為必填");
@@ -110,15 +95,8 @@ interface ActivityData {
   members: Member[];
 }
 
-export const joinEvent = async (id: string): Promise<string> => {
+export async function joinEvent(id: string) {
   const session = await getSession();
-
-  if (!session || !session.user?.email || !session.user?.name) {
-    return "session載入失敗";
-  }
-
-  const userEmail = session.user.email;
-  const userName = session.user.name;
 
   const docRef = doc(db, "activity", id);
   const docSnap = await getDoc(docRef);
@@ -130,14 +108,16 @@ export const joinEvent = async (id: string): Promise<string> => {
   const activityData = docSnap.data() as ActivityData;
   const members = activityData.members || [];
 
-  const isAlreadyJoined = members.some((member) => member.email === userEmail);
+  const isAlreadyJoined = members.some(
+    (member) => member.email === session.user.email,
+  );
   if (isAlreadyJoined) {
     return "你已報名過了";
   }
 
   const newMember: Member = {
-    name: userName,
-    email: userEmail,
+    name: session.user.name,
+    email: session.user.email,
     createdAt: new Date().toISOString(),
   };
 
@@ -146,7 +126,7 @@ export const joinEvent = async (id: string): Promise<string> => {
   await setDoc(docRef, { members }, { merge: true });
 
   return "你已成功報名";
-};
+}
 
 export async function updateRemark(id: string, remark: string) {
   if (!id || !remark) {

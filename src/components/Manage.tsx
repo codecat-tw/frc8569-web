@@ -8,7 +8,7 @@ import { LuSend, LuCheck, LuTrash2 } from "react-icons/lu";
 import Loading from "@/components/layout/Loading";
 import Unauth from "@/components/layout/Unauth";
 import {
-  getActivitytList,
+  getActivityList,
   approveActivity,
   deleteActivity,
   updateRemark,
@@ -21,7 +21,7 @@ export default function Manage() {
 
   useEffect(() => {
     if (status === "authenticated")
-      getActivitytList().then(setItems).catch(console.error);
+      getActivityList().then(setItems).catch(console.error);
   }, [status]);
 
   function handleApprove(id: string) {
