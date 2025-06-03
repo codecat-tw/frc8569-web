@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
-import { LuMenu, LuX } from "react-icons/lu";
+import { Menu, X } from "lucide-react";
 
 const navigation = [
   { name: "活動清單", href: "/events" },
@@ -28,9 +28,9 @@ export default function Navbar() {
             >
               <span className="sr-only">Open main menu</span>
               {mobileMenuOpen ? (
-                <LuX className="h-6 w-6" />
+                <X className="h-6 w-6" />
               ) : (
-                <LuMenu className="h-6 w-6" />
+                <Menu className="h-6 w-6" />
               )}
             </button>
           </div>

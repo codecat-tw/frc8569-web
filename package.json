@@ -14,13 +14,13 @@
     "@next/third-parties": "^15.3.3",
     "firebase": "^11.8.1",
     "firebase-admin": "^12.7.0",
+    "lucide-react": "^0.511.0",
     "motion": "^12.16.0",
     "next": "^15.3.3",
     "next-auth": "^4.24.11",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.57.0",
-    "react-icons": "^5.5.0",
     "react-type-animation": "^3.2.0"
   },
   "devDependencies": {

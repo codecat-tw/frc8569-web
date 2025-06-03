@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { LuTriangle } from "react-icons/lu";
+import { Triangle } from "lucide-react";
 
 export default function Error({
   error,
@@ -18,7 +18,7 @@ export default function Error({
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 px-6">
       <div className="max-w-md w-full text-center space-y-6">
         <div className="flex justify-center">
-          <LuTriangle className="w-16 h-16 text-red-500" />
+          <Triangle className="w-16 h-16 text-red-500" />
         </div>
         <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100">
           系統異常

@@ -4,7 +4,7 @@ import { useState, FormEvent, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { Activity } from "@/types/activity";
 import ActivityCard from "./ActivityCard";
-import { LuSend, LuCheck, LuTrash2 } from "react-icons/lu";
+import { Send, Check, Trash2 } from "lucide-react";
 import Loading from "@/components/layout/Loading";
 import Unauth from "@/components/layout/Unauth";
 import {
@@ -92,7 +92,7 @@ export default function Manage() {
                     type="submit"
                     className="mb-2 ml-2 flex w-12 items-center justify-center rounded-sm border bg-gray-400 p-1 text-white hover:bg-gray-500"
                   >
-                    <LuSend />
+                    <Send />
                   </button>
                 </form>
 
@@ -100,7 +100,7 @@ export default function Manage() {
                   onClick={() => handleApprove(item.id)}
                   className="my-2 flex w-full items-center justify-center rounded-md bg-green-400 p-2 text-white hover:bg-green-500"
                 >
-                  <LuCheck className="mr-2" />
+                  <Check className="mr-2" />
                   接受申請
                 </button>
 
@@ -108,7 +108,7 @@ export default function Manage() {
                   onClick={() => handleDelete(item.id)}
                   className="my-2 flex w-full items-center justify-center rounded-md bg-red-400 p-2 text-white hover:bg-red-500"
                 >
-                  <LuTrash2 className="mr-2" />
+                  <Trash2 className="mr-2" />
                   刪除項目
                 </button>
               </li>

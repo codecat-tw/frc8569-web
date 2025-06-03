@@ -1,12 +1,6 @@
 import { Activity } from "@/types/activity";
 import Link from "next/link";
-import {
-  LuMapPin,
-  LuUser,
-  LuBook,
-  LuCheck,
-  LuMessageSquare,
-} from "react-icons/lu";
+import { MapPin, User, Book, Check, MessageSquare } from "lucide-react";
 
 export default function ActivityCard({ activity }: { activity: Activity }) {
   return (
@@ -25,23 +19,23 @@ export default function ActivityCard({ activity }: { activity: Activity }) {
         <span>{activity.end}</span>
       </div>
       <div className="flex items-center gap-2">
-        <LuMapPin className="text-purple-500" />
+        <MapPin className="text-purple-500" />
         <span>使用分區: {activity.area}</span>
       </div>
       <div className="flex items-center gap-2">
-        <LuUser className="text-indigo-500" />
+        <User className="text-indigo-500" />
         <span>活動代表: {activity.applyName}</span>
       </div>
       <div className="flex items-center gap-2">
-        <LuBook className="text-teal-500" />
+        <Book className="text-teal-500" />
         <span>指導老師: {activity.teacher}</span>
       </div>
       <div className="flex items-center gap-2">
-        <LuCheck className="text-green-600" />
+        <Check className="text-green-600" />
         <span>場地狀態: {activity.status}</span>
       </div>
       <div className="flex items-center gap-2">
-        <LuMessageSquare className="text-gray-600" />
+        <MessageSquare className="text-gray-600" />
         <span>場地評語: {activity.remark}</span>
       </div>
     </div>
