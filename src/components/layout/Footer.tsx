@@ -1,5 +1,5 @@
 import Link from "next/link";
-import pkg from "../../../package.json";
+import pkg from "@/../package.json";
 
 export default function Footer() {
   return (

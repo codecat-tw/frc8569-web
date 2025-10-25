@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, FormEvent, useEffect } from "react";
-import { useSession } from "next-auth/react";
+import { authClient } from "@/lib/auth-client";
 import { Activity } from "@/types/activity";
 import ActivityCard from "./ActivityCard";
 import { Send, Check, Trash2 } from "lucide-react";
@@ -17,12 +17,11 @@ import {
 export default function Manage() {
   const [items, setItems] = useState<Activity[]>([]);
   const [remark, setRemark] = useState<{ [key: string]: string }>({});
-  const { status } = useSession();
+  const { error } = authClient.useSession();
 
   useEffect(() => {
-    if (status === "authenticated")
-      getActivityList().then(setItems).catch(console.error);
-  }, [status]);
+    if (error) getActivityList().then(setItems).catch(console.error);
+  }, [error]);
 
   function handleApprove(id: string) {
     approveActivity(id)

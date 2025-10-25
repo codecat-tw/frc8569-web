@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
+import { authClient } from "@/lib/auth-client";
 import { getActivityList, joinEvent } from "@/actions/activity";
 import { Activity } from "@/types/activity";
 import ActivityCard from "./ActivityCard";
@@ -10,12 +10,13 @@ import Unauth from "@/components/layout/Unauth";
 
 export default function Events() {
   const [items, setItems] = useState<Activity[]>([]);
-  const { status } = useSession();
+  const { error } = authClient.useSession();
 
   useEffect(() => {
-    if (status === "authenticated")
+    if (error) {
       getActivityList().then(setItems).catch(console.error);
-  }, [status]);
+    }
+  }, [error]);
 
   async function handleJoinEvent(id: string) {
     await joinEvent(id);

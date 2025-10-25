@@ -1,7 +1,7 @@
 "use server";
 
 import db from "@/lib/firebase";
-import { getSession } from "./auth";
+import { getSession } from "@/actions/auth";
 import { Activity } from "@/types/activity";
 import { Form } from "@/types/form";
 import {

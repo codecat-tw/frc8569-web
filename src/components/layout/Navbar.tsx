@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { signIn, useSession } from "next-auth/react";
+import { authClient } from "@/lib/auth-client";
 import { Menu, X } from "lucide-react";
 
 const navigation = [
@@ -14,7 +14,13 @@ const navigation = [
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { data: session } = useSession();
+  const { data: session } = authClient.useSession();
+
+  const signIn = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
 
   return (
     <nav className="bg-background/95 sticky top-0 z-50 mx-auto w-full border-b border-gray-300 backdrop-blur dark:border-gray-700">
@@ -77,7 +83,7 @@ export default function Navbar() {
             </div>
           ) : (
             <button
-              onClick={() => signIn("google")}
+              onClick={() => signIn()}
               className="text-sm font-semibold text-gray-900 hover:text-gray-700"
             >
               登入

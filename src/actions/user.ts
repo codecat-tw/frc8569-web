@@ -3,7 +3,7 @@
 import db from "@/lib/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { User } from "@/types/user";
-import { getSession } from "./auth";
+import { getSession } from "@/actions/auth";
 
 export async function getUserData(id: string) {
   if (!id) {
