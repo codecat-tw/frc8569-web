@@ -15,10 +15,10 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 px-6">
-      <div className="max-w-md w-full text-center space-y-6">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50 px-6 dark:bg-gray-900">
+      <div className="w-full max-w-md space-y-6 text-center">
         <div className="flex justify-center">
-          <Triangle className="w-16 h-16 text-red-500" />
+          <Triangle className="h-16 w-16 text-red-500" />
         </div>
         <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100">
           系統異常
@@ -35,7 +35,7 @@ export default function Error({
 
         <button
           onClick={reset}
-          className="mt-4 px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-2xl shadow-md transition"
+          className="mt-4 rounded-2xl bg-red-500 px-6 py-3 text-white shadow-md transition hover:bg-red-600"
         >
           再試一次
         </button>

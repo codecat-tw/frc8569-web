@@ -74,7 +74,7 @@ export default function Manage() {
             .map((item) => (
               <li
                 key={item.id}
-                className="border p-4 m-4 border-gray-300 rounded-lg"
+                className="m-4 rounded-lg border border-gray-300 p-4"
               >
                 <ActivityCard activity={item} />
                 <form
@@ -86,7 +86,7 @@ export default function Manage() {
                     value={remark[item.id] || ""}
                     onChange={(e) => handleRemarkChange(e, item.id)}
                     placeholder="輸入活動評語"
-                    className="mb-2 rounded-sm border p-1 w-full"
+                    className="mb-2 w-full rounded-sm border p-1"
                   />
                   <button
                     type="submit"

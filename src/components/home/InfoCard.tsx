@@ -33,12 +33,12 @@ export default function InfoCard() {
       {items.map((item, index) => (
         <div
           key={index}
-          className="my-12 flex flex-col items-center bg-blue-50 p-4 sm:p-12 md:flex-row rounded-xl"
+          className="my-12 flex flex-col items-center rounded-xl bg-blue-50 p-4 sm:p-12 md:flex-row"
         >
           <div className="flex w-full items-center justify-center p-4 md:w-1/2">
             {item.icon}
           </div>
-          <div className="mt-4 w-full md:ml-4 md:mt-0 md:w-1/2">
+          <div className="mt-4 w-full md:mt-0 md:ml-4 md:w-1/2">
             <h2 className="mb-2 text-2xl font-bold text-gray-800 sm:text-3xl">
               {item.title}
             </h2>

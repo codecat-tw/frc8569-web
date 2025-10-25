@@ -4,7 +4,7 @@ import { MapPin, User, Book, Check, MessageSquare } from "lucide-react";
 
 export default function ActivityCard({ activity }: { activity: Activity }) {
   return (
-    <div className="rounded-lg p-4 space-y-2 text-lg">
+    <div className="space-y-2 rounded-lg p-4 text-lg">
       <div className="text-center text-2xl font-bold">
         <Link
           href={`/events/${activity.id}`}

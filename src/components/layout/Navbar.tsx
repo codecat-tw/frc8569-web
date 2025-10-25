@@ -17,7 +17,7 @@ export default function Navbar() {
   const { data: session } = useSession();
 
   return (
-    <nav className="sticky top-0 z-50 w-full mx-auto border-b border-gray-300 dark:border-gray-700 backdrop-blur bg-background/95">
+    <nav className="bg-background/95 sticky top-0 z-50 mx-auto w-full border-b border-gray-300 backdrop-blur dark:border-gray-700">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 justify-between">
           <div className="flex items-center lg:hidden">
@@ -88,11 +88,11 @@ export default function Navbar() {
 
       {mobileMenuOpen && (
         <div className="text-center lg:hidden">
-          <div className="space-y-1 pb-3 pt-2">
+          <div className="space-y-1 pt-2 pb-3">
             {navigation.map((item) => (
               <Link key={item.name} href={item.href} passHref>
                 <span
-                  className="block cursor-pointer border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-700 hover:border-gray-300 hover:bg-gray-50"
+                  className="block cursor-pointer border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-700 hover:border-gray-300 hover:bg-gray-50"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
