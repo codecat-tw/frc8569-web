@@ -1,7 +1,5 @@
 "use server";
 
-"use server";
-
 import clientPromise from "@/lib/mongodb";
 import { User } from "@/types/user";
 import { getSession } from "@/actions/auth";
