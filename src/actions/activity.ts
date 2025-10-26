@@ -1,6 +1,6 @@
 "use server";
 
-import clientPromise from "@/lib/mongodb";
+import { db } from "@/lib/mongodb";
 import { getSession } from "@/actions/auth";
 import { Activity } from "@/types/activity";
 import { Form } from "@/types/form";
@@ -22,8 +22,6 @@ export async function getActivityList() {
     throw new Error("權限不足");
   }
 
-  const client = await clientPromise;
-  const db = client.db();
   const activities = await db.collection("activity").find({}).toArray();
 
   return activities.map((activity) => {
@@ -45,8 +43,6 @@ export async function applyItem({ formValues }: { formValues: Form }) {
     throw new Error("所有字段為必填");
   }
 
-  const client = await clientPromise;
-  const db = client.db();
   const result = await db.collection("activity").insertOne({
     ...formValues,
     applyEmail: session.user.email,
@@ -64,8 +60,6 @@ export async function approveActivity(id: string) {
     throw new Error("活動ID缺失");
   }
 
-  const client = await clientPromise;
-  const db = client.db();
   await db
     .collection("activity")
     .updateOne({ _id: new ObjectId(id) }, { $set: { status: "申請通過" } });
@@ -78,8 +72,6 @@ export async function deleteActivity(id: string) {
     throw new Error("活動ID缺失");
   }
 
-  const client = await clientPromise;
-  const db = client.db();
   await db.collection("activity").deleteOne({ _id: new ObjectId(id) });
 
   return "活動已刪除";
@@ -94,8 +86,6 @@ interface Member {
 export async function joinEvent(id: string) {
   const session = await getSession();
 
-  const client = await clientPromise;
-  const db = client.db();
   const activity = await db
     .collection("activity")
     .findOne({ _id: new ObjectId(id) });
@@ -134,8 +124,6 @@ export async function updateRemark(id: string, remark: string) {
     throw new Error("缺少必要的參數");
   }
 
-  const client = await clientPromise;
-  const db = client.db();
   await db
     .collection("activity")
     .updateOne({ _id: new ObjectId(id) }, { $set: { remark: remark } });
