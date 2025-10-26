@@ -15,7 +15,7 @@ export async function getUserData(id: string) {
   const user = await db.collection("users").findOne({ _id: new ObjectId(id) });
 
   if (!user) {
-    throw new Error("使用者資料不存在");
+    throw new Error(`使用者資料不存在，ID: ${id}`);
   }
 
   const { _id, ...rest } = user;
