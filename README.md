@@ -28,6 +28,7 @@
 - Next.js 16
 - Tailwind CSS 4
 - Better-Auth 1
+- MongoDB
 
 ## 系統功能
 

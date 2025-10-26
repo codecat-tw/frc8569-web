@@ -5,7 +5,7 @@ import { headers } from "next/headers";
 
 export async function getSession() {
   const session = await auth.api.getSession({
-    headers: await headers(), // you need to pass the headers object.
+    headers: await headers(),
   });
 
   if (!session) throw new Error("No session found");
