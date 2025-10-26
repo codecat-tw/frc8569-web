@@ -2,7 +2,7 @@ import { betterAuth } from "better-auth";
 import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 
-const client = new MongoClient(
+export const client = new MongoClient(
   "mongodb://server:lk9_xqc3m7Cey1dFZTGVphb62zm-Yo9VjtudzswtycdsRbfE@07446f38-6a42-4ffb-8857-301fccd70641.asia-east1.firestore.goog:443/default?loadBalanced=true&tls=true&authMechanism=SCRAM-SHA-256&retryWrites=false",
 );
 const db = client.db();

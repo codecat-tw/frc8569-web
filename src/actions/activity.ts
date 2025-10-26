@@ -1,18 +1,12 @@
 "use server";
 
-import db from "@/lib/firebase";
+"use server";
+
+import clientPromise from "@/lib/mongodb";
 import { getSession } from "@/actions/auth";
 import { Activity } from "@/types/activity";
 import { Form } from "@/types/form";
-import {
-  collection,
-  deleteDoc,
-  doc,
-  getDoc,
-  getDocs,
-  setDoc,
-  updateDoc,
-} from "firebase/firestore";
+import { ObjectId } from "mongodb";
 
 const adminEmails = [
   "yd960528@gmail.com",
@@ -24,20 +18,25 @@ export async function getActivityList() {
   const session = await getSession();
 
   if (
-    session?.user?.email?.endsWith("@mail2.chshs.ntpc.edu.tw") ||
-    adminEmails.includes(session.user.email)
+    !session?.user?.email?.endsWith("@mail2.chshs.ntpc.edu.tw") &&
+    !adminEmails.includes(session.user.email)
   ) {
-  } else {
     throw new Error("權限不足");
   }
 
-  const querySnapshot = await getDocs(collection(db, "activity"));
-  return querySnapshot.docs.map((doc) => ({
-    ...doc.data(),
-    id: doc.id,
-    members:
-      doc.data().members?.map(({ name }: { name: string }) => ({ name })) || [],
-  })) as Activity[];
+  const client = await clientPromise;
+  const db = client.db();
+  const activities = await db.collection("activity").find({}).toArray();
+
+  return activities.map((activity) => {
+    const { _id, ...rest } = activity;
+    return {
+      ...rest,
+      id: _id.toString(),
+      members:
+        activity.members?.map(({ name }: { name: string }) => ({ name })) || [],
+    };
+  }) as Activity[];
 }
 
 export async function applyItem({ formValues }: { formValues: Form }) {
@@ -48,17 +47,18 @@ export async function applyItem({ formValues }: { formValues: Form }) {
     throw new Error("所有字段為必填");
   }
 
-  const applyTime = new Date().toISOString();
-  const docRef = doc(collection(db, "activity"), applyTime);
-  await setDoc(docRef, {
+  const client = await clientPromise;
+  const db = client.db();
+  const result = await db.collection("activity").insertOne({
     ...formValues,
     applyEmail: session.user.email,
     applyName: session.user.name,
     status: "尚未審核",
     remark: "(沒有評語)",
+    createdAt: new Date(),
   });
 
-  return applyTime;
+  return result.insertedId.toString();
 }
 
 export async function approveActivity(id: string) {
@@ -66,10 +66,11 @@ export async function approveActivity(id: string) {
     throw new Error("活動ID缺失");
   }
 
-  const docRef = doc(db, "activity", id);
-  await updateDoc(docRef, {
-    status: "申請通過",
-  });
+  const client = await clientPromise;
+  const db = client.db();
+  await db
+    .collection("activity")
+    .updateOne({ _id: new ObjectId(id) }, { $set: { status: "申請通過" } });
 
   return "活動已批准";
 }
@@ -79,8 +80,9 @@ export async function deleteActivity(id: string) {
     throw new Error("活動ID缺失");
   }
 
-  const docRef = doc(db, "activity", id);
-  await deleteDoc(docRef);
+  const client = await clientPromise;
+  const db = client.db();
+  await db.collection("activity").deleteOne({ _id: new ObjectId(id) });
 
   return "活動已刪除";
 }
@@ -91,25 +93,23 @@ interface Member {
   createdAt: string;
 }
 
-interface ActivityData {
-  members: Member[];
-}
-
 export async function joinEvent(id: string) {
   const session = await getSession();
 
-  const docRef = doc(db, "activity", id);
-  const docSnap = await getDoc(docRef);
+  const client = await clientPromise;
+  const db = client.db();
+  const activity = await db
+    .collection("activity")
+    .findOne({ _id: new ObjectId(id) });
 
-  if (!docSnap.exists()) {
+  if (!activity) {
     return "找不到活動";
   }
 
-  const activityData = docSnap.data() as ActivityData;
-  const members = activityData.members || [];
+  const members = activity.members || [];
 
   const isAlreadyJoined = members.some(
-    (member) => member.email === session.user.email,
+    (member: Member) => member.email === session.user.email,
   );
   if (isAlreadyJoined) {
     return "你已報名過了";
@@ -121,9 +121,12 @@ export async function joinEvent(id: string) {
     createdAt: new Date().toISOString(),
   };
 
-  members.push(newMember);
-
-  await setDoc(docRef, { members }, { merge: true });
+  await db
+    .collection("activity")
+    .updateOne(
+      { _id: new ObjectId(id) },
+      { $push: { members: newMember as any } },
+    );
 
   return "你已成功報名";
 }
@@ -133,10 +136,11 @@ export async function updateRemark(id: string, remark: string) {
     throw new Error("缺少必要的參數");
   }
 
-  const docRef = doc(db, "activity", id);
-  await updateDoc(docRef, {
-    remark: remark,
-  });
+  const client = await clientPromise;
+  const db = client.db();
+  await db
+    .collection("activity")
+    .updateOne({ _id: new ObjectId(id) }, { $set: { remark: remark } });
 
   return "評語已更新";
 }

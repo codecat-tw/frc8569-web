@@ -1,23 +1,31 @@
 "use server";
 
-import db from "@/lib/firebase";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+"use server";
+
+import clientPromise from "@/lib/mongodb";
 import { User } from "@/types/user";
 import { getSession } from "@/actions/auth";
+import { ObjectId } from "mongodb";
 
 export async function getUserData(id: string) {
   if (!id) {
     throw new Error("缺少必須的參數");
   }
 
-  const docRef = doc(db, "users", id);
-  const docSnap = await getDoc(docRef);
+  const client = await clientPromise;
+  const db = client.db();
+  const user = await db.collection("users").findOne({ _id: new ObjectId(id) });
 
-  if (!docSnap.exists()) {
+  if (!user) {
     throw new Error("使用者資料不存在");
   }
 
-  return docSnap.data() as User;
+  const { _id, ...rest } = user;
+
+  return {
+    ...rest,
+    id: _id.toString(),
+  } as unknown as User;
 }
 
 export async function setTeam(teamName: string) {
@@ -26,6 +34,13 @@ export async function setTeam(teamName: string) {
   }
 
   const session = await getSession();
-  const docRef = doc(db, "users", session.user.id);
-  await updateDoc(docRef, { team: teamName });
+  const client = await clientPromise;
+  const db = client.db();
+
+  await db
+    .collection("users")
+    .updateOne(
+      { _id: new ObjectId(session.user.id) },
+      { $set: { team: teamName } },
+    );
 }

@@ -11,8 +11,6 @@ export default function UserInfoCard() {
   const [user, setUser] = useState<User>();
   const { data: session } = authClient.useSession();
 
-  
-
   useEffect(() => {
     if (!session?.user?.id) return;
     getUserData(session.user.id).then(setUser);
