@@ -10,7 +10,7 @@ export async function getUserData(id: string) {
     throw new Error("缺少必須的參數");
   }
 
-  const user = await db.collection("users").findOne({ _id: new ObjectId(id) });
+  const user = await db.collection("user").findOne({ _id: new ObjectId(id) });
 
   if (!user) {
     throw new Error(`使用者資料不存在，ID: ${id}`);
@@ -32,7 +32,7 @@ export async function setTeam(teamName: string) {
   const session = await getSession();
 
   await db
-    .collection("users")
+    .collection("user")
     .updateOne(
       { _id: new ObjectId(session.user.id) },
       { $set: { team: teamName } },
