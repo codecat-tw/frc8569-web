@@ -42,7 +42,7 @@ export default function UserInfoCard() {
         <div className="mb-4 text-center text-lg text-gray-800">
           註冊帳號: {user.email}
           <br />
-          最後登入: {user.loginAt}
+          資料更新: {user.updatedAt}
           <br />
           <SetUserTeam team={user.team || ""} />
         </div>
