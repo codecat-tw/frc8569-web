@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import clientPromise from "@/lib/mongodb";
+import { db } from "@/lib/mongodb";
 import { joinEvent } from "@/actions/activity";
 import { Activity } from "@/types/activity";
 import ActivityCard from "@/components/ActivityCard";
@@ -18,8 +18,6 @@ export default async function Page({
   if (!id) return notFound();
 
   const decodedId = decodeURIComponent(id);
-  const client = await clientPromise;
-  const db = client.db();
   const eventData = await db
     .collection("activity")
     .findOne({ _id: new ObjectId(decodedId) });
