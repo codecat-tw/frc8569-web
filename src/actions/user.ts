@@ -6,15 +6,11 @@ import { getSession } from "@/actions/auth";
 import { ObjectId } from "mongodb";
 
 export async function getUserData(id: string) {
-  if (!id) {
-    throw new Error("缺少必須的參數");
-  }
+  if (!id) throw new Error("缺少必須的參數");
 
   const user = await db.collection("user").findOne({ _id: new ObjectId(id) });
 
-  if (!user) {
-    throw new Error(`使用者資料不存在，ID: ${id}`);
-  }
+  if (!user) throw new Error(`使用者資料不存在，ID: ${id}`);
 
   const { _id, ...rest } = user;
 
@@ -25,9 +21,7 @@ export async function getUserData(id: string) {
 }
 
 export async function setTeam(teamName: string) {
-  if (!teamName) {
-    throw new Error("缺少必須的參數");
-  }
+  if (!teamName) throw new Error("缺少必須的參數");
 
   const session = await getSession();
 

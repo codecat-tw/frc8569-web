@@ -13,15 +13,6 @@ const adminEmails = [
 ];
 
 export async function getActivityList() {
-  const session = await getSession();
-
-  if (
-    !session?.user?.email?.endsWith("@mail2.chshs.ntpc.edu.tw") &&
-    !adminEmails.includes(session.user.email)
-  ) {
-    throw new Error("權限不足");
-  }
-
   const activities = await db.collection("activity").find({}).toArray();
 
   return activities.map((activity) => {
@@ -85,6 +76,13 @@ interface Member {
 
 export async function joinEvent(id: string) {
   const session = await getSession();
+
+  if (
+    !session?.user?.email?.endsWith("@mail2.chshs.ntpc.edu.tw") &&
+    !adminEmails.includes(session.user.email)
+  ) {
+    return "組織外成員沒有權限報名活動";
+  }
 
   const activity = await db
     .collection("activity")

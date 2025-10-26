@@ -63,8 +63,6 @@ export default function Manage() {
   if (isPending) return <Loading />;
   if (!session) return <Unauth />;
 
-  console.log("Session data:", session);
-
   return (
     <div className="min-h-screen overflow-x-hidden">
       <h1 className="py-4 text-center text-4xl font-bold">場地審核</h1>
