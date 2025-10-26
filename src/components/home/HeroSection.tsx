@@ -1,11 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { signIn } from "next-auth/react";
+import { authClient } from "@/lib/auth-client";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 
 export default function HeroSection() {
+  const signIn = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+    });
+  };
+
   return (
     <div className="container mx-auto grid min-h-screen grid-cols-1 sm:grid-cols-12">
       <motion.div
@@ -36,7 +42,7 @@ export default function HeroSection() {
         <div>
           <button
             className="m-auto mb-8 flex items-center justify-center rounded-lg bg-white px-8 py-4 text-black shadow-md hover:bg-gray-100"
-            onClick={() => signIn("google")}
+            onClick={() => signIn()}
           >
             <Image
               src="/google-icon.png"

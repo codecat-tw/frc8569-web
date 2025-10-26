@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession, signOut } from "next-auth/react";
+import { authClient } from "@/lib/auth-client";
 import { useEffect, useState } from "react";
 import { getUserData } from "@/actions/user";
 import { User } from "@/types/user";
@@ -9,7 +9,9 @@ import Image from "next/image";
 
 export default function UserInfoCard() {
   const [user, setUser] = useState<User>();
-  const { data: session } = useSession();
+  const { data: session } = authClient.useSession();
+
+  
 
   useEffect(() => {
     if (!session?.user?.id) return;
@@ -47,7 +49,7 @@ export default function UserInfoCard() {
           <SetUserTeam team={user.team || ""} />
         </div>
         <button
-          onClick={() => signOut()}
+          onClick={async () => await authClient.signOut()}
           className="mt-4 w-full rounded-sm bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
         >
           登出

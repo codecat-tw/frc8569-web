@@ -17,7 +17,7 @@ export default function Navbar() {
   const { data: session } = authClient.useSession();
 
   const signIn = async () => {
-    const data = await authClient.signIn.social({
+    await authClient.signIn.social({
       provider: "google",
     });
   };

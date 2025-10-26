@@ -17,11 +17,12 @@ import {
 export default function Manage() {
   const [items, setItems] = useState<Activity[]>([]);
   const [remark, setRemark] = useState<{ [key: string]: string }>({});
-  const { error } = authClient.useSession();
+  const { data: session, isPending } = authClient.useSession();
 
   useEffect(() => {
-    if (error) getActivityList().then(setItems).catch(console.error);
-  }, [error]);
+    if (!session) return;
+    getActivityList().then(setItems).catch(console.error);
+  }, [session]);
 
   function handleApprove(id: string) {
     approveActivity(id)
@@ -59,8 +60,10 @@ export default function Manage() {
     }));
   }
 
-  if (status === "loading") return <Loading />;
-  if (status === "unauthenticated") return <Unauth />;
+  if (isPending) return <Loading />;
+  if (!session) return <Unauth />;
+
+  console.log("Session data:", session);
 
   return (
     <div className="min-h-screen overflow-x-hidden">
